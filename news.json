@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T11:24:39.414822+00:00",
+ "updated": "2026-11-20T11:27:04.372285+00:00",
  "items": [
   {
    "feedId": "community-own",
@@ -499,21 +499,6 @@
    "feedId": "nb-travel",
    "category": "ท่องเที่ยว",
    "source": "Google News",
-   "publisher": "thestandard.co",
-   "title": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
-   "link": "https://thestandard.co/cabinet-retreat-udon-thani-summary/",
-   "summary": "ที่มา: thestandard.co",
-   "content": "",
-   "imageUrl": "https://thestandard.co/wp-content/uploads/2026/11/cabinet-retreat-udon-thani-cover-1.jpg",
-   "published": "2026-11-03T08:00:00+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBiVUxybWs4TThKaTdzVjlIXzZXaTRNanNHR09qTnRXUXAtMU5pbEhiVGtQcVFfdWx5Sm9rOFBKS2JqUmNaU3JHYnprN1BLN2ZnWXNfQTl3V0lxTUJ1WV82b1B2dlhyQ0h6ZHc?oc=5",
-   "hint": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก เล็งบึงกาฬเป็นเขตเศรษฐกิจชายแดน เร่งท่องเที่ยว-ปราบยาเสพติด อนุทิน ชาญวีรกูล สรุปผล ครม.สัญจร อุดรธานี เน้นพัฒนาอีสานตอนบน 4 มิติ ดันเป็นฐานผลิตอาหารโลก พร้อมศึกษาบึงกาฬเป็นเขตเศรษฐกิจชายแดน นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
-   "nb": false
-  },
-  {
-   "feedId": "nb-travel",
-   "category": "ท่องเที่ยว",
-   "source": "Google News",
    "publisher": "thairath.co.th",
    "title": "วันแรกคึกคัก “มหกรรมพืชสวนโลกอุดรธานี” ชวนเปิดประสบการณ์ใหม่นั่งรถไฟมาเที่ยวงาน",
    "link": "https://www.thairath.co.th/news/local/northeast/2969733",
@@ -523,6 +508,21 @@
    "published": "2026-11-01T07:00:00+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBFSTM1bkVpbkUzeklHYzE0aEZyM1NtWVJyZmdRRDh6cy0taEZ1TkNHUUEweHc1eWxjMTdvSmVjY3hnbXZQV3BrbjdOSDBtdXVGeTQ4ZGc3RjFaZWVqelN4bTVoQjV2UQ?oc=5",
    "hint": "ERROR: The request could not be satisfied",
+   "nb": false
+  },
+  {
+   "feedId": "nb-travel",
+   "category": "ท่องเที่ยว",
+   "source": "Google News",
+   "publisher": "thestandard.co",
+   "title": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
+   "link": "https://thestandard.co/cabinet-retreat-udon-thani-summary/",
+   "summary": "ที่มา: thestandard.co",
+   "content": "",
+   "imageUrl": "https://thestandard.co/wp-content/uploads/2026/11/cabinet-retreat-udon-thani-cover-1.jpg",
+   "published": "2026-11-03T08:00:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBiVUxybWs4TThKaTdzVjlIXzZXaTRNanNHR09qTnRXUXAtMU5pbEhiVGtQcVFfdWx5Sm9rOFBKS2JqUmNaU3JHYnprN1BLN2ZnWXNfQTl3V0lxTUJ1WV82b1B2dlhyQ0h6ZHc?oc=5",
+   "hint": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก เล็งบึงกาฬเป็นเขตเศรษฐกิจชายแดน เร่งท่องเที่ยว-ปราบยาเสพติด อนุทิน ชาญวีรกูล สรุปผล ครม.สัญจร อุดรธานี เน้นพัฒนาอีสานตอนบน 4 มิติ ดันเป็นฐานผลิตอาหารโลก พร้อมศึกษาบึงกาฬเป็นเขตเศรษฐกิจชายแดน นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
    "nb": false
   },
   {
@@ -718,6 +718,21 @@
    "published": "2026-11-14T12:53:10+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE15R2tVc1NqTHJPR1NUb0JOeEQ5NEF3MjJkYk8wbF9RVGI1SXEtZVdvMTJ4YlpoRm1ZYjBIY1BpMDV3TmFrM01tZlh3MzU3MjlSbXU4?oc=5",
    "hint": "Just a moment...",
+   "nb": true
+  },
+  {
+   "feedId": "nb-all",
+   "category": "ข่าวหนองบัว",
+   "source": "Google News",
+   "publisher": "SpaceRef",
+   "title": "พยากรณ์อากาศรายชั่วโมงสำหรับ บ้านผาสวรรค์, หนองบัวลำภู",
+   "link": "https://www.spaceref.com/%E0%B8%AD%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A8/%E0%B9%84%E0%B8%97%E0%B8%A2/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%9C%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B8%A3%E0%B8%A3%E0%B8%84%E0%B9%8C-nong-bua-lamphu",
+   "summary": "ที่มา: SpaceRef",
+   "content": "",
+   "imageUrl": "https://www.spaceref.com/images/meteo-nong-bua-lamphu.jpg",
+   "published": "2026-11-14T10:23:47+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMixgJBVV95cUxOa3UxdnZuX3RtSjBLcHR4dnhKOWliSUtBOThWWnhPSzJ6b0h4LVpMVllpeWJ3YzVyTTJYdzcyenRjeENSUFJ1Njh1NktsRGVRcFl1RVlPaFhSUFA1T1hZWFgySEJRWUMwQ3Z1Unc3blotcklFcHdMRjdFZENWU3JPS2duQzZqYXREMkpUNy15UmZianR1WTRpa0hkdXRyRlVzTG9ydUNKelpZcGczWlB6LXU1NW9uT1lnS2t6dGxaTmNTOTY1OXdpam9CVEVWT0VYQVU0QmY5emk0YlphWEdIWkttYlI5bHBXNnlvVkhFQU5UM3VYWG9ZeUhxX2d1TTJDVUQyNWI2VFprdE5JUlRrY1h3a2FleG1vWXBVSXJhSm5LcVYybjIwV3g5RTZ5UmRIMlpLWktHZG9fanZIUDdaOFFFZHZoQQ?oc=5",
+   "hint": "พยากรณ์อากาศรายชั่วโมงสำหรับ บ้านผาสวรรค์, หนองบัวลำภู | SpaceRef ตรวจสอบพยากรณ์อากาศรายชั่วโมงสำหรับ บ้านผาสวรรค์, หนองบัวลำภู ดูอุณหภูมิ ฝน ลม ความชื้น ดัชนีรังสียูวี คุณภาพอากาศ และพยากรณ์อากาศ 15 วัน พยากรณ์อากาศรายชั่วโมงสำหรับ บ้านผาสวรรค์, หนองบัวลำภู | SpaceRef",
    "nb": true
   },
   {
