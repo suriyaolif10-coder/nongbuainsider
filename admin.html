@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>หลังบ้าน หนองบัว INSIDER</title>
+<link rel="icon" href="icon.png">
+<style>
+:root{--bg:#0e0e0f;--bg2:#19191b;--card:#1b1b1d;--fg:#f2f2f2;--muted:#a0a0a6;--line:#2a2a2e;--accent:#f26b2a;--ok:#3ecf8e;--bad:#ff6b6b;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Sans Thai",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:12px 16px;background:#000;border-bottom:1px solid var(--line)}
+.bar img{height:34px;border-radius:50%}.bar b{font-size:18px}.bar b span{color:var(--accent)}
+.bar .sp{flex:1}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+h2{font-size:19px;margin:0 0 4px}h3{font-size:16px;margin:0 0 8px}
+p.note{color:var(--muted);font-size:13px;margin:4px 0 12px;line-height:1.6}
+label{display:block;font-size:13px;color:var(--muted);margin:12px 0 5px}
+input,select,textarea{width:100%;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:15px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+textarea{min-height:120px;resize:vertical}
+.btn{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:999px;padding:10px 18px;font:inherit;font-size:15px;font-weight:700;cursor:pointer;background:var(--accent);color:#fff}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--fg);font-weight:500}
+.btn.sm{padding:6px 12px;font-size:13px}
+.btn.danger{background:transparent;border:1px solid #5a2a2a;color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+@media(max-width:520px){.grid2{grid-template-columns:1fr}}
+.tabs{display:flex;gap:6px;margin-bottom:16px;overflow-x:auto}
+.tabs button{flex:none;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:8px 16px;font:inherit;font-size:14px;cursor:pointer}
+.tabs button.on{background:#fff;color:#000;border-color:#fff;font-weight:700}
+.msg{font-size:14px;margin-top:10px;line-height:1.6}.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}
+.prev{margin-top:8px;max-width:100%;max-height:220px;border-radius:10px;display:none}
+.item{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.item img{width:72px;height:54px;object-fit:cover;border-radius:8px;background:var(--bg2);flex:none}
+.item .t{flex:1;min-width:0;font-size:14px}.item .t small{display:block;color:var(--muted);font-size:12px}
+.ad{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:12px;background:var(--bg2)}
+.ad.off{opacity:.6}
+.hide{display:none!important}
+code{background:var(--bg2);padding:1px 6px;border-radius:6px}
+ol{padding-left:20px;line-height:1.8;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="bar">
+  <img src="logo-mark.png" alt="">
+  <b>หลังบ้าน <span>INSIDER</span></b>
+  <span class="sp"></span>
+  <a class="btn ghost sm" href="./">🏠 หน้าเว็บ</a>
+  <button class="btn ghost sm hide" id="logoutBtn">ออกจากระบบ</button>
+</div>
+
+<div class="wrap">
+  <!-- 1) รหัสผ่าน -->
+  <div class="card" id="loginCard">
+    <h2>เข้าสู่ระบบหลังบ้าน</h2>
+    <p class="note">เพิ่มข่าว แบนเนอร์ และโฆษณา ต้องเข้าสู่ระบบก่อน</p>
+    <form id="loginForm">
+      <label for="pw">รหัสผ่าน</label>
+      <input id="pw" type="password" autocomplete="current-password" autocapitalize="none" required>
+      <div class="row" style="margin-top:14px"><button class="btn" type="submit">เข้าสู่ระบบ</button></div>
+      <div class="msg bad" id="loginMsg"></div>
+    </form>
+  </div>
+
+  <!-- 2) กุญแจเขียนข้อมูล (GitHub token) -->
+  <div class="card hide" id="tokenCard">
+    <h2>ตั้งค่ากุญแจบันทึกข้อมูล (ครั้งเดียวต่อเครื่อง)</h2>
+    <p class="note">เว็บนี้ไม่มีเซิร์ฟเวอร์ ข่าวและโฆษณาบันทึกลง GitHub ของเว็บ ต้องใช้ “กุญแจ” (GitHub token) ที่เข้าถึงได้เฉพาะ repo นี้ — กุญแจเก็บในเครื่องนี้เท่านั้น ไม่ถูกส่งไปที่อื่นนอกจาก GitHub</p>
+    <ol>
+      <li>เปิด <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">สร้าง Fine-grained token</a> (ล็อกอินบัญชีเจ้าของเว็บ)</li>
+      <li>Repository access → <b>Only select repositories</b> → เลือก <code>nongbuainsider</code></li>
+      <li>Permissions → <b>Contents: Read and write</b> และ <b>Issues: Read and write</b></li>
+      <li>กด Generate token แล้วคัดลอกมาวางด้านล่าง</li>
+    </ol>
+    <form id="tokenForm">
+      <label for="tok">GitHub token</label>
+      <input id="tok" type="password" autocomplete="off" placeholder="github_pat_..." required>
+      <label style="display:flex;gap:8px;align-items:center;color:var(--fg)"><input id="remember" type="checkbox" style="width:auto"> จำกุญแจไว้ในเครื่องนี้ (ถ้าไม่ติ๊ก ต้องใส่ใหม่ทุกครั้งที่ปิดเบราว์เซอร์)</label>
+      <div class="row" style="margin-top:14px"><button class="btn" type="submit">ตรวจสอบและบันทึก</button></div>
+      <div class="msg" id="tokenMsg"></div>
+    </form>
+  </div>
+
+  <!-- 3) เมนูหลังบ้าน -->
+  <div class="hide" id="panel">
+    <div class="tabs" role="tablist">
+      <button class="on" data-tab="news">📰 เพิ่มข่าว</button>
+      <button data-tab="ads">📢 แบนเนอร์ / โฆษณา</button>
+      <button data-tab="key">🔑 กุญแจ</button>
+    </div>
+
+    <!-- เพิ่มข่าว -->
+    <section id="tab-news">
+      <div class="card">
+        <h2>เพิ่มข่าว</h2>
+        <p class="note">ข่าวจะขึ้นในแท็บ “ข่าวชุมชน” และหน้าแรก ภายใน 1–3 นาทีหลังบันทึก</p>
+        <form id="newsForm">
+          <label for="nTitle">หัวข้อข่าว *</label>
+          <input id="nTitle" required maxlength="200">
+          <div class="grid2">
+            <div>
+              <label for="nDistrict">อำเภอ</label>
+              <select id="nDistrict">
+                <option value="">ทั้งจังหวัด</option>
+                <option>อ.เมืองหนองบัวลำภู</option><option>อ.นากลาง</option><option>อ.โนนสัง</option>
+                <option>อ.ศรีบุญเรือง</option><option>อ.สุวรรณคูหา</option><option>อ.นาวัง</option>
+              </select>
+            </div>
+            <div>
+              <label for="nPlace">ตำบล / ชุมชน</label>
+              <input id="nPlace" placeholder="เช่น ต.โนนสัง">
+            </div>
+          </div>
+          <label for="nImgFile">รูปภาพ (อัปโหลดจากเครื่อง หรือวางลิงก์รูป)</label>
+          <input id="nImgFile" type="file" accept="image/*">
+          <input id="nImgUrl" type="url" placeholder="หรือ https://ลิงก์รูป" style="margin-top:8px">
+          <img class="prev" id="nPrev" alt="">
+          <label for="nDetail">รายละเอียดข่าว *</label>
+          <textarea id="nDetail" required></textarea>
+          <label for="nLink">ลิงก์ข่าวต้นฉบับ (ถ้ามี)</label>
+          <input id="nLink" type="url" placeholder="https://">
+          <div class="row" style="margin-top:16px"><button class="btn" type="submit" id="nSubmit">บันทึกข่าว</button></div>
+          <div class="msg" id="newsMsg"></div>
+        </form>
+      </div>
+      <div class="card">
+        <div class="row"><h3 style="flex:1;margin:0">ข่าวที่เพิ่มแล้ว</h3><button class="btn ghost sm" id="reloadNews">รีเฟรช</button></div>
+        <div id="newsList"><p class="note">กำลังโหลด...</p></div>
+      </div>
+    </section>
+
+    <!-- แบนเนอร์ / โฆษณา -->
+    <section id="tab-ads" class="hide">
+      <div class="card">
+        <h2>แบนเนอร์หน้าแรก</h2>
+        <p class="note">ภาพแนวนอนด้านบนหน้าแรก (แนะนำ 1943×912 px) อัปโหลดแล้วจะแทนภาพเดิม</p>
+        <img src="banner.jpg" alt="แบนเนอร์ปัจจุบัน" id="bannerNow" style="width:100%;border-radius:10px">
+        <label for="bannerFile">เลือกภาพแบนเนอร์ใหม่</label>
+        <input id="bannerFile" type="file" accept="image/*">
+        <img class="prev" id="bannerPrev" alt="">
+        <div class="row" style="margin-top:12px"><button class="btn" id="bannerSave" disabled>อัปโหลดแบนเนอร์</button></div>
+        <div class="msg" id="bannerMsg"></div>
+      </div>
+
+      <div class="card">
+        <h2>โฆษณา</h2>
+        <p class="note">ช่องเดียวกันมีหลายโฆษณา จะเลื่อนวนอัตโนมัติ • top = ใต้สไลด์ข่าวใหญ่ • feed = ระหว่างข่าว • section = ระหว่างหมวด • reader = หน้าอ่านข่าว</p>
+        <div class="grid2">
+          <div><label for="adContact">ลิงก์ติดต่อลงโฆษณา (เพจ)</label><input id="adContact" type="url"></div>
+          <div><label for="adContactText">ข้อความปุ่มติดต่อ</label><input id="adContactText"></div>
+        </div>
+        <label style="display:flex;gap:8px;align-items:center;color:var(--fg)"><input id="adPlaceholder" type="checkbox" style="width:auto"> แสดงกรอบ “พื้นที่โฆษณา” เมื่อช่องว่าง</label>
+        <div id="adList"><p class="note">กำลังโหลด...</p></div>
+        <div class="row" style="margin-top:14px">
+          <button class="btn ghost" id="adAdd">+ เพิ่มโฆษณา</button>
+          <button class="btn" id="adSave">บันทึกโฆษณาทั้งหมด</button>
+        </div>
+        <div class="msg" id="adMsg"></div>
+      </div>
+    </section>
+
+    <!-- กุญแจ -->
+    <section id="tab-key" class="hide">
+      <div class="card">
+        <h2>กุญแจบันทึกข้อมูล</h2>
+        <p class="note" id="keyInfo"></p>
+        <button class="btn danger" id="forgetKey">ลบกุญแจออกจากเครื่องนี้</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var OWNER = "suriyaolif10-coder", REPO = "nongbuainsider", BRANCH = "main";
+  var SITE = "https://suriyaolif10-coder.github.io/nongbuainsider/";
+  var API = "https://api.github.com/repos/" + OWNER + "/" + REPO;
+  // รหัสผ่านหลังบ้าน: เก็บเฉพาะค่า SHA-256 (ไม่เก็บรหัสจริง)
+  var PW_SHA256 = "2f5d4f358d3d2474fcfc6040bbb954ae0f7974e95c7661f96c09dc652106ed16";
+  var TOKEN_KEY = "nbi_admin_token", AUTH_KEY = "nbi_admin_ok";
+
+  function $(id) { return document.getElementById(id); }
+  function show(el, on) { el.classList.toggle("hide", !on); }
+  function esc(s) { return String(s || "").replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function msg(el, text, kind) { el.textContent = text; el.className = "msg" + (kind ? " " + kind : ""); }
+
+  async function sha256(t) {
+    var b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
+    return Array.from(new Uint8Array(b)).map(function (x) { return x.toString(16).padStart(2, "0"); }).join("");
+  }
+  function getToken() { return sessionStorage.getItem(TOKEN_KEY) || localStorage.getItem(TOKEN_KEY) || ""; }
+
+  async function gh(path, opt) {
+    opt = opt || {};
+    var res = await fetch(path.indexOf("http") === 0 ? path : API + path, {
+      method: opt.method || "GET",
+      headers: { Authorization: "Bearer " + (opt.token || getToken()), Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" },
+      body: opt.body ? JSON.stringify(opt.body) : undefined,
+      cache: "no-store",
+    });
+    var data = res.status === 204 ? null : await res.json().catch(function () { return null; });
+    if (!res.ok) {
+      var e = new Error((data && data.message) || ("HTTP " + res.status));
+      e.status = res.status; throw e;
+    }
+    return data;
+  }
+
+  // ---------- base64 ----------
+  function b64utf8(str) { var bytes = new TextEncoder().encode(str), bin = ""; for (var i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000)); return btoa(bin); }
+  function utf8b64(b64) { var bin = atob(b64.replace(/\n/g, "")), bytes = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i); return new TextDecoder().decode(bytes); }
+  function blobB64(blob) { return new Promise(function (ok, bad) { var r = new FileReader(); r.onload = function () { ok(String(r.result).split(",")[1]); }; r.onerror = bad; r.readAsDataURL(blob); }); }
+
+  // ย่อรูปในเครื่องก่อนอัปโหลด (JPEG)
+  function resize(file, maxW, quality) {
+    return new Promise(function (ok, bad) {
+      var img = new Image(), url = URL.createObjectURL(file);
+      img.onload = function () {
+        var w = Math.min(maxW, img.naturalWidth), h = Math.round(img.naturalHeight * w / img.naturalWidth);
+        var c = document.createElement("canvas"); c.width = w; c.height = h;
+        c.getContext("2d").drawImage(img, 0, 0, w, h);
+        URL.revokeObjectURL(url);
+        c.toBlob(function (b) { b ? ok(b) : bad(new Error("แปลงรูปไม่สำเร็จ")); }, "image/jpeg", quality || 0.85);
+      };
+      img.onerror = function () { bad(new Error("เปิดรูปไม่ได้")); };
+      img.src = url;
+    });
+  }
+  async function getSha(path) { try { return (await gh("/contents/" + path + "?ref=" + BRANCH)).sha; } catch (e) { if (e.status === 404) return undefined; throw e; } }
+  async function putFile(path, b64, message) {
+    var sha = await getSha(path);
+    return gh("/contents/" + path, { method: "PUT", body: { message: message, content: b64, branch: BRANCH, sha: sha } });
+  }
+  async function uploadImage(file, folder) {
+    var blob = await resize(file, 1600, 0.85);
+    var d = new Date(), name = folder + "/" + d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + "/" + d.getTime().toString(36) + ".jpg";
+    await putFile(name, await blobB64(blob), "อัปโหลดรูป " + name);
+    return SITE + name;
+  }
+
+  // ---------- ขั้นตอนเข้าใช้ ----------
+  function route() {
+    var authed = sessionStorage.getItem(AUTH_KEY) === "1", token = getToken();
+    show($("loginCard"), !authed);
+    show($("tokenCard"), authed && !token);
+    show($("panel"), authed && !!token);
+    show($("logoutBtn"), authed);
+    if (authed && token) { loadNews(); loadAds(); $("keyInfo").textContent = "กุญแจถูกเก็บไว้ใน" + (localStorage.getItem(TOKEN_KEY) ? "เครื่องนี้ (จำไว้)" : "เบราว์เซอร์นี้จนกว่าจะปิด") + " — ใช้ได้กับ repo " + REPO + " เท่านั้น"; }
+  }
+  $("loginForm").onsubmit = async function (e) {
+    e.preventDefault();
+    if ((await sha256($("pw").value.trim())) !== PW_SHA256) return msg($("loginMsg"), "รหัสผ่านไม่ถูกต้อง", "bad");
+    sessionStorage.setItem(AUTH_KEY, "1"); $("pw").value = ""; msg($("loginMsg"), ""); route();
+  };
+  $("logoutBtn").onclick = function () { sessionStorage.removeItem(AUTH_KEY); sessionStorage.removeItem(TOKEN_KEY); route(); };
+  $("tokenForm").onsubmit = async function (e) {
+    e.preventDefault();
+    var t = $("tok").value.trim();
+    msg($("tokenMsg"), "กำลังตรวจสอบ...");
+    try {
+      var repo = await gh("", { token: t });
+      if (!repo.permissions || !repo.permissions.push) return msg($("tokenMsg"), "กุญแจนี้ไม่มีสิทธิ์เขียน repo — ตรวจ Contents: Read and write", "bad");
+      ($("remember").checked ? localStorage : sessionStorage).setItem(TOKEN_KEY, t);
+      $("tok").value = ""; msg($("tokenMsg"), ""); route();
+    } catch (err) { msg($("tokenMsg"), "ใช้กุญแจไม่ได้: " + err.message, "bad"); }
+  };
+  $("forgetKey").onclick = function () { localStorage.removeItem(TOKEN_KEY); sessionStorage.removeItem(TOKEN_KEY); route(); };
+
+  document.querySelectorAll(".tabs button").forEach(function (b) {
+    b.onclick = function () {
+      document.querySelectorAll(".tabs button").forEach(function (x) { x.classList.toggle("on", x === b); });
+      ["news", "ads", "key"].forEach(function (t) { show($("tab-" + t), t === b.getAttribute("data-tab")); });
+    };
+  });
+
+  function previewFile(input, img) {
+    input.addEventListener("change", function () {
+      var f = input.files[0];
+      if (f) { img.src = URL.createObjectURL(f); img.style.display = "block"; } else img.style.display = "none";
+    });
+  }
+  previewFile($("nImgFile"), $("nPrev"));
+  previewFile($("bannerFile"), $("bannerPrev"));
+  $("bannerFile").addEventListener("change", function () { $("bannerSave").disabled = !this.files[0]; });
+
+  // ---------- ข่าว (GitHub issue "[หนองบัว] ..." ตามรูปแบบที่สคริปต์ข่าวอ่าน) ----------
+  $("newsForm").onsubmit = async function (e) {
+    e.preventDefault();
+    var btn = $("nSubmit"); btn.disabled = true;
+    try {
+      var img = $("nImgUrl").value.trim();
+      if ($("nImgFile").files[0]) { msg($("newsMsg"), "กำลังอัปโหลดรูป..."); img = await uploadImage($("nImgFile").files[0], "uploads/news"); }
+      var place = [$("nPlace").value.trim(), $("nDistrict").value, "จ.หนองบัวลำภู"].filter(Boolean).join(" ");
+      var body = "### รูปภาพ\n\n" + (img ? "![](" + img + ")" : "_No response_") +
+        "\n\n### รายละเอียดข่าว\n\n" + $("nDetail").value.trim() +
+        "\n\n### ลิงก์ข่าวต้นฉบับ (ถ้ามี)\n\n" + ($("nLink").value.trim() || "_No response_") +
+        "\n\n### พื้นที่ / ชุมชน (ถ้ามี)\n\n" + place;
+      msg($("newsMsg"), "กำลังบันทึกข่าว...");
+      var iss = await gh("/issues", { method: "POST", body: { title: "[หนองบัว] " + $("nTitle").value.trim(), body: body } });
+      $("newsForm").reset(); $("nPrev").style.display = "none";
+      msg($("newsMsg"), "✓ บันทึกแล้ว (#" + iss.number + ") ข่าวจะขึ้นเว็บภายใน 1–3 นาที", "ok");
+      loadNews();
+    } catch (err) { msg($("newsMsg"), "บันทึกไม่สำเร็จ: " + err.message, "bad"); }
+    btn.disabled = false;
+  };
+  async function loadNews() {
+    var box = $("newsList");
+    try {
+      var list = (await gh("/issues?state=open&per_page=50&sort=created&direction=desc")).filter(function (i) { return !i.pull_request && (i.title || "").indexOf("[หนองบัว]") === 0; });
+      if (!list.length) { box.innerHTML = '<p class="note">ยังไม่มีข่าวที่เพิ่มเอง</p>'; return; }
+      box.innerHTML = list.map(function (i) {
+        var m = (i.body || "").match(/!\[[^\]]*\]\((https?:\/\/[^)\s]+)\)/);
+        return '<div class="item">' + (m ? '<img src="' + esc(m[1]) + '" alt="">' : "<img alt=\"\">") +
+          '<div class="t">' + esc(i.title.replace("[หนองบัว]", "").trim()) + "<small>#" + i.number + " • " + new Date(i.created_at).toLocaleString("th-TH") + "</small></div>" +
+          '<button class="btn danger sm" data-close="' + i.number + '">ลบ</button></div>';
+      }).join("");
+    } catch (err) { box.innerHTML = '<p class="msg bad">โหลดรายการไม่ได้: ' + esc(err.message) + "</p>"; }
+  }
+  $("reloadNews").onclick = loadNews;
+  $("newsList").addEventListener("click", async function (e) {
+    var n = e.target.getAttribute && e.target.getAttribute("data-close");
+    if (!n || !confirm("ลบข่าว #" + n + " ออกจากเว็บ?")) return;
+    e.target.disabled = true;
+    try { await gh("/issues/" + n, { method: "PATCH", body: { state: "closed", state_reason: "not_planned" } }); loadNews(); }
+    catch (err) { alert("ลบไม่สำเร็จ: " + err.message); e.target.disabled = false; }
+  });
+
+  // ---------- แบนเนอร์ ----------
+  $("bannerSave").onclick = async function () {
+    var f = $("bannerFile").files[0]; if (!f) return;
+    this.disabled = true; msg($("bannerMsg"), "กำลังอัปโหลด...");
+    try {
+      var blob = await resize(f, 1943, 0.86);
+      await putFile("banner.jpg", await blobB64(blob), "เปลี่ยนแบนเนอร์หน้าแรก");
+      msg($("bannerMsg"), "✓ เปลี่ยนแบนเนอร์แล้ว เว็บจะอัปเดตภายใน 1–3 นาที", "ok");
+    } catch (err) { msg($("bannerMsg"), "อัปโหลดไม่สำเร็จ: " + err.message, "bad"); this.disabled = false; }
+  };
+
+  // ---------- โฆษณา (ads.json) ----------
+  var adsCfg = null;
+  async function loadAds() {
+    try {
+      var f = await gh("/contents/ads.json?ref=" + BRANCH);
+      adsCfg = JSON.parse(utf8b64(f.content));
+    } catch (err) { $("adList").innerHTML = '<p class="msg bad">โหลด ads.json ไม่ได้: ' + esc(err.message) + "</p>"; return; }
+    $("adContact").value = adsCfg.contact || "";
+    $("adContactText").value = adsCfg.contactText || "";
+    $("adPlaceholder").checked = adsCfg.placeholder !== false;
+    adsCfg.ads = adsCfg.ads || [];
+    renderAds();
+  }
+  function renderAds() {
+    var slots = ["top", "feed", "section", "reader"];
+    $("adList").innerHTML = adsCfg.ads.length ? adsCfg.ads.map(function (a, i) {
+      var opt = function (list, v) { return list.map(function (x) { return '<option' + (x === v ? " selected" : "") + ">" + x + "</option>"; }).join(""); };
+      var isG = a.type === "adsense";
+      return '<div class="ad' + (a.enabled === false ? " off" : "") + '" data-i="' + i + '">' +
+        '<div class="row"><label style="margin:0;display:flex;gap:8px;align-items:center;color:var(--fg);flex:1"><input type="checkbox" data-k="enabled" style="width:auto"' + (a.enabled !== false ? " checked" : "") + "> เปิดใช้งาน</label>" +
+        '<button class="btn danger sm" data-del="' + i + '">ลบ</button></div>' +
+        '<div class="grid2"><div><label>ตำแหน่ง</label><select data-k="slot">' + opt(slots, a.slot || "top") + "</select></div>" +
+        '<div><label>ชนิด</label><select data-k="type">' + opt(["image", "adsense"], a.type || "image") + "</select></div></div>" +
+        (isG
+          ? '<div class="grid2"><div><label>AdSense client</label><input data-k="client" value="' + esc(a.client) + '"></div><div><label>AdSense slot</label><input data-k="adslot" value="' + esc(a.adslot) + '"></div></div>'
+          : '<label>ชื่อโฆษณา / ร้าน</label><input data-k="title" value="' + esc(a.title) + '">' +
+            '<label>ลิงก์ปลายทาง</label><input data-k="link" type="url" value="' + esc(a.link) + '">' +
+            '<label>รูปแบนเนอร์ (ลิงก์ หรืออัปโหลด)</label><input data-k="image" type="url" value="' + esc(a.image) + '">' +
+            '<input type="file" accept="image/*" data-up="' + i + '" style="margin-top:8px">' +
+            (a.image ? '<img src="' + esc(a.image) + '" alt="" style="margin-top:8px;max-width:100%;max-height:140px;border-radius:8px">' : '<label>ข้อความ (ถ้าไม่มีรูป)</label><input data-k="text" value="' + esc(a.text) + '">')) +
+        "</div>";
+    }).join("") : '<p class="note">ยังไม่มีโฆษณา กด “+ เพิ่มโฆษณา”</p>';
+  }
+  $("adList").addEventListener("input", function (e) {
+    var box = e.target.closest(".ad"), k = e.target.getAttribute("data-k"); if (!box || !k) return;
+    var a = adsCfg.ads[+box.getAttribute("data-i")];
+    a[k] = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    if (k === "enabled") box.classList.toggle("off", !e.target.checked);
+    if (k === "type") renderAds();
+  });
+  $("adList").addEventListener("click", function (e) {
+    var d = e.target.getAttribute && e.target.getAttribute("data-del");
+    if (d == null || !confirm("ลบโฆษณานี้?")) return;
+    adsCfg.ads.splice(+d, 1); renderAds();
+  });
+  $("adList").addEventListener("change", async function (e) {
+    var i = e.target.getAttribute && e.target.getAttribute("data-up"); if (i == null || !e.target.files[0]) return;
+    msg($("adMsg"), "กำลังอัปโหลดรูปโฆษณา...");
+    try { adsCfg.ads[+i].image = await uploadImage(e.target.files[0], "uploads/ads"); renderAds(); msg($("adMsg"), "✓ อัปโหลดรูปแล้ว อย่าลืมกด “บันทึกโฆษณาทั้งหมด”", "ok"); }
+    catch (err) { msg($("adMsg"), "อัปโหลดไม่สำเร็จ: " + err.message, "bad"); }
+  });
+  $("adAdd").onclick = function () { adsCfg.ads.push({ slot: "top", type: "image", enabled: true, title: "", link: "", image: "" }); renderAds(); };
+  $("adSave").onclick = async function () {
+    if (!adsCfg) return;
+    adsCfg.contact = $("adContact").value.trim();
+    adsCfg.contactText = $("adContactText").value.trim();
+    adsCfg.placeholder = $("adPlaceholder").checked;
+    this.disabled = true; msg($("adMsg"), "กำลังบันทึก...");
+    try {
+      await putFile("ads.json", b64utf8(JSON.stringify(adsCfg, null, 1) + "\n"), "แก้ไขโฆษณาจากหลังบ้าน");
+      msg($("adMsg"), "✓ บันทึกโฆษณาแล้ว เว็บจะอัปเดตภายใน 1–3 นาที", "ok");
+    } catch (err) { msg($("adMsg"), "บันทึกไม่สำเร็จ: " + err.message, "bad"); }
+    this.disabled = false;
+  };
+
+  route();
+})();
+</script>
+</body>
+</html>
