@@ -94,7 +94,8 @@ export default function Dashboard() {
           <span className={`hidden rounded-full px-2 py-0.5 text-[11px] sm:inline ${IS_REMOTE ? 'bg-green-500/15 text-green-400' : 'bg-yellow-500/15 text-yellow-400'}`}>
             {IS_REMOTE ? '● ออนไลน์ (Supabase)' : '● โหมดเดโม (เก็บในเครื่องนี้)'}
           </span>
-          <button onClick={logout} className="btn-ghost ml-auto px-3 py-1.5 text-xs">Logout</button>
+          <Link to="/" className="btn-ghost ml-auto px-3 py-1.5 text-xs">🏠 หน้าหลัก</Link>
+          <button onClick={logout} className="btn-ghost px-3 py-1.5 text-xs">Logout</button>
         </header>
 
         <main className="space-y-6 p-4 sm:p-6">
