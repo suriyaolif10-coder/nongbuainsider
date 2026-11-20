@@ -53,7 +53,7 @@ export default function Home() {
 
         <aside className="space-y-4 lg:sticky lg:top-32 lg:self-start">
           <AdSlot position="side" />
-          <AgencyList compact />
+          {tab !== 'agency' && <AgencyList compact />}
         </aside>
       </main>
 

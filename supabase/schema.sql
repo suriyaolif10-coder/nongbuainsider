@@ -93,7 +93,17 @@ grant execute on function public.increment_ad_view(text) to anon, authenticated;
 insert into public.app_config (id) values ('config') on conflict (id) do nothing;
 
 insert into public.agency_sites (id, name, url, category) values
-  ('a1', 'ศาลากลางจังหวัดหนองบัวลำภู', 'https://www.nongbualamphu.go.th', 'ราชการ')
+  ('a1', 'ศาลากลางจังหวัดหนองบัวลำภู', 'http://www.nongbualamphu.go.th', 'หน่วยงานจังหวัด'),
+  ('a2', 'สำนักงานประชาสัมพันธ์จังหวัดหนองบัวลำภู', 'https://nongbualamphu.prd.go.th', 'หน่วยงานจังหวัด'),
+  ('a4', 'สำนักงานคลังจังหวัดหนองบัวลำภู', 'https://nongbualamphu.treasury.go.th/th/', 'หน่วยงานจังหวัด'),
+  ('a5', 'สำนักงานพาณิชย์จังหวัดหนองบัวลำภู', 'https://nongbualamphu.moc.go.th', 'หน่วยงานจังหวัด'),
+  ('a6', 'สำนักงานสถิติจังหวัดหนองบัวลำภู', 'https://nongbualamphu.nso.go.th', 'หน่วยงานจังหวัด'),
+  ('a7', 'สำนักงานทรัพยากรธรรมชาติและสิ่งแวดล้อมจังหวัดหนองบัวลำภู', 'https://nongbualamphu.mnre.go.th/th/index', 'หน่วยงานจังหวัด'),
+  ('a8', 'ตรวจคนเข้าเมืองจังหวัดหนองบัวลำภู', 'https://nongbualamphu.immigration.go.th', 'หน่วยงานจังหวัด'),
+  ('a9', 'องค์การบริหารส่วนจังหวัดหนองบัวลำภู (อบจ.)', 'https://nppao.go.th/public/', 'ท้องถิ่น'),
+  ('a10', 'โรงพยาบาลหนองบัวลำภู', 'https://nbhospital.moph.go.th/public/', 'สาธารณสุข'),
+  ('a11', 'สำนักงานสาธารณสุขจังหวัดหนองบัวลำภู (เพจ Facebook)', 'https://www.facebook.com/nblp.pho/', 'สาธารณสุข'),
+  ('a12', 'สำนักงานเขตพื้นที่การศึกษาประถมศึกษาหนองบัวลำภู เขต 1', 'https://nb1.go.th', 'การศึกษา')
 on conflict (id) do nothing;
 
 -- =====================================================================

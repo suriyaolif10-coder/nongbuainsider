@@ -64,9 +64,17 @@ const SEED = {
     },
   ],
   agency_sites: [
-    { id: 'a1', name: 'ศาลากลางจังหวัดหนองบัวลำภู', url: 'https://www.nongbualamphu.go.th', category: 'ราชการ' },
-    { id: 'a2', name: 'สำนักงานประชาสัมพันธ์จังหวัด', url: 'https://www.prd.go.th', category: 'ราชการ' },
-    { id: 'a3', name: 'สำนักงานการท่องเที่ยวและกีฬา', url: 'https://www.mots.go.th', category: 'ท่องเที่ยว' },
+    { id: 'a1', name: 'ศาลากลางจังหวัดหนองบัวลำภู', url: 'http://www.nongbualamphu.go.th', category: 'หน่วยงานจังหวัด' },
+    { id: 'a2', name: 'สำนักงานประชาสัมพันธ์จังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.prd.go.th', category: 'หน่วยงานจังหวัด' },
+    { id: 'a4', name: 'สำนักงานคลังจังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.treasury.go.th/th/', category: 'หน่วยงานจังหวัด' },
+    { id: 'a5', name: 'สำนักงานพาณิชย์จังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.moc.go.th', category: 'หน่วยงานจังหวัด' },
+    { id: 'a6', name: 'สำนักงานสถิติจังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.nso.go.th', category: 'หน่วยงานจังหวัด' },
+    { id: 'a7', name: 'สำนักงานทรัพยากรธรรมชาติและสิ่งแวดล้อมจังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.mnre.go.th/th/index', category: 'หน่วยงานจังหวัด' },
+    { id: 'a8', name: 'ตรวจคนเข้าเมืองจังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.immigration.go.th', category: 'หน่วยงานจังหวัด' },
+    { id: 'a9', name: 'องค์การบริหารส่วนจังหวัดหนองบัวลำภู (อบจ.)', url: 'https://nppao.go.th/public/', category: 'ท้องถิ่น' },
+    { id: 'a10', name: 'โรงพยาบาลหนองบัวลำภู', url: 'https://nbhospital.moph.go.th/public/', category: 'สาธารณสุข' },
+    { id: 'a11', name: 'สำนักงานสาธารณสุขจังหวัดหนองบัวลำภู (เพจ Facebook)', url: 'https://www.facebook.com/nblp.pho/', category: 'สาธารณสุข' },
+    { id: 'a12', name: 'สำนักงานเขตพื้นที่การศึกษาประถมศึกษาหนองบัวลำภู เขต 1', url: 'https://nb1.go.th', category: 'การศึกษา' },
   ],
   fb_posts: [
     { id: 'f1', page_name: 'หนองบัว INSIDER', embed_url: 'https://www.facebook.com/facebook' },
@@ -94,7 +102,26 @@ const loaded = {}
 const listeners = new Set()
 const emit = () => listeners.forEach((fn) => fn())
 
+// อัปเดตข้อมูลเริ่มต้นในเครื่องที่เคยเปิดเว็บแล้ว (ทำครั้งเดียวต่อเวอร์ชัน)
+const SEED_VERSION = 2
+function migrateLocal() {
+  try {
+    const v = Number(localStorage.getItem(PREFIX + 'seed_version') || 1)
+    if (v >= SEED_VERSION) return
+    const raw = localStorage.getItem(PREFIX + 'agency_sites')
+    if (raw) {
+      // v2: ลบลิงก์ตัวอย่างเดิมที่เป็นเว็บส่วนกลาง แล้วเติมหน่วยงานในจังหวัดที่ยังไม่มี (เทียบจาก URL)
+      const old = JSON.parse(raw).filter((r) => !['https://www.prd.go.th', 'https://www.mots.go.th', 'https://www.nongbualamphu.go.th'].includes(r.url))
+      const have = new Set(old.map((r) => r.url.replace(/\/+$/, '')))
+      const add = SEED.agency_sites.filter((r) => !have.has(r.url.replace(/\/+$/, '')) && !old.some((o) => o.id === r.id))
+      localStorage.setItem(PREFIX + 'agency_sites', JSON.stringify([...old, ...add]))
+    }
+    localStorage.setItem(PREFIX + 'seed_version', String(SEED_VERSION))
+  } catch { /* ignore */ }
+}
+
 function readLocal(col) {
+  migrateLocal()
   try {
     const raw = localStorage.getItem(PREFIX + col)
     if (raw) return JSON.parse(raw)

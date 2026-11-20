@@ -208,19 +208,37 @@ export function FbFeed() {
   )
 }
 
+const AGENCY_ORDER = ['หน่วยงานจังหวัด', 'ท้องถิ่น', 'สาธารณสุข', 'การศึกษา', 'ความปลอดภัย', 'ท่องเที่ยว']
+const COMPACT_LIMIT = 6
+
 export function AgencyList({ compact = false }) {
   const sites = useCollection('agency_sites')
   const groups = sites.reduce((acc, s) => ((acc[s.category || 'อื่นๆ'] ||= []).push(s), acc), {})
+  const rank = (c) => (AGENCY_ORDER.includes(c) ? AGENCY_ORDER.indexOf(c) : c === 'อื่นๆ' ? 999 : 500)
+  let entries = Object.entries(groups).sort(([a], [b]) => rank(a) - rank(b) || a.localeCompare(b, 'th'))
+  // แถบข้าง: แสดงแค่ 6 รายการแรก + ลิงก์ดูทั้งหมด
+  if (compact) {
+    let left = COMPACT_LIMIT
+    entries = entries.map(([c, l]) => { const take = l.slice(0, Math.max(0, left)); left -= take.length; return [c, take] }).filter(([, l]) => l.length)
+  }
   return (
-    <section className="rounded-xl bg-ink-900 p-4">
-      <h2 className="mb-3 font-display text-lg font-bold text-white">หน่วยงานราชการ</h2>
-      {Object.entries(groups).map(([cat, list]) => (
+    <section className="min-w-0 rounded-xl bg-ink-900 p-4">
+      <h2 className="mb-3 font-display text-lg font-bold text-white">
+        หน่วยงานราชการ <span className="text-sm font-normal text-neutral-500">จ.หนองบัวลำภู</span>
+      </h2>
+      {entries.map(([cat, list]) => (
         <div key={cat} className="mb-3 last:mb-0">
           <p className="mb-1 text-xs font-semibold text-brand">{cat}</p>
-          <ul className={compact ? 'space-y-1' : 'grid gap-2 sm:grid-cols-2'}>
+          <ul className={compact ? 'space-y-1' : 'grid grid-cols-1 gap-1 sm:grid-cols-2'}>
             {list.map((s) => (
-              <li key={s.id}>
-                <a href={s.url} target="_blank" rel="noreferrer" className="block truncate rounded-lg px-2 py-1.5 text-sm text-neutral-300 hover:bg-white/5 hover:text-white">
+              <li key={s.id} className="min-w-0">
+                <a
+                  href={s.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  title={s.name}
+                  className={`block rounded-lg px-2 py-1.5 text-sm text-neutral-300 hover:bg-white/5 hover:text-white ${compact ? 'truncate' : 'break-words'}`}
+                >
                   {s.name} <span className="text-neutral-600">↗</span>
                 </a>
               </li>
@@ -228,6 +246,11 @@ export function AgencyList({ compact = false }) {
           </ul>
         </div>
       ))}
+      {compact && sites.length > COMPACT_LIMIT && (
+        <Link to="/tab/agency" className="mt-2 block text-sm font-medium text-brand hover:underline">
+          ดูทั้งหมด {sites.length} หน่วยงาน ›
+        </Link>
+      )}
       {sites.length === 0 && <p className="text-sm text-neutral-500">ยังไม่มีข้อมูล</p>}
     </section>
   )
