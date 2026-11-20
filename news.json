@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T12:23:28.517250+00:00",
+ "updated": "2026-11-20T12:29:26.755338+00:00",
  "items": [
   {
    "feedId": "community-own",
@@ -64,21 +64,6 @@
    "feedId": "nb-mueang",
    "category": "อ.เมือง",
    "source": "Google News",
-   "publisher": "สำนัก สารนิเทศ",
-   "title": "ประธานสมาคมแม่บ้านสาธารณสุข สาขาจังหวัดหนองบัวลำภู ร่วมลงพื้นที่มอบนโยบายและเยี่ยมให้กำลังใจ คปสอ.เมืองหนองบัวลำภู",
-   "link": "https://pr.moph.go.th/online/index/news/349767",
-   "summary": "ที่มา: สำนัก สารนิเทศ",
-   "content": "",
-   "imageUrl": "",
-   "published": "2026-10-26T09:20:29+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9oZUtLeU9COGtMSXlrV1VuNVRKQXN5amZIUngxSXFyOS1UT2x2NE1jdDdnTkpJZ0NOVlByU19tQnRlSlhFMHlCME0xLUU5VGY1NkIxZzEyUnRJQQ?oc=5",
-   "hint": "Attention Required! | Cloudflare",
-   "nb": true
-  },
-  {
-   "feedId": "nb-mueang",
-   "category": "อ.เมือง",
-   "source": "Google News",
    "publisher": "banmuang.co.th",
    "title": "สภ.เมืองหนองบัวลำภู ระดมกำลังทุกภาคส่วนปล่อยแถวกวาดล้างอาชญากรรมและยาเสพติดสร้างชุมชนปลอดภัย",
    "link": "https://www.banmuang.co.th/news/region/496667",
@@ -133,6 +118,21 @@
    "published": "2026-11-08T08:48:47+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1PbHJmaGs1NzR6c1ZkaDBSLUZ2SEZ4c0NveVFUbFVKS1prcUVILW5sOG9BSENrc3VQMWdDaXp1TzZUdzdPT3VWUVJFQQ?oc=5",
    "hint": "",
+   "nb": false
+  },
+  {
+   "feedId": "nb-mueang",
+   "category": "อ.เมือง",
+   "source": "Google News",
+   "publisher": "Matichon Online",
+   "title": "เปิดข้อเสนอ 5 จว.อีสาน ชง ครม.สัญจรเคาะ 7.8 หมื่นล.",
+   "link": "https://www.matichon.co.th/politics/politics-in-depth/news_5958494",
+   "summary": "ที่มา: Matichon Online",
+   "content": "",
+   "imageUrl": "https://www.matichon.co.th/wp-content/uploads/2026/11/ภป-Quick-Winครมสัญจรขึ้นเว็บ.jpg",
+   "published": "2026-11-03T08:00:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9XNmRfME02eTdWclJHZU5wSzdWc3FENXlKOWY3OVBrSXZRU0kxYllYLTlJNzNQUFczakV1OWFFeFVZNGsxdk9iS1VlZWtZT3ZCVE1sdUtoNzNCd25hY3hyekpfaUxHVDhmYnhsSnllUkRMZFQ0?oc=5",
+   "hint": "เปิดข้อเสนอ 5 จว.อีสาน ชง ครม.สัญจรเคาะ 7.8 หมื่นล. หมายเหตุ - การประชุมร่วมภาครัฐและเอกชนเพื่อพัฒนาและแก้ไขปัญหาทางเศรษฐกิจ (กรอ.) กลุ่มจังหวัดภาคตะวันออกเฉียงเหนือตอนบน 1 ประกอบด้วย อุดรธานี บึงกาฬ เลย เปิดข้อเสนอ 5 จว.อีสาน ชง ครม.สัญจรเคาะ 7.8 หมื่นล.",
    "nb": false
   },
   {
@@ -253,21 +253,6 @@
    "published": "2026-11-03T08:00:00+00:00",
    "glink": "https://news.google.com/rss/articles/CBMinAdBVV95cUxQaHNLU1BFdWRSR0tNTzI2cHRPVUhVQnlLMVlyQkN6X2R5Q0xzWEtpVy1EWWdlMW5CemRmZjVQOVU2ZkdnTnlkSTltMFZFcm1Lbl94dmJfZFRsYnlJU0lYTUxCdjdQb1dtaTQ5WHZZd3ZrZ0JzLVZzTklQWG5lQ2VRWi1SMXZ2ZjRmMEU4dlpZalJSbzdLLXFMb29iYVNwaGlnSDVsUnMtMzBWV1B4QlkxTzdrbGtsMkR0bWtOMDN1Q0ZNZjRFYmprRHpTMHdHcjVRZTNhMTN1U3d4UFprbm9ZRl9meGYwRlE5SUdDbjVtUEM1TTBManBYeDJiRnZJR1MyNWx2RGsxWXZEc3J3eFUtczJ6YnFZekpyZ2FnNlk0bTl4UTlVQ1FVZnRQS0V5ZlFvb3U5dm9mMXVJSThjRjJWaTY3ejI0RVpidVROaFNDU3ZXdGxocGlvdDRnTGgyd3h4cnhzQU9pdXM0WGhKOXM2N3FaeEYwV05qNjNLTGJKV1o5UGRiOWxPQ3NVWFF4d2lvQk5EdDdHa1NtdHY2X2hJVFBSaTlpVldYaHYxLVFuNkZaYlBsaFd5VlNfdE9ORndkTGJvZ213d0FZVXNlUHUzRjl2S3F5dnFsbGJkNHlYR1FmYzBxX1JuTHpsaDkwZExQTlNhM3k0dklNT0lzOExneGk4ZDVWT0pJeUVtN0JmdEtRdmZCNm81cHB5Rmh6bEc5ZUhXUi1OY1dlMjNCN0ZMdnJlVzlOUjFEMnpiRkJXUW1FLV9IZ2FVbzBLQk1Ca0RaLTVLMXozM19obkZqZHR2akMzX0h5SDM4UlVoZEM0ZTI4bXpVZFFiQlFaMmxPWTIxVW9UQ2tDY2YxZTU1Wk5vMWpLTzNKWkEzYTFaeVRpUGVGSWlrRnVPN0pOaVh6MnE1SlJSTkZTMmJVWnZ2b2ZpYUhXWjBYb0N2dmxSNUdlOEtPNE83TGZqeXJiOHVwV0h3QW9IaDk0ZDJtWURpeHZ2V2tQU2VUR2dIMVIxSnBsWDA2NFNzSXdLNEZjbjk2eUlEa2dHbVdoVTVsVUkyYWVwNEFPS2w3NnNDQjYtdVN2NVJyalltOThlbzFqUDFUMjl5QjV0Z1BDU0xBVl9ZdzJxbERBbVlaWGFRVHVTN2xQbmJsNWN3UGVpR0o0ckRud0FpTVJEXzRLSTl5QjlwSVBBTHF6aXQtcjNCZ2FIYXdLY0x4ckpmbExXTC1iM3g?oc=5",
    "hint": "Error Facebook",
-   "nb": false
-  },
-  {
-   "feedId": "nb-nonsang",
-   "category": "โนนสัง",
-   "source": "Google News",
-   "publisher": "Matichon Online",
-   "title": "เปิดข้อเสนอ 5 จว.อีสาน ชง ครม.สัญจรเคาะ 7.8 หมื่นล.",
-   "link": "https://www.matichon.co.th/politics/politics-in-depth/news_5958494",
-   "summary": "ที่มา: Matichon Online",
-   "content": "",
-   "imageUrl": "https://www.matichon.co.th/wp-content/uploads/2026/11/ภป-Quick-Winครมสัญจรขึ้นเว็บ.jpg",
-   "published": "2026-11-03T08:00:00+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9XNmRfME02eTdWclJHZU5wSzdWc3FENXlKOWY3OVBrSXZRU0kxYllYLTlJNzNQUFczakV1OWFFeFVZNGsxdk9iS1VlZWtZT3ZCVE1sdUtoNzNCd25hY3hyekpfaUxHVDhmYnhsSnllUkRMZFQ0?oc=5",
-   "hint": "เปิดข้อเสนอ 5 จว.อีสาน ชง ครม.สัญจรเคาะ 7.8 หมื่นล. หมายเหตุ - การประชุมร่วมภาครัฐและเอกชนเพื่อพัฒนาและแก้ไขปัญหาทางเศรษฐกิจ (กรอ.) กลุ่มจังหวัดภาคตะวันออกเฉียงเหนือตอนบน 1 ประกอบด้วย อุดรธานี บึงกาฬ เลย เปิดข้อเสนอ 5 จว.อีสาน ชง ครม.สัญจรเคาะ 7.8 หมื่นล.",
    "nb": false
   },
   {
@@ -436,6 +421,36 @@
    "nb": false
   },
   {
+   "feedId": "nb-nawang",
+   "category": "นาวัง",
+   "source": "Google News",
+   "publisher": "Hfocus.org",
+   "title": "เปิดพื้นที่เป้าหมาย 108 อำเภอ 76 จังหวัด เดินหน้าปฏิรูป ‘ระบบสุขภาพปฐมภูมิ’ ปี 70",
+   "link": "https://www.hfocus.org/content/2026/11/40144",
+   "summary": "ที่มา: Hfocus.org",
+   "content": "",
+   "imageUrl": "https://www.hfocus.org/sites/default/files/styles/hfocus_super_cover/public/2026-11/phuuenthii.jpg?itok=H1LevVQ1",
+   "published": "2026-11-04T08:00:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9Rbnk2eHk5d25IdXdRY3E0WUFvc1loWWVmTlBEQzE0Z2t0WXpwYnNHNy1QRDVnejg5blBGQ1kyeEdQcG5INjhCQmRvbGsya2Fwb2gzblplQQ?oc=5",
+   "hint": "เปิดพื้นที่เป้าหมาย 108 อำเภอ 76 จังหวัด เดินหน้าปฏิรูป ‘ระบบสุขภาพปฐมภูมิ’ ปี 70 | Hfocus เปิดรายชื่อพื้นที่เป้าหมาย 108 อำเภอ 76 จังหวัด เดินหน้าปฏิรูป ‘ระบบสุขภาพปฐมภูมิ’ ปี 2570 กางงบ Primary Care Fund 500 บาท/คน ให้บริการประชาชน 6 ด้านเป็นหมอประจำตัว ประจำครอบครัว เผยเป้าหมาย พร้อมตั้งเป้าจัดกำลังคนด้านสุขภาพ ทั้งแพทย์แฟมเมด สหวิชาชีพ ฯลฯ เปิดพื้นที่เป้าหมาย 108 อำเภอ 76 จังหวัด เดินหน้าปฏิรู",
+   "nb": false
+  },
+  {
+   "feedId": "nb-nawang",
+   "category": "นาวัง",
+   "source": "Google News",
+   "publisher": "กรมประชาสัมพันธ์",
+   "title": "ครม.สัญจร อุดรธานี เดินหน้า 4 มิติพัฒนาอีสานตอนบน 1 ยกระดับเกษตร พัฒนาการค้าชายแดน ส่งเสริมการท่องเที่ยว แก้ไขปัญหายาเสพติด",
+   "link": "https://ratchaburi.prd.go.th/th/content/category/detail/id/57/iid/557138",
+   "summary": "ที่มา: กรมประชาสัมพันธ์",
+   "content": "",
+   "imageUrl": "https://ratchaburi.prd.go.th/th/file/get/file/20261104e03255709fbf8eb671ddb03fb2495c41085743.jpg",
+   "published": "2026-11-04T08:00:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5FU1NnWk1vMTZDbXF1dFYyZGdueWFYRDFKMTZULWRHcVd2RWFPLVNLVlR5TUg1YjMtWEsyNkpoRGREc2l2dkRnQ2pfcWUzSnJnbFI4VURXNFpMUXBPR0pnZkNEZ2FBRXI1TW5HVTRST2dYd3VscG1DeUxZbnc?oc=5",
+   "hint": "ครม.สัญจร อุดรธานี เดินหน้า 4 มิติพัฒนาอีสานตอนบน 1 ยกระดับเกษตร พัฒนาการค้าชายแดน ส่งเสริมการท่องเที่ยว แก้ไขปัญหายาเสพติด ครม.สัญจร อุดรธานี เดินหน้า 4 มิติพัฒนาอีสานตอนบน 1 ยกระดับเกษตร พัฒนาการค้าชายแดน ส่งเสริมการท่องเที่ยว แก้ไขปัญหายาเสพติด",
+   "nb": false
+  },
+  {
    "feedId": "nb-travel",
    "category": "ท่องเที่ยว",
    "source": "Google News",
@@ -544,21 +559,6 @@
    "feedId": "nb-farm",
    "category": "เกษตร",
    "source": "Google News",
-   "publisher": "กรมประชาสัมพันธ์",
-   "title": "ครม.สัญจร อุดรธานี เดินหน้า 4 มิติพัฒนาอีสานตอนบน 1 ยกระดับเกษตร พัฒนาการค้าชายแดน ส่งเสริมการท่องเที่ยว แก้ไขปัญหายาเสพติด",
-   "link": "https://ratchaburi.prd.go.th/th/content/category/detail/id/57/iid/557138",
-   "summary": "ที่มา: กรมประชาสัมพันธ์",
-   "content": "",
-   "imageUrl": "https://ratchaburi.prd.go.th/th/file/get/file/20261104e03255709fbf8eb671ddb03fb2495c41085743.jpg",
-   "published": "2026-11-04T08:00:00+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5FU1NnWk1vMTZDbXF1dFYyZGdueWFYRDFKMTZULWRHcVd2RWFPLVNLVlR5TUg1YjMtWEsyNkpoRGREc2l2dkRnQ2pfcWUzSnJnbFI4VURXNFpMUXBPR0pnZkNEZ2FBRXI1TW5HVTRST2dYd3VscG1DeUxZbnc?oc=5",
-   "hint": "ครม.สัญจร อุดรธานี เดินหน้า 4 มิติพัฒนาอีสานตอนบน 1 ยกระดับเกษตร พัฒนาการค้าชายแดน ส่งเสริมการท่องเที่ยว แก้ไขปัญหายาเสพติด ครม.สัญจร อุดรธานี เดินหน้า 4 มิติพัฒนาอีสานตอนบน 1 ยกระดับเกษตร พัฒนาการค้าชายแดน ส่งเสริมการท่องเที่ยว แก้ไขปัญหายาเสพติด",
-   "nb": false
-  },
-  {
-   "feedId": "nb-farm",
-   "category": "เกษตร",
-   "source": "Google News",
    "publisher": "commercenewsagency",
    "title": "​“ศุภจี”ตรวจเยี่ยม Moc Market หลังนำสินค้าเกษตร-ชุมชน ขายที่ท่าอากาศยานอุดรธานี",
    "link": "https://www.commercenewsagency.com/news/9914",
@@ -614,6 +614,21 @@
    "glink": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBoaU1FSHpZd0lYNDdOYXRlb1FOWllITl9ZX0dOLTVVN0t0alktTGd4MjktUzE4bUxMeWdEU3RaQWs0WWF5aHRPZHdqZUNodG94Q3NhN1kwNXN5YTRTcElYUG93LXFtdw?oc=5",
    "hint": "“รมว.สุชาติ” ขานรับข้อสั่งการนายกฯ ดันยุทธศาสตร์ Net Zero 2050 ยกระดับเกษตรไทย ลดต้นทุน-เพิ่มรายได้ มุ่งเศรษฐกิจคาร์บอนต่ำ ไม่ทิ้งใครไว้ข้างหลัง วันนี้ (3 พฤศจิกายน 2569) เวลา 09.30 น. นายสุชาติ ชมกลิ่น รัฐมนตรีว่าการกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม เข้าร่วมการประชุมคณะรัฐมนตรีอย่างเป็นทางการนอกสถานที่ (ครม.สัญจร) ครั้งที่ 2/2569 กลุ่มจังหวัดภาคตะวันออกเฉียงเหนือตอนบน 1 ประกอบด้วย อุดรธานี บึ",
    "nb": false
+  },
+  {
+   "feedId": "nb-line",
+   "category": "ข่าวหนองบัว",
+   "source": "Google News",
+   "publisher": "LINE TODAY",
+   "title": "โพสต์ทั้งหมด | สพม.เลย หนองบัวลำภู สอบครูผู้ช่วยวันแรก ชูมาตรการคุมเข้ม บริสุทธิ์ ยุติธรรม โปร่งใส",
+   "link": "https://today.line.me/th/v3/posts/list/article/2D9KyaO",
+   "summary": "ที่มา: LINE TODAY",
+   "content": "",
+   "imageUrl": "https://today-obs.line-scdn.net/0hqxFBTNIWLld7OzLILBJRAENtIiZIXTReWVlhY11rcjADF2gGQQp9NFdpJHtfCjpUWwo2NgkycjBTC2kERA/w1200",
+   "published": "2026-11-15T22:00:44+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE43b3RnbXc2NVZ1Z25DZzNsb0FITGVXT0M4WEZqYnhjeExtLVFoZjhzZi1jcndDT3R6Q25waW1ya19Ec3RMMDk3akZya3NKNzgtUzR4aEEtOGtpa21EN1Q4Y2c5bUo?oc=5",
+   "hint": "โพสต์ทั้งหมด | สพม.เลย หนองบัวลำภู สอบครูผู้ช่วยวันแรก ชูมาตรการคุมเข้ม บริสุทธิ์ ยุติธรรม โปร่งใส | LINE TODAY 0โพสต์ | ไปคุยกันต่อ | สพม.เลย หนองบัวลำภู สอบครูผู้ช่วยวันแรก ชูมาตรการคุมเข้ม บริสุทธิ์ ยุติธรรม โปร่งใส โพสต์ทั้งหมด | สพม.เลย หนองบัวลำภู สอบครูผู้ช่วยวันแรก ชูมาตรการคุมเข้ม บริสุทธิ์ ยุติธรรม โปร่งใส | LINE TODAY",
+   "nb": true
   },
   {
    "feedId": "nb-line",
@@ -824,21 +839,6 @@
    "glink": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1rallJWVRMN0dmRTdFek1pcGlKWGQwSXNydHNSOTdXc2FVdTV3RGVZVDBicnNjaUxvRjlraFFhaWt6V3JQblpjb3dRdDV6a0hnTlBBY3Nn?oc=5",
    "hint": "ตัดวงจรหนี้งานศพ! 'หนองบัวลำภู' นำร่อง 154 หมู่บ้าน ปลุกจัดเรียบง่าย ไร้เหล้า-พนัน-อบายมุข | MATICHON ONLINE | LINE TODAY หนองบัวลำภู ฉลองครบรอบ 33 ปี เตชิด นอภ.เมืองหนองบัวลำภู ปลุกกระแส นำ ผญบ.กำนัน 15 ตำบล 154 หมู่บ้านนำร่อง นำประกาศ งานศพปลอดเหล้า ปลอด... ตัดวงจรหนี้งานศพ! 'หนองบัวลำภู' นำร่อง 154 หมู่บ้าน ปลุกจัดเรียบง่าย ไร้เหล้า-พนัน-อบายมุข | MATICHON ONLINE | LINE TODAY",
    "nb": true
-  },
-  {
-   "feedId": "nb-line",
-   "category": "ข่าวหนองบัว",
-   "source": "Google News",
-   "publisher": "LINE TODAY",
-   "title": "ชนแล้วหนี! เก๋งซิ่งชนพ่วงข้าง เจ็บสาหัส 2 ราย ยาย 79 ขาขาดตกน้ำ ล่าสุดรู้ตัวคนขับแล้วที่แท้เป็นตำรวจ",
-   "link": "https://today.line.me/th/v3/article/vXLxm0j",
-   "summary": "ที่มา: LINE TODAY",
-   "content": "",
-   "imageUrl": "https://today-obs.line-scdn.net/0hDPwpvQEaG39KCQftTpBkKHJfFw55bwF2aDoAG2wLEBxlJV97dWtIHDteQVNual4tamoGGjhcRhhjawgsIw/w1200",
-   "published": "2026-11-12T00:43:08+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBFS0d1Z1BLMjlEQlRqbW1SZG91NmFIUU1VUWdlbjZoNEliak5Jblh1bzU5a2xOVHV6Q0ptYXNrSzg1Wlh0aUgxR0xsTTJIVGpIMHlmeTRR?oc=5",
-   "hint": "ชนแล้วหนี! เก๋งซิ่งชนพ่วงข้าง เจ็บสาหัส 2 ราย ยาย 79 ขาขาดตกน้ำ ล่าสุดรู้ตัวคนขับแล้วที่แท้เป็นตำรวจ | ข่าวช่อง8 | LINE TODAY กล้องวงจรปิดบันทึกนาที รถเก๋ง สีขาว พุ่งชนรถสามล้อเครื่องพ่วงข้างอย่างจัง จนตกข้างทาง มีผู้บาดเจ็บสาหัส 2 คน คือ ชายคนขับ และยายที่นั่งมาด้วยขาขาดกระ... ชนแล้วหนี! เก๋งซิ่งชนพ่วงข้าง เจ็บสาหัส 2 ราย ยาย 79 ขาขาดตกน้ำ ล่าสุดรู้ตัวคนขับแล้วที่แท้เป็นตำรวจ | ข่าวช่อง8 | LINE T",
-   "nb": false
   },
   {
    "feedId": "nb-all",
