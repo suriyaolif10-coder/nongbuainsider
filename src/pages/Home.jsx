@@ -6,6 +6,8 @@ import { useCollection } from '../db.js'
 import MatichonNews from '../components/Matichon.jsx'
 import DistrictSliders from '../components/DistrictSliders.jsx'
 import { useLinkNews } from '../components/links.js'
+import { useMatichon } from '../components/Matichon.jsx'
+import { mixBySource } from '../components/mix.js'
 
 export default function Home() {
   const { tab = 'top' } = useParams()
@@ -27,7 +29,18 @@ export default function Home() {
     return [n.title, n.content, n.district, n.source].some((v) => (v || '').toLowerCase().includes(q))
   })
 
-  const featured = [...filtered].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)).slice(0, 5)
+  // สไลด์หน้า TOP: ข่าวปักหมุด + สุ่มข่าวล่าสุดจากแต่ละแหล่ง (เว็บเรา / ลิงก์ข่าว / มติชน)
+  const matichon = useMatichon()
+  const [seed, setSeed] = useState(() => String(Math.random()))
+  const featured = useMemo(() => {
+    if (tab !== 'top' || q) return [...filtered].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)).slice(0, 5)
+    const pinned = sorted.filter((n) => n.featured)
+    const ext = (matichon?.items || []).map((m) => ({
+      id: 'm-' + m.link, title: m.title, image_url: m.image, source: m.source, district: m.district, created_at: m.published_at, href: m.link,
+    }))
+    const pool = [...sorted.filter((n) => !n.featured), ...ext.filter((m) => !sorted.some((n) => n.href === m.href))]
+    return [...pinned, ...mixBySource(pool, { seed, perSource: 3, limit: 8 })].slice(0, 8)
+  }, [tab, q, filtered, sorted, matichon, seed])
   const latest = tab === 'top' && !q ? filtered.slice(0, 10) : filtered
   const sliderFirst = !q && !['community', 'agency'].includes(tab) && featured.length > 0
   const title = q ? `ผลการค้นหา "${search}"` : isDistrict ? `ข่าว อ.${tab}` : 'ข่าวใหม่ล่าสุด'
@@ -45,7 +58,7 @@ export default function Home() {
             <AgencyList />
           ) : (
             <>
-              {!q && <NewsSlider items={featured} />}
+              {!q && <NewsSlider items={featured} onShuffle={tab === 'top' ? () => setSeed(String(Math.random())) : undefined} />}
               <AdSlot position="top" />
               <LatestNews items={latest} title={title} />
               {tab === 'top' && !q && <DistrictSliders tips={sorted} />}

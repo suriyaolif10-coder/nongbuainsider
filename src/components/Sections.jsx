@@ -54,12 +54,12 @@ export function NewsLink({ n, className, children }) {
 }
 const tagOf = (n) => (n.district ? districtShort(n.district) : 'หนองบัวลำภู')
 
-export function NewsSlider({ items }) {
+export function NewsSlider({ items, onShuffle }) {
   const [idx, setIdx] = useState(0)
   const touch = useRef(null)
   const count = items.length
 
-  useEffect(() => { setIdx(0) }, [count])
+  useEffect(() => { setIdx(0) }, [count, items[0]?.id])
   useEffect(() => {
     if (count < 2) return
     const t = setInterval(() => setIdx((i) => (i + 1) % count), 5000)
@@ -98,6 +98,13 @@ export function NewsSlider({ items }) {
             </NewsLink>
           ))}
         </div>
+        {onShuffle && (
+          <button
+            onClick={onShuffle}
+            aria-label="สุ่มข่าวใหม่"
+            className="absolute right-3 top-3 rounded-full bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur transition hover:bg-brand"
+          >🔀 สุ่มใหม่</button>
+        )}
         {/* แถบ indicator */}
         <div className="absolute inset-x-4 bottom-3 flex gap-1.5 sm:inset-x-6">
           {items.map((n, i) => (
