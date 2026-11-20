@@ -31,38 +31,8 @@ const ago = (d) => new Date(Date.now() - d * DAY).toISOString()
 
 // ข้อมูลตัวอย่าง (แก้ไข/ลบได้จากหลังบ้าน)
 const SEED = {
-  insider_tips: [
-    {
-      id: 't1', featured: true, district: 'สุวรรณคูหา', image_url: './img/temple.svg', source: 'ทอล์คนิวส์ ออนไลน์', created_at: ago(13),
-      title: 'ชาวสุวรรณคูหาร่วมใจจัดงานบุญประเพณี แห่เทียนพรรษาสืบสานวัฒนธรรมอีสาน',
-      content: 'ตัวอย่างข่าว: ประชาชนในพื้นที่อำเภอสุวรรณคูหาร่วมกันจัดงานบุญประเพณีประจำปี มีการแห่ขบวนเทียนพรรษาและการแสดงทางวัฒนธรรมของชุมชน',
-    },
-    {
-      id: 't2', district: 'เมืองหนองบัวลำภู', image_url: './img/lake.svg', source: 'หนองบัว INSIDER', created_at: ago(2),
-      title: 'หนองบัวบานสะพรั่ง จุดเช็คอินใหม่ใจกลางเมืองหนองบัวลำภู',
-      content: 'ตัวอย่างข่าว: บึงบัวในเขตอำเภอเมืองเริ่มบานเต็มพื้นที่ นักท่องเที่ยวและชาวบ้านแวะถ่ายรูปช่วงเช้าและเย็น',
-    },
-    {
-      id: 't3', district: 'นากลาง', image_url: './img/field.svg', source: 'เพจข่าวนากลาง', created_at: ago(3),
-      title: 'เกษตรกรนากลางเริ่มเกี่ยวข้าวนาปี คาดผลผลิตดีกว่าปีก่อน',
-      content: 'ตัวอย่างข่าว: เกษตรกรในอำเภอนากลางเริ่มฤดูเก็บเกี่ยวข้าวนาปี หลังปริมาณฝนเพียงพอตลอดฤดูกาล',
-    },
-    {
-      id: 't4', district: 'นาวัง', image_url: './img/cave.svg', source: 'หนองบัว INSIDER', created_at: ago(5),
-      title: 'เที่ยวถ้ำนาวัง สัมผัสหินงอกหินย้อยกลางเทือกเขาภูพาน',
-      content: 'ตัวอย่างข่าว: แหล่งท่องเที่ยวทางธรรมชาติในอำเภอนาวัง เปิดให้นักท่องเที่ยวเข้าชมในช่วงปลายฝนต้นหนาว',
-    },
-    {
-      id: 't5', district: 'ศรีบุญเรือง', image_url: './img/market.svg', source: 'ศรีบุญเรืองนิวส์', created_at: ago(1),
-      title: 'ถนนคนเดินศรีบุญเรือง เปิดพื้นที่สินค้าชุมชนทุกวันเสาร์',
-      content: 'ตัวอย่างข่าว: ชุมชนศรีบุญเรืองจัดถนนคนเดินจำหน่ายสินค้าพื้นเมืองและอาหารท้องถิ่นทุกสัปดาห์',
-    },
-    {
-      id: 't6', district: 'โนนสัง', image_url: './img/road.svg', source: 'หนองบัว INSIDER', created_at: ago(0.2),
-      title: 'แจ้งเตือนผู้ใช้ทาง ซ่อมผิวถนนสายหลักโนนสัง ช่วงกลางคืน',
-      content: 'ตัวอย่างข่าว: หน่วยงานที่เกี่ยวข้องแจ้งปิดช่องจราจรบางส่วนเพื่อซ่อมแซมผิวถนน ขอให้ผู้ใช้รถใช้ถนนระมัดระวัง',
-    },
-  ],
+  // ข่าวตัวอย่างถูกเอาออก (v6) ใช้ข่าวจริงจากหลังบ้าน / ลิงก์ข่าว / มติชน แทน
+  insider_tips: [],
   agency_sites: [
     { id: 'a1', name: 'ศาลากลางจังหวัดหนองบัวลำภู', url: 'http://www.nongbualamphu.go.th', category: 'หน่วยงานจังหวัด' },
     { id: 'a2', name: 'สำนักงานประชาสัมพันธ์จังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.prd.go.th', category: 'หน่วยงานจังหวัด' },
@@ -137,7 +107,7 @@ const listeners = new Set()
 const emit = () => listeners.forEach((fn) => fn())
 
 // อัปเดตข้อมูลเริ่มต้นในเครื่องที่เคยเปิดเว็บแล้ว (ทำครั้งเดียวต่อเวอร์ชัน)
-const SEED_VERSION = 5 // v2: หน่วยงานในจังหวัด 11 แห่ง, v3: + พัฒนาชุมชนจังหวัด, v4: + ที่ว่าการอำเภอ, v5: + ตำรวจ กู้ภัย อปท.
+const SEED_VERSION = 6 // v2: หน่วยงานในจังหวัด 11 แห่ง, v3: + พัฒนาชุมชนจังหวัด, v4: + ที่ว่าการอำเภอ, v5: + ตำรวจ กู้ภัย อปท., v6: ลบข่าวตัวอย่าง
 function migrateLocal() {
   try {
     const v = Number(localStorage.getItem(PREFIX + 'seed_version') || 1)
@@ -150,6 +120,14 @@ function migrateLocal() {
       const have = new Set(old.map((r) => r.url.replace(/\/+$/, '')))
       const add = SEED.agency_sites.filter((r) => !have.has(r.url.replace(/\/+$/, '')) && !old.some((o) => o.id === r.id))
       localStorage.setItem(PREFIX + 'agency_sites', JSON.stringify([...old, ...add]))
+    }
+    if (v < 6) {
+      // ลบข่าวตัวอย่าง (ภาพวาด ./img/*.svg) ที่ยังไม่ได้ถูกแก้ไข เก็บข่าวที่ผู้ใช้เพิ่มเองไว้
+      const tipsRaw = localStorage.getItem(PREFIX + 'insider_tips')
+      if (tipsRaw) {
+        const sample = (t) => /^t[1-6]$/.test(t.id) && /^\.\/img\/(temple|lake|field|cave|market|road)\.svg$/.test(t.image_url || '')
+        localStorage.setItem(PREFIX + 'insider_tips', JSON.stringify(JSON.parse(tipsRaw).filter((t) => !sample(t))))
+      }
     }
     localStorage.setItem(PREFIX + 'seed_version', String(SEED_VERSION))
   } catch { /* ignore */ }

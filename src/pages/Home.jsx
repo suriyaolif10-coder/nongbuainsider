@@ -36,12 +36,22 @@ export default function Home() {
     if (tab !== 'top' || q) return [...filtered].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)).slice(0, 5)
     const pinned = sorted.filter((n) => n.featured)
     const ext = (matichon?.items || []).map((m) => ({
-      id: 'm-' + m.link, title: m.title, image_url: m.image, source: m.source, district: m.district, created_at: m.published_at, href: m.link,
+      id: 'm-' + m.link, title: m.title, image_url: m.image, source: m.source, district: m.district, created_at: m.published_at, href: m.link, local: m.local,
     }))
     const pool = [...sorted.filter((n) => !n.featured), ...ext.filter((m) => !sorted.some((n) => n.href === m.href))]
     return [...pinned, ...mixBySource(pool, { seed, perSource: 3, limit: 8 })].slice(0, 8)
   }, [tab, q, filtered, sorted, matichon, seed])
-  const latest = tab === 'top' && !q ? filtered.slice(0, 10) : filtered
+  // หน้า TOP: ข่าวใหม่ล่าสุด = ข่าวในเว็บ/ลิงก์ข่าว + ข่าวมติชนเกี่ยวกับหนองบัวลำภู (เติมข่าวมติชนทั่วไปที่มีภาพถ้ายังน้อย)
+  const latest = useMemo(() => {
+    if (tab !== 'top' || q) return filtered
+    const ext = (matichon?.items || []).map((m) => ({
+      id: 'm-' + m.link, title: m.title, image_url: m.image, source: m.source, district: m.district, created_at: m.published_at, href: m.link, local: m.local,
+    })).filter((m) => !sorted.some((n) => n.href === m.href))
+    const byDate = (a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0)
+    let list = [...sorted, ...ext.filter((m) => m.local)].sort(byDate)
+    if (list.length < 10) list = [...list, ...ext.filter((m) => !m.local && m.image_url).sort(byDate)]
+    return list.slice(0, 10)
+  }, [tab, q, filtered, sorted, matichon])
   const sliderFirst = !q && !['community', 'agency'].includes(tab) && featured.length > 0
   const title = q ? `ผลการค้นหา "${search}"` : isDistrict ? `ข่าว อ.${tab}` : 'ข่าวใหม่ล่าสุด'
 
@@ -62,7 +72,7 @@ export default function Home() {
               <AdSlot position="top" />
               <LatestNews items={latest} title={title} />
               {tab === 'top' && !q && <DistrictSliders tips={sorted} />}
-              {!q && <MatichonNews district={isDistrict ? tab : undefined} localOnly={tab === 'nongbua'} limit={tab === 'top' ? 8 : 20} />}
+              {!q && tab !== 'top' && <MatichonNews district={isDistrict ? tab : undefined} localOnly={tab === 'nongbua'} limit={tab === 'top' ? 8 : 20} />}
             </>
           )}
         </div>

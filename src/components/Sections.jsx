@@ -52,7 +52,7 @@ export function NewsLink({ n, className, children }) {
   if (n.href) return <a href={n.href} target="_blank" rel="noreferrer" className={className}>{children}</a>
   return <Link to={`/news/${n.id}`} className={className}>{children}</Link>
 }
-const tagOf = (n) => (n.district ? districtShort(n.district) : 'หนองบัวลำภู')
+const tagOf = (n) => (n.district ? districtShort(n.district) : n.local === false ? 'ข่าวทั่วไป' : 'หนองบัวลำภู')
 
 export function NewsSlider({ items, onShuffle }) {
   const [idx, setIdx] = useState(0)
