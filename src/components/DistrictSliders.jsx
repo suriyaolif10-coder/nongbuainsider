@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { SafeImg, Icon } from './ui.jsx'
 import { useMatichon } from './Matichon.jsx'
@@ -23,17 +23,51 @@ export default function DistrictSliders({ tips }) {
   return (
     <section className="space-y-7">
       <h2 className="font-display text-2xl font-bold text-white">ข่าวแต่ละอำเภอ</h2>
-      {rows.map((r) => <Row key={r.d.name} {...r} />)}
+      {rows.map((r, i) => <Row key={r.d.name} {...r} delay={i * 700} />)}
     </section>
   )
 }
 
-function Row({ d, items }) {
+const AUTO_MS = 4000
+
+function Row({ d, items, delay = 0 }) {
   const ref = useRef(null)
-  const scroll = (dir) => {
+  const paused = useRef(false)
+
+  // เลื่อนทีละ 1 การ์ด (ถึงการ์ดสุดท้ายแล้ววนกลับไปการ์ดแรก)
+  const step = (dir) => {
     const el = ref.current
-    if (el) el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' })
+    if (!el) return
+    const card = el.firstElementChild
+    const gap = 12
+    const w = card ? card.getBoundingClientRect().width + gap : el.clientWidth * 0.8
+    const max = el.scrollWidth - el.clientWidth
+    if (dir > 0 && el.scrollLeft >= max - 4) el.scrollTo({ left: 0, behavior: 'smooth' })
+    else if (dir < 0 && el.scrollLeft <= 4) el.scrollTo({ left: max, behavior: 'smooth' })
+    else el.scrollBy({ left: dir * w, behavior: 'smooth' })
   }
+  const scroll = step
+
+  // สไลด์อัตโนมัติ: หยุดเมื่อแตะ/ชี้เมาส์ ซ่อนแท็บ หรือผู้ใช้ตั้งค่าลดการเคลื่อนไหว
+  useEffect(() => {
+    if (items.length < 2) return
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
+    let timer
+    const start = setTimeout(() => {
+      timer = setInterval(() => {
+        const el = ref.current
+        if (!el || paused.current || document.hidden) return
+        if (el.scrollWidth <= el.clientWidth + 4) return // ข่าวไม่ล้นแถว ไม่ต้องเลื่อน
+        const r = el.getBoundingClientRect()
+        if (r.bottom < 0 || r.top > window.innerHeight) return // ไม่อยู่บนจอ
+        step(1)
+      }, AUTO_MS)
+    }, delay)
+    return () => { clearTimeout(start); clearInterval(timer) }
+  }, [items.length, delay])
+
+  const pause = () => { paused.current = true }
+  const resume = () => { paused.current = false }
   return (
     <div>
       <div className="mb-2.5 flex items-center gap-2">
@@ -50,7 +84,15 @@ function Row({ d, items }) {
           <Link to={`/tab/${encodeURIComponent(d.name)}`} className="ml-1 text-sm font-medium text-brand hover:underline">ดูทั้งหมด ›</Link>
         </div>
       </div>
-      <div ref={ref} className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-4 px-4 pb-1 sm:mx-0 sm:scroll-px-0 sm:px-0">
+      <div
+        ref={ref}
+        onMouseEnter={pause}
+        onMouseLeave={resume}
+        onTouchStart={pause}
+        onTouchEnd={() => setTimeout(resume, 3000)}
+        onFocus={pause}
+        onBlur={resume}
+        className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-4 px-4 pb-1 sm:mx-0 sm:scroll-px-0 sm:px-0">
         {items.map((n) => {
           const body = (
             <>
