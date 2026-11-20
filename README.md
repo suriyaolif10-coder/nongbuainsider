@@ -11,3 +11,10 @@
   - เพิ่ม/ลบข่าว (อัปโหลดรูปได้) — บันทึกเป็น issue `[หนองบัว] ...` ที่สคริปต์ข่าวอ่าน
   - แบนเนอร์หน้าแรก (`banner.jpg`) และโฆษณา (`ads.json`) เพิ่ม/แก้/ลบ/เปิดปิด อัปโหลดรูปได้
   - รูปที่อัปโหลดเก็บใน `uploads/`
+
+## โพสต์ข่าวลงเพจ Facebook อัตโนมัติ
+ข่าวที่เพิ่มจากหลังบ้านจะถูกโพสต์ลงเพจหลังเว็บอัปเดต (`scripts/post_facebook.py`) พร้อมลิงก์หน้าข่าวบนเว็บ
+ตั้งค่าที่ repo → Settings → Secrets and variables → Actions:
+- Secrets: `FB_PAGE_TOKEN` = Page access token (สิทธิ์ `pages_manage_posts`, `pages_read_engagement`)
+- Variables: `FB_PAGE_ID` = ID ของเพจ, `FB_MAX_PER_RUN` (ไม่บังคับ ค่าเริ่มต้น 3)
+- รอบแรกจะจดข่าวเดิมไว้โดยไม่โพสต์ย้อนหลัง, ข่าวที่โพสต์แล้วจดใน `fb_posted.json`

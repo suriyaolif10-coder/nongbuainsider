@@ -56,3 +56,18 @@ jobs:
           path: .
       - id: deployment
         uses: actions/deploy-pages@v4
+      # โพสต์ข่าวใหม่ (ที่เพิ่มจากหลังบ้าน) ลงเพจ Facebook หลังเว็บอัปเดตแล้ว — ข้ามถ้ายังไม่ได้ตั้งค่า
+      - name: Post new stories to Facebook page
+        continue-on-error: true
+        env:
+          FB_PAGE_ID: ${{ vars.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          FB_MAX_PER_RUN: ${{ vars.FB_MAX_PER_RUN }}
+        run: |
+          sleep 20  # ให้ GitHub Pages อัปเดตหน้าใหม่ก่อน Facebook มาดึงภาพตัวอย่าง
+          python scripts/post_facebook.py
+          git add fb_posted.json 2>/dev/null || true
+          git diff --cached --quiet && exit 0
+          git commit -m "บันทึกข่าวที่โพสต์ลงเพจแล้ว"
+          git pull --rebase -X theirs origin main
+          git push
