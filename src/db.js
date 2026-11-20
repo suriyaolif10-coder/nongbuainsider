@@ -71,6 +71,7 @@ const SEED = {
     { id: 'a6', name: 'สำนักงานสถิติจังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.nso.go.th', category: 'หน่วยงานจังหวัด' },
     { id: 'a7', name: 'สำนักงานทรัพยากรธรรมชาติและสิ่งแวดล้อมจังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.mnre.go.th/th/index', category: 'หน่วยงานจังหวัด' },
     { id: 'a8', name: 'ตรวจคนเข้าเมืองจังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.immigration.go.th', category: 'หน่วยงานจังหวัด' },
+    { id: 'a13', name: 'สำนักงานพัฒนาชุมชนจังหวัดหนองบัวลำภู', url: 'https://nongbua.cdd.go.th', category: 'หน่วยงานจังหวัด' },
     { id: 'a9', name: 'องค์การบริหารส่วนจังหวัดหนองบัวลำภู (อบจ.)', url: 'https://nppao.go.th/public/', category: 'ท้องถิ่น' },
     { id: 'a10', name: 'โรงพยาบาลหนองบัวลำภู', url: 'https://nbhospital.moph.go.th/public/', category: 'สาธารณสุข' },
     { id: 'a11', name: 'สำนักงานสาธารณสุขจังหวัดหนองบัวลำภู (เพจ Facebook)', url: 'https://www.facebook.com/nblp.pho/', category: 'สาธารณสุข' },
@@ -103,15 +104,16 @@ const listeners = new Set()
 const emit = () => listeners.forEach((fn) => fn())
 
 // อัปเดตข้อมูลเริ่มต้นในเครื่องที่เคยเปิดเว็บแล้ว (ทำครั้งเดียวต่อเวอร์ชัน)
-const SEED_VERSION = 2
+const SEED_VERSION = 3 // v2: หน่วยงานในจังหวัด 11 แห่ง, v3: + พัฒนาชุมชนจังหวัด
 function migrateLocal() {
   try {
     const v = Number(localStorage.getItem(PREFIX + 'seed_version') || 1)
     if (v >= SEED_VERSION) return
     const raw = localStorage.getItem(PREFIX + 'agency_sites')
     if (raw) {
-      // v2: ลบลิงก์ตัวอย่างเดิมที่เป็นเว็บส่วนกลาง แล้วเติมหน่วยงานในจังหวัดที่ยังไม่มี (เทียบจาก URL)
-      const old = JSON.parse(raw).filter((r) => !['https://www.prd.go.th', 'https://www.mots.go.th', 'https://www.nongbualamphu.go.th'].includes(r.url))
+      // ลบลิงก์ตัวอย่างเดิมที่เป็นเว็บส่วนกลาง (v1) แล้วเติมหน่วยงานที่ยังไม่มี (เทียบจาก URL / id)
+      let old = JSON.parse(raw)
+      if (v < 2) old = old.filter((r) => !['https://www.prd.go.th', 'https://www.mots.go.th', 'https://www.nongbualamphu.go.th'].includes(r.url))
       const have = new Set(old.map((r) => r.url.replace(/\/+$/, '')))
       const add = SEED.agency_sites.filter((r) => !have.has(r.url.replace(/\/+$/, '')) && !old.some((o) => o.id === r.id))
       localStorage.setItem(PREFIX + 'agency_sites', JSON.stringify([...old, ...add]))

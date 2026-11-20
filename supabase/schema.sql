@@ -100,6 +100,7 @@ insert into public.agency_sites (id, name, url, category) values
   ('a6', 'สำนักงานสถิติจังหวัดหนองบัวลำภู', 'https://nongbualamphu.nso.go.th', 'หน่วยงานจังหวัด'),
   ('a7', 'สำนักงานทรัพยากรธรรมชาติและสิ่งแวดล้อมจังหวัดหนองบัวลำภู', 'https://nongbualamphu.mnre.go.th/th/index', 'หน่วยงานจังหวัด'),
   ('a8', 'ตรวจคนเข้าเมืองจังหวัดหนองบัวลำภู', 'https://nongbualamphu.immigration.go.th', 'หน่วยงานจังหวัด'),
+  ('a13', 'สำนักงานพัฒนาชุมชนจังหวัดหนองบัวลำภู', 'https://nongbua.cdd.go.th', 'หน่วยงานจังหวัด'),
   ('a9', 'องค์การบริหารส่วนจังหวัดหนองบัวลำภู (อบจ.)', 'https://nppao.go.th/public/', 'ท้องถิ่น'),
   ('a10', 'โรงพยาบาลหนองบัวลำภู', 'https://nbhospital.moph.go.th/public/', 'สาธารณสุข'),
   ('a11', 'สำนักงานสาธารณสุขจังหวัดหนองบัวลำภู (เพจ Facebook)', 'https://www.facebook.com/nblp.pho/', 'สาธารณสุข'),
