@@ -23,6 +23,10 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: npm }
       - run: npm ci
+      - name: ดึงข่าวหนองบัวลำภูจากมติชน
+        run: node scripts/fetch-matichon.mjs
+        continue-on-error: true
+        timeout-minutes: 3
       - name: ดึงข่าวจากลิงก์ (content/news-links.txt)
         run: node scripts/fetch-links.mjs
         continue-on-error: true

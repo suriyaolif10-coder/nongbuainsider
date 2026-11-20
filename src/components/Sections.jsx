@@ -199,7 +199,7 @@ export function LatestNews({ items, title = 'ข่าวใหม่ล่า�
 export function fbEmbedSrc(url, width = 500, height = 600) {
   if (!url) return ''
   if (url.includes('/plugins/')) return url
-  return `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(url)}&tabs=timeline&width=${width}&height=${height}&small_header=true&hide_cover=false&adapt_container_width=true&locale=th_TH`
+  return `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(url)}&tabs=timeline&width=${width}&height=${height}&small_header=true&hide_cover=true&show_facepile=false&adapt_container_width=true&locale=th_TH`
 }
 
 export function FbFeed() {
