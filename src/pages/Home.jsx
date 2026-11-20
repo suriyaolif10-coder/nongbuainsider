@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Header, { TABS } from '../components/Header.jsx'
 import { Hero, NewsSlider, AdSlot, LatestNews, FbFeed, AgencyList, Footer } from '../components/Sections.jsx'
 import { useCollection } from '../db.js'
+import MatichonNews from '../components/Matichon.jsx'
 
 export default function Home() {
   const { tab = 'top' } = useParams()
@@ -43,6 +44,7 @@ export default function Home() {
               {!q && <NewsSlider items={featured} />}
               <AdSlot position="top" />
               <LatestNews items={latest} title={title} />
+              {!q && <MatichonNews district={isDistrict ? tab : undefined} localOnly={tab === 'nongbua'} limit={tab === 'top' ? 8 : 20} />}
             </>
           )}
         </div>
