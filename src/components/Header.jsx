@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Brand, Icon } from './ui.jsx'
+import { Icon } from './ui.jsx'
+import { useAppState } from '../state.jsx'
+import logoMark from '../assets/logo-mark.png'
 import { DISTRICTS, GITHUB_URL } from '../db.js'
 
 export const TABS = [
@@ -12,44 +14,60 @@ export const TABS = [
 
 export default function Header({ activeTab = 'top', search, onSearch }) {
   const navigate = useNavigate()
-  const [searchOpen, setSearchOpen] = useState(!!search)
+  const { aiMode, setAiMode } = useAppState()
+  const [searchOpen, setSearchOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const inputRef = useRef(null)
 
   useEffect(() => { if (searchOpen) inputRef.current?.focus() }, [searchOpen])
 
   const tabHref = (key) => (key === 'top' ? '/' : `/tab/${encodeURIComponent(key)}`)
+  const searchBox = (cls) => (
+    <label className={`relative block ${cls}`}>
+      <Icon.Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500" />
+      <input
+        ref={inputRef}
+        type="search"
+        value={search || ''}
+        onChange={(e) => onSearch?.(e.target.value)}
+        placeholder="ค้นหาข่าว อำเภอ แหล่งข่าว..."
+        aria-label="ค้นหาข่าว"
+        className="input rounded-full py-2 pl-9 pr-4"
+      />
+    </label>
+  )
 
   return (
     <header className="sticky top-0 z-40 bg-black/95 backdrop-blur">
-      <div className="mx-auto flex h-[68px] max-w-6xl items-center justify-between gap-3 px-4">
-        <Link to="/" aria-label="หนองบัว INSIDER หน้าแรก"><Brand /></Link>
-        <div className="flex items-center gap-2">
-          <button
-            aria-label="ค้นหา"
-            onClick={() => { setSearchOpen((v) => !v); if (searchOpen) onSearch?.('') }}
-            className="grid h-11 w-11 place-items-center rounded-full text-white transition hover:bg-white/10"
-          >
-            {searchOpen ? <Icon.Close className="h-6 w-6" /> : <Icon.Search className="h-6 w-6" />}
+      <div className="mx-auto flex h-16 max-w-6xl items-center gap-2 px-4 sm:gap-3">
+        <Link to="/" aria-label="หนองบัว INSIDER หน้าแรก" className="flex shrink-0 items-center gap-2 font-display text-lg font-bold leading-none sm:text-xl">
+          <img src={logoMark} alt="" className="h-9 w-auto" />
+          <span className="hidden sm:inline"><span className="text-white">หนองบัว</span> <span className="text-brand">INSIDER</span></span>
+        </Link>
+        {searchBox('ml-auto hidden w-full max-w-xs md:block')}
+        <div className="ml-auto flex shrink-0 items-center gap-1.5 md:ml-0">
+          <button aria-label="ค้นหา" onClick={() => setSearchOpen((v) => !v)} className="grid h-10 w-10 place-items-center rounded-full text-white hover:bg-white/10 md:hidden">
+            {searchOpen ? <Icon.Close className="h-5 w-5" /> : <Icon.Search className="h-5 w-5" />}
           </button>
-          {/* ปุ่มเพิ่มข่าว -> ไปหน้า Login หลังบ้าน */}
-          <button onClick={() => navigate('/admin/login')} className="btn-brand whitespace-nowrap px-4 py-2.5 text-[15px] font-bold">
-            <span className="text-base leading-none">+</span> เพิ่มข่าว
+          <button
+            role="switch"
+            aria-checked={aiMode}
+            onClick={() => setAiMode(!aiMode)}
+            title="สุ่มพาดหัวข่าวแบบ AI (ไม่แก้ข่าวจริง)"
+            className={`flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-xs font-semibold transition ${aiMode ? 'border-brand bg-brand/20 text-brand' : 'border-white/15 text-neutral-300 hover:border-white/40'}`}
+          >
+            <span className={`relative hidden h-4 w-7 rounded-full transition min-[400px]:block ${aiMode ? 'bg-brand' : 'bg-ink-600'}`}>
+              <span className={`absolute top-0.5 h-3 w-3 rounded-full bg-white transition-all ${aiMode ? 'left-3.5' : 'left-0.5'}`} />
+            </span>
+            AIสุ่ม 🤖
+          </button>
+          <button onClick={() => navigate('/admin/login')} className="btn-brand whitespace-nowrap px-3.5 py-2 text-sm font-bold">
+            + เพิ่มข่าว
           </button>
         </div>
       </div>
 
-      {searchOpen && (
-        <div className="mx-auto max-w-6xl px-4 pb-3">
-          <input
-            ref={inputRef}
-            value={search || ''}
-            onChange={(e) => onSearch?.(e.target.value)}
-            placeholder="ค้นหาข่าว อำเภอ หรือแหล่งข่าว..."
-            className="input rounded-full px-4 py-2.5"
-          />
-        </div>
-      )}
+      {searchOpen && <div className="mx-auto max-w-6xl px-4 pb-3 md:hidden">{searchBox('')}</div>}
 
       {/* แถบแท็บ */}
       <nav className="relative border-b border-white/10">

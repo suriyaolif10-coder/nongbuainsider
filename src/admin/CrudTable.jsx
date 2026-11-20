@@ -70,6 +70,15 @@ export default function CrudTable({ collection, fields, title, renderCell }) {
   )
 }
 
+// ISO -> ค่า input datetime-local (เวลาท้องถิ่น)
+function toLocalInput(iso) {
+  if (!iso) return ''
+  const d = new Date(iso)
+  if (isNaN(d)) return ''
+  const p = (n) => String(n).padStart(2, '0')
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`
+}
+
 function Cell({ f, v }) {
   if (f.type === 'boolean') {
     return <span className={`rounded-full px-2 py-0.5 text-xs ${v ? 'bg-green-500/15 text-green-400' : 'bg-neutral-700/50 text-neutral-400'}`}>{v ? 'เปิด' : 'ปิด'}</span>
@@ -77,6 +86,7 @@ function Cell({ f, v }) {
   if (f.key === 'image_url') return <SafeImg src={v} className="h-10 w-16 rounded" />
   if (f.type === 'url') return v ? <a href={v} target="_blank" rel="noreferrer" className="block truncate text-sky-400 hover:underline">{v}</a> : '-'
   if (f.type === 'number') return Number(v || 0).toLocaleString('th-TH')
+  if (f.type === 'datetime') return v ? new Date(v).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: '2-digit' }) : '-'
   return <span className="line-clamp-2">{v || '-'}</span>
 }
 
@@ -109,7 +119,14 @@ function EditModal({ fields, initial, onClose, onSave }) {
               <label className="mb-1 block text-xs font-medium text-neutral-400">
                 {f.label} <span className="text-neutral-600">({f.key})</span>{f.required && <span className="text-brand"> *</span>}
               </label>
-              {f.type === 'textarea' ? (
+              {f.type === 'datetime' ? (
+                <input
+                  type="datetime-local"
+                  value={toLocalInput(form[f.key])}
+                  onChange={(e) => set(f.key, e.target.value ? new Date(e.target.value).toISOString() : '')}
+                  className="input"
+                />
+              ) : f.type === 'textarea' ? (
                 <textarea rows={5} required={f.required} value={form[f.key]} onChange={(e) => set(f.key, e.target.value)} className="input" />
               ) : f.type === 'select' ? (
                 <select required={f.required} value={form[f.key]} onChange={(e) => set(f.key, e.target.value)} className="input">
@@ -135,6 +152,7 @@ function EditModal({ fields, initial, onClose, onSave }) {
                   placeholder={f.placeholder}
                 />
               )}
+              {f.addon && <div className="mt-1.5">{f.addon(form, set)}</div>}
               {f.key === 'image_url' && form.image_url && <SafeImg src={form.image_url} className="mt-2 aspect-video w-full rounded-lg" />}
             </div>
           ))}

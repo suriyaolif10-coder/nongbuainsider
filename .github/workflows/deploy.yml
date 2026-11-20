@@ -46,6 +46,7 @@ jobs:
           # (ถ้าไม่ตั้ง เว็บจะทำงานโหมดเดโม localStorage)
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
+          VITE_ACTIONS_URL: ${{ vars.VITE_ACTIONS_URL }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with: { path: dist }

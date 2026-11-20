@@ -8,7 +8,7 @@ const AUTH_KEY = PREFIX + 'admin_auth'
 // เก็บเฉพาะค่า SHA-256 ของรหัสผ่าน (ไม่เก็บรหัสจริงในโค้ด)
 // เปลี่ยนรหัส: รัน  printf '%s' 'รหัสใหม่' | sha256sum  แล้วนำค่ามาใส่แทน
 const ADMIN_PASSWORD_SHA256 = '2f5d4f358d3d2474fcfc6040bbb954ae0f7974e95c7661f96c09dc652106ed16'
-async function sha256(text) {
+export async function sha256(text) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text))
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('')
 }
@@ -214,10 +214,11 @@ export const db = {
   get: (col, id) => read(col).find((r) => r.id === id),
   refresh,
   async create(col, data) {
-    const row = { ...data, id: uid(), created_at: new Date().toISOString() }
+    const row = { ...data, id: uid(), created_at: data.created_at || new Date().toISOString() }
     setRows(col, [row, ...read(col)]) // optimistic
     if (IS_REMOTE) {
-      const { id, created_at, ...payload } = row // ให้ฐานข้อมูลสร้าง id / created_at เอง
+      const { id, created_at, ...payload } = row // ให้ฐานข้อมูลสร้าง id เอง
+      if (data.created_at) payload.created_at = created_at
       const { error } = await supabase.from(col).insert(payload)
       report(error)
       await refresh(col)
@@ -303,7 +304,9 @@ export const auth = {
       emit()
       return ''
     }
-    if ((await sha256(password || '')) !== ADMIN_PASSWORD_SHA256) return 'รหัสผ่านไม่ถูกต้อง'
+    // เทียบค่า SHA-256 กับที่เก็บในฐานข้อมูล (ตั้งค่าระบบ > เปลี่ยนรหัสผ่าน) หรือค่าเริ่มต้น
+    const stored = db.config().admin_password_sha256 || ADMIN_PASSWORD_SHA256
+    if ((await sha256(password || '')) !== stored) return 'รหัสผ่านไม่ถูกต้อง'
     localStorage.setItem(AUTH_KEY, 'true')
     return ''
   },

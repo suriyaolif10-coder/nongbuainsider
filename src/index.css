@@ -14,3 +14,8 @@ body { -webkit-font-smoothing: antialiased; }
   .btn-brand { @apply inline-flex items-center justify-center gap-1.5 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-600 active:scale-95; }
   .btn-ghost { @apply inline-flex items-center justify-center gap-1.5 rounded-full border border-ink-600 px-4 py-2 text-sm text-neutral-200 transition hover:border-neutral-400; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none !important; }
+  .animate-blink { animation: none !important; }
+}

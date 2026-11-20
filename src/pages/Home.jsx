@@ -2,76 +2,88 @@ import { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Header, { TABS } from '../components/Header.jsx'
 import { Hero, NewsSlider, AdSlot, LatestNews, FbFeed, FbPagesRow, AgencyList, Footer } from '../components/Sections.jsx'
-import { useCollection } from '../db.js'
 import DistrictSliders from '../components/DistrictSliders.jsx'
-import { useLinkNews } from '../components/links.js'
+import { Ticker, MainHeadline, FeaturedNews, MonthBar, EmptyMonth } from '../components/Live.jsx'
 import { mixBySource, onePerSource } from '../components/mix.js'
-import { useMatichonNews } from '../components/matichon.js'
-import TopStories from '../components/TopStories.jsx'
+import { useAllNews } from '../lib/useNews.js'
+import { filterCurrentMonth, rankPopular, useExtViews } from '../lib/news.js'
+import { useAppState } from '../state.jsx'
 
 export default function Home() {
   const { tab = 'top' } = useParams()
   const [search, setSearch] = useState('')
-  const tips = useCollection('insider_tips')
+  const { showAll } = useAppState()
+  const ext = useExtViews()
+  const all = useAllNews()
 
-  const linkNews = useLinkNews()
-  const matichonNews = useMatichonNews()
-  // ข่าวจากหลังบ้าน + ข่าวจากลิงก์ (content/news-links.txt)
-  const sorted = useMemo(
-    () => [...tips.map((t) => (t.link ? { ...t, href: t.link } : t)), ...linkNews].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)),
-    [tips, linkNews],
-  )
+  // กรองเดือนปัจจุบัน (ใช้กับทุกส่วน) เว้นแต่กด "ดูทั้งหมด"
+  const pool = useMemo(() => (showAll ? all : filterCurrentMonth(all)), [all, showAll])
 
   const isDistrict = TABS.some((t) => t.key === tab) && !['top', 'community', 'nongbua'].includes(tab)
   const q = search.trim().toLowerCase()
-  const filtered = sorted.filter((n) => {
+  const filtered = pool.filter((n) => {
     if (isDistrict && n.district !== tab) return false
+    if (tab === 'community' && n.district !== 'ข่าวชุมชน') return false
     if (!q) return true
     return [n.title, n.content, n.district, n.source].some((v) => (v || '').toLowerCase().includes(q))
   })
 
-  // ข่าวเด่น TOP: ข่าวปักหมุด + สุ่มจากแต่ละแหล่งในจังหวัด (ข่าวในเว็บ/ลิงก์โพสต์เพจ) แล้วเติมด้วยข่าวมติชนหมวดหนองบัวลำภู
+  // ยอดนิยม 5 อันดับของเดือน (ปักหมุดก่อน > วิวมากสุด > ใหม่สุด) -> ticker + พาดหัว LIVE
+  const top5 = useMemo(() => rankPopular(pool, ext).slice(0, 5), [pool, ext])
+
+  // ข่าวเด่น: ปักหมุด > สุ่มเพจละ 1 ข่าวที่คัดไว้ > สุ่มจากแต่ละแหล่ง (มีภาพก่อน)
   const [seed, setSeed] = useState(() => String(Math.random()))
-  const byDate = (a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0)
-  const extra = useMemo(() => matichonNews.filter((m) => !sorted.some((n) => n.href === m.href)), [matichonNews, sorted])
   const featured = useMemo(() => {
-    if (tab !== 'top' || q) return [...filtered].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)).slice(0, 5)
-    const pinned = sorted.filter((n) => n.featured)
-    // ข่าวเด่นที่คัดจากแต่ละเพจ: สุ่มเพจละ 1 ข่าว
-    const picks = onePerSource(sorted.filter((n) => n.pick && !n.featured), seed)
+    const pinned = pool.filter((n) => n.featured)
+    const picks = onePerSource(pool.filter((n) => n.pick && !n.featured), seed)
     const used = new Set([...pinned, ...picks].map((n) => n.id))
-    const local = mixBySource(sorted.filter((n) => !used.has(n.id)), { seed, perSource: 3, limit: 7 })
-    const fill = [...extra.filter((m) => m.image_url)].sort(byDate)
-    return [...pinned, ...picks, ...local, ...fill].slice(0, 7)
-  }, [tab, q, filtered, sorted, extra, seed])
-  // ข่าวใหม่ล่าสุด (TOP): ข่าวในเว็บ/ลิงก์ + มติชน เรียงตามเวลา ไม่ซ้ำกับข่าวเด่น
+    const rest = mixBySource(pool.filter((n) => !used.has(n.id)), { seed, perSource: 2, limit: 9 })
+    const chosen = [...pinned, ...picks, ...rest]
+    // แหล่งข่าวน้อย: เติมด้วยข่าวล่าสุดที่มีภาพให้ครบ 7
+    const left = pool.filter((n) => !chosen.some((c) => c.id === n.id)).sort((a, b) => (b.image_url ? 1 : 0) - (a.image_url ? 1 : 0))
+    return [...chosen, ...left].slice(0, 7)
+  }, [pool, seed])
+
   const latest = useMemo(() => {
-    if (tab !== 'top' || q) return [...filtered, ...(isDistrict ? extra.filter((m) => m.district === tab) : [])].sort(byDate)
+    if (tab !== 'top' || q) return filtered
     const shown = new Set(featured.map((n) => n.id))
-    return [...sorted, ...extra].filter((n) => !shown.has(n.id)).sort(byDate).slice(0, 10)
-  }, [tab, q, filtered, sorted, extra, featured, isDistrict])
-  const sliderFirst = !q && !['community', 'agency', 'top'].includes(tab) && featured.length > 0
-  const title = q ? `ผลการค้นหา "${search}"` : isDistrict ? `ข่าว อ.${tab}` : 'ข่าวใหม่ล่าสุด'
+    return filtered.filter((n) => !shown.has(n.id)).slice(0, 10)
+  }, [tab, q, filtered, featured])
+
+  const title = q ? `ผลการค้นหา "${search}"` : isDistrict ? `ข่าว อ.${tab}` : tab === 'community' ? 'ข่าวชุมชน' : 'ข่าวใหม่ล่าสุด'
+  const empty = pool.length === 0
 
   return (
     <div className="min-h-screen bg-ink-950">
       <Header activeTab={tab} search={search} onSearch={setSearch} />
+      {tab === 'top' && !q && <Ticker items={top5} />}
       {tab === 'top' && !q && <Hero />}
 
-      <main className={`mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 lg:grid-cols-[minmax(0,1fr)_320px] ${sliderFirst ? 'pt-0 sm:pt-5' : 'pt-5'}`}>
+      <main className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 pt-5 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="min-w-0 space-y-6">
-          {tab === 'community' ? (
-            <FbFeed />
-          ) : tab === 'agency' ? (
+          {tab !== 'agency' && <MonthBar count={q || tab !== 'top' ? filtered.length : pool.length} />}
+
+          {tab === 'agency' ? (
             <AgencyList />
+          ) : tab === 'community' ? (
+            <>
+              <FbFeed />
+              {filtered.length > 0 && <LatestNews items={filtered} title={title} />}
+            </>
+          ) : tab === 'top' && !q ? (
+            <>
+              {empty ? <EmptyMonth /> : <MainHeadline items={top5} ext={ext} />}
+              <AdSlot position="top" />
+              <FeaturedNews items={featured} onShuffle={() => setSeed(String(Math.random()))} />
+              <FbPagesRow seed={seed} />
+              {latest.length > 0 && <LatestNews items={latest} title={title} />}
+              <DistrictSliders tips={pool} />
+            </>
           ) : (
             <>
-              {!q && tab === 'top' && <TopStories items={featured} onShuffle={() => setSeed(String(Math.random()))} />}
-              {!q && tab !== 'top' && <NewsSlider items={featured} />}
+              {!q && filtered.length > 0 && <NewsSlider items={rankPopular(filtered, ext).slice(0, 5)} />}
               <AdSlot position="top" />
-              {tab === 'top' && !q && <FbPagesRow seed={seed} />}
-              {(latest.length > 0 || tab !== 'top' || q) && <LatestNews items={latest} title={title} />}
-              {tab === 'top' && !q && <DistrictSliders tips={[...sorted, ...extra]} />}
+              {filtered.length === 0 && !q && !showAll ? <EmptyMonth /> : <LatestNews items={filtered} title={title} />}
             </>
           )}
         </div>

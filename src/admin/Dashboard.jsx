@@ -3,7 +3,8 @@ import { Link, Navigate, NavLink, useNavigate, useParams } from 'react-router-do
 import { Brand, Icon } from '../components/ui.jsx'
 import CrudTable from './CrudTable.jsx'
 import FeaturedFetcher from './FeaturedFetcher.jsx'
-import { auth, db, useAuth, useCollection, remoteError, IS_REMOTE, DISTRICTS, AD_POSITIONS, AD_PRICES, GITHUB_URL } from '../db.js'
+import { AiTitleButton, FetchImageButton, NewsBatchTools } from './NewsTools.jsx'
+import { auth, db, sha256, useAuth, useCollection, remoteError, IS_REMOTE, DISTRICTS, AD_POSITIONS, AD_PRICES, GITHUB_URL } from '../db.js'
 
 const SECTIONS = [
   { key: 'tips', label: 'จัดการข่าว', icon: '📰', col: 'insider_tips' },
@@ -15,13 +16,15 @@ const SECTIONS = [
 
 const FIELDS = {
   insider_tips: [
-    { key: 'title', label: 'หัวข้อข่าว', required: true },
-    { key: 'district', label: 'อำเภอ (เว้นว่าง = ทั้งจังหวัด)', type: 'select', options: DISTRICTS.map((d) => d.name) },
-    { key: 'image_url', label: 'ลิงก์รูปภาพ', placeholder: 'https://...' },
-    { key: 'link', label: 'ลิงก์ข่าวต้นทาง (ถ้ามี กดข่าวแล้วเปิดหน้านี้)', type: 'url', list: false },
+    { key: 'title', label: 'หัวข้อข่าว', required: true, addon: (form, set) => <AiTitleButton form={form} set={set} /> },
+    { key: 'district', label: 'อำเภอ / หมวด (เว้นว่าง = ทั้งจังหวัด)', type: 'select', options: [...DISTRICTS.map((d) => d.name), 'ข่าวชุมชน', 'ข่าวหนองบัว'] },
+    { key: 'link', label: 'ลิงก์ข่าวต้นทาง (ถ้ามี กดข่าวแล้วเปิดหน้านี้ / ใช้ดึงภาพ)', type: 'url', list: false },
+    { key: 'image_url', label: 'ลิงก์รูปภาพ', placeholder: 'https://...', addon: (form, set) => <FetchImageButton form={form} set={set} /> },
     { key: 'content', label: 'เนื้อหา', type: 'textarea', list: false },
     { key: 'source', label: 'แหล่งข่าว', default: 'หนองบัว INSIDER' },
-    { key: 'featured', label: 'ปักหมุดข่าวเด่น (สไลด์)', type: 'boolean', default: false },
+    { key: 'featured', label: 'ปักหมุดข่าวเด่น', type: 'boolean', default: false },
+    { key: 'created_at', label: 'วันที่ข่าว (createdAt)', type: 'datetime' },
+    { key: 'views', label: 'ยอดวิว', type: 'number', default: 0 },
   ],
   agency_sites: [
     { key: 'name', label: 'ชื่อหน่วยงาน', required: true },
@@ -37,7 +40,7 @@ const FIELDS = {
     { key: 'image_url', label: 'ลิงก์รูปแบนเนอร์' },
     { key: 'link', label: 'ลิงก์ปลายทาง', type: 'url', list: false },
     { key: 'position', label: 'ตำแหน่ง', type: 'select', options: AD_POSITIONS, required: true, default: 'top' },
-    { key: 'price', label: 'ราคา (บาท)', type: 'select', options: AD_PRICES.map(String), numeric: true, required: true, default: '300' },
+    { key: 'price', label: 'ราคา (บาท / 1,000 วิว)', type: 'select', options: AD_PRICES.map(String), numeric: true, required: true, default: '300' },
     { key: 'active', label: 'เปิดใช้งาน', type: 'boolean', default: true },
     { key: 'views', label: 'ยอดวิว', type: 'number', default: 0 },
     { key: 'owner', label: 'เจ้าของ' },
@@ -111,6 +114,7 @@ export default function Dashboard() {
             ) : (
               <>
               {current.key === 'tips' && <FeaturedFetcher />}
+              {current.key === 'tips' && <NewsBatchTools />}
               <CrudTable
                 key={current.col}
                 collection={current.col}
@@ -144,11 +148,12 @@ function Stats() {
   const ads = useCollection('ad_banners')
   const tips = useCollection('insider_tips')
   const totalViews = ads.reduce((s, a) => s + (Number(a.views) || 0), 0)
-  const totalRevenue = ads.reduce((s, a) => s + (Number(a.views) || 0) * (Number(a.price) || 0), 0)
+  // ราคาโฆษณาคิดต่อ 1,000 วิว (CPM)
+  const totalRevenue = ads.reduce((s, a) => s + ((Number(a.views) || 0) * (Number(a.price) || 0)) / 1000, 0)
   const activeAds = ads.filter((a) => a.active).length
   const cards = [
     { label: 'ยอดวิวโฆษณารวม', value: totalViews.toLocaleString('th-TH'), sub: 'Total views' },
-    { label: 'รายได้รวม', value: baht(totalRevenue), sub: 'views × price', accent: true },
+    { label: 'รายได้รวม', value: baht(Math.round(totalRevenue)), sub: 'views × price / 1,000', accent: true },
     { label: 'โฆษณาที่เปิดอยู่', value: activeAds, sub: `จากทั้งหมด ${ads.length}` },
     { label: 'ข่าวทั้งหมด', value: tips.length, sub: 'insider_tips' },
   ]
@@ -161,6 +166,56 @@ function Stats() {
           <p className="text-[11px] text-neutral-500">{c.sub}</p>
         </div>
       ))}
+    </div>
+  )
+}
+
+const FETCH_NEWS_YML = `name: fetch-news
+on:
+  schedule:
+    - cron: '17 * * * *'   # ทุกชั่วโมง
+  workflow_dispatch:
+  push:
+    paths: ['content/news-links.txt']
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      # อ่าน content/news-links.txt (url | อำเภอ) ดึง og:title / og:image / og:description
+      - run: node scripts/fetch-links.mjs
+      - name: commit ข้อมูลข่าว
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add public/data/links.json
+          git commit -m "อัปเดตข่าวจากลิงก์" || echo "ไม่มีข่าวใหม่"
+          git push`
+
+// เปลี่ยนรหัสผ่านแอดมิน (เก็บเฉพาะค่า SHA-256 ในฐานข้อมูล)
+function PasswordChange() {
+  const [f, setF] = useState({ a: '', b: '' })
+  const [msg, setMsg] = useState('')
+  const save = async (e) => {
+    e.preventDefault()
+    if (f.a.length < 8) return setMsg('รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร')
+    if (f.a !== f.b) return setMsg('รหัสผ่านทั้งสองช่องไม่ตรงกัน')
+    await db.saveConfig({ admin_password_sha256: await sha256(f.a) })
+    setF({ a: '', b: '' }); setMsg('✓ เปลี่ยนรหัสผ่านแล้ว (มีผลกับเครื่องนี้ในโหมดเดโม)')
+  }
+  return (
+    <div className="space-y-2 border-t border-white/10 pt-4">
+      <p className="text-xs font-medium text-neutral-400">เปลี่ยนรหัสผ่านหลังบ้าน</p>
+      <div className="grid gap-2 sm:grid-cols-2">
+        <input type="password" autoComplete="new-password" value={f.a} onChange={(e) => setF({ ...f, a: e.target.value })} placeholder="รหัสผ่านใหม่" className="input" />
+        <input type="password" autoComplete="new-password" value={f.b} onChange={(e) => setF({ ...f, b: e.target.value })} placeholder="ยืนยันรหัสผ่านใหม่" className="input" />
+      </div>
+      <button onClick={save} className="btn-ghost px-3 py-1.5 text-xs">บันทึกรหัสผ่านใหม่</button>
+      {msg && <span className="ml-2 text-xs text-neutral-400">{msg}</span>}
     </div>
   )
 }
@@ -217,6 +272,12 @@ function Settings() {
       <div className="flex items-center gap-3">
         <button type="submit" className="btn-brand">บันทึกการตั้งค่า</button>
         {saved && <span className="text-sm text-green-400">✓ บันทึกแล้ว</span>}
+      </div>
+      {!IS_REMOTE && <PasswordChange />}
+      <div className="border-t border-white/10 pt-4">
+        <p className="mb-1 text-xs font-medium text-neutral-400">ตัวอย่าง GitHub Actions ดึงข่าวทุกชั่วโมง (.github/workflows/fetch-news.yml)</p>
+        <p className="mb-2 text-[11px] text-neutral-500">ใส่ลิงก์ข่าวใน content/news-links.txt รูปแบบ <code className="text-brand">url | อำเภอ</code> — ไม่ใช้ข่าวมติชน (เว็บนี้รวมขั้นตอนนี้ไว้ใน deploy.yml แล้ว)</p>
+        <pre className="max-h-72 overflow-auto rounded-lg bg-black p-3 text-[11px] leading-relaxed text-neutral-300">{FETCH_NEWS_YML}</pre>
       </div>
       {!IS_REMOTE && (
         <div className="border-t border-white/10 pt-4">

@@ -1,21 +1,12 @@
 import { useState } from 'react'
 import { db, useCollection, DISTRICTS, timeAgo, districtShort, GITHUB_URL } from '../db.js'
 import { SafeImg } from '../components/ui.jsx'
+import { fetchOg } from '../lib/actions.js'
 
-// ดึงข้อมูลตัวอย่างจากลิงก์ (หัวข้อ/ภาพ/คำโปรย) ผ่านบริการ Microlink (รองรับเรียกจากเบราว์เซอร์)
-// เบราว์เซอร์ดึงหน้าเว็บอื่นตรงๆ ไม่ได้ (CORS) จึงต้องผ่านบริการนี้
+// ดึงข้อมูลตัวอย่างจากลิงก์ (หัวข้อ/ภาพ/คำโปรย) ผ่าน fetch('actions') เท่านั้น
 async function unfurl(url) {
-  const res = await fetch(`https://api.microlink.io/?url=${encodeURIComponent(url)}`)
-  const json = await res.json().catch(() => null)
-  if (!res.ok || json?.status !== 'success') throw new Error(json?.message || `ดึงข้อมูลไม่ได้ (HTTP ${res.status})`)
-  const d = json.data || {}
-  return {
-    title: (d.title || '').trim(),
-    content: (d.description || '').trim(),
-    image_url: d.image?.url || d.logo?.url || '',
-    source: d.publisher || hostOf(url),
-    published: d.date || '',
-  }
+  const og = await fetchOg(url)
+  return { ...og, source: og.source || hostOf(url), published: '' }
 }
 const hostOf = (u) => { try { return new URL(u).hostname.replace(/^(www|m)\./, '') } catch { return '' } }
 const guessDistrict = (text) =>

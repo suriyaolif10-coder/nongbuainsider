@@ -2,45 +2,30 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SafeImg, Icon, Brand, MountainOutline } from './ui.jsx'
 import { usePreviews, previewOf, hostOf } from './previews.js'
+import heroPhoto from '../assets/hero-photo.jpg'
+import { addView } from '../lib/news.js'
+import logoMark from '../assets/logo-mark.png'
 import { db, useCollection, timeAgo, districtShort, GITHUB_URL } from '../db.js'
 
 export function Hero() {
   const custom = useCollection('app_config')[0]?.hero_image_url
-  // ค่าเริ่มต้น: แบนเนอร์ที่มีโลโก้และข้อความในภาพแล้ว แสดงภาพเต็ม ๆ
-  if (!custom) {
-    return (
-      <section className="border-b border-brand/40 bg-black">
-        <h1 className="sr-only">หนองบัว INSIDER รู้ลึก รู้จริง เรื่องหนองบัวลำภู</h1>
-        <img
-          src="./img/hero-banner.jpg"
-          alt="หนองบัว INSIDER รู้ลึก รู้จริง เรื่องหนองบัวลำภู — LOCAL NEWS • NONG BUA LAMPHU • ISAN REGION"
-          width="2000"
-          height="667"
-          className="mx-auto block aspect-[3/1] w-full max-w-[1600px] object-cover"
-        />
-      </section>
-    )
-  }
-  // ใส่รูปเองจากหลังบ้าน (รูปไม่มีตัวหนังสือ): วางข้อความทับ
-  const heroImg = custom
+  const bg = custom || heroPhoto
   return (
     <section className="relative overflow-hidden border-b border-brand/40 bg-black">
-      <img src={heroImg} alt="ภูเขาหนองบัวลำภู" className="absolute inset-0 h-full w-full object-cover object-[70%_center]" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
-      <div className="relative mx-auto max-w-6xl px-4 py-9 sm:py-16">
-        <h1 className="font-display text-[44px] font-bold leading-[1.05] text-brand drop-shadow-[0_2px_12px_rgba(0,0,0,.6)] min-[400px]:text-5xl sm:text-7xl">
-          หนองบัว INSIDER
-        </h1>
-        <p className="mt-1 font-display text-2xl font-semibold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,.7)] min-[400px]:text-[27px] sm:mt-2 sm:text-4xl">
-          รู้ลึก รู้จริง เรื่องหนองบัวลำภู
-        </p>
-        <div className="mt-3 h-px w-56 bg-gradient-to-r from-brand to-brand/0 sm:w-80" />
-        <div className="mt-3 flex items-center gap-3">
-          <MountainOutline className="h-5 w-10 shrink-0 sm:h-6 sm:w-12" />
-          <p className="text-[10px] font-medium tracking-wide text-neutral-200 min-[400px]:text-[11px] sm:text-sm">
-            LOCAL NEWS • NONG BUA LAMPHU • ISAN REGION
-          </p>
+      <img src={bg} alt="ภูเขาและทะเลสาบหนองบัวลำภู" className="absolute inset-0 h-full w-full object-cover object-center" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+      <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-5 px-4 py-8 text-center sm:flex-row sm:gap-8 sm:py-12 sm:text-left">
+        <div className="grid h-[140px] w-[140px] shrink-0 place-items-center rounded-full border-[3px] border-dashed border-brand bg-white p-2 shadow-[0_0_0_6px_rgba(0,0,0,.6)]">
+          <img src={logoMark} alt="โลโก้ หนองบัว INSIDER" className="w-[78%]" />
+        </div>
+        <div>
+          <h1 className="font-display text-[42px] font-bold leading-none text-brand [text-shadow:0_2px_12px_rgba(0,0,0,.6)] min-[400px]:text-5xl sm:text-6xl lg:text-7xl">
+            หนองบัว INSIDER
+          </h1>
+          <p className="mt-2 font-display text-2xl font-semibold text-white [text-shadow:0_2px_8px_rgba(0,0,0,.7)] sm:text-3xl lg:text-4xl">รู้ลึก รู้จริง เรื่องหนองบัวลำภู</p>
+          <div className="mx-auto mt-3 h-[3px] w-24 rounded-full bg-brand sm:mx-0 sm:w-40" />
+          <p className="mt-3 text-[10px] font-medium tracking-[0.18em] text-neutral-300 min-[400px]:text-[11px] sm:text-sm">LOCAL NEWS • NONG BUA LAMPHU • ISAN REGION</p>
         </div>
       </div>
     </section>
@@ -49,8 +34,8 @@ export function Hero() {
 
 // ข่าวในเว็บ -> หน้าอ่านข่าว / ข่าวจากลิงก์ -> เปิดหน้าต้นทาง
 export function NewsLink({ n, className, children }) {
-  if (n.href) return <a href={n.href} target="_blank" rel="noreferrer" className={className}>{children}</a>
-  return <Link to={`/news/${n.id}`} className={className}>{children}</Link>
+  if (n.href) return <a href={n.href} target="_blank" rel="noreferrer" onClick={() => addView(n)} className={className}>{children}</a>
+  return <Link to={`/news/${n.id}`} onClick={() => addView(n)} className={className}>{children}</Link>
 }
 const tagOf = (n) => (n.district ? districtShort(n.district) : n.local === false ? 'ข่าวทั่วไป' : 'หนองบัวลำภู')
 
