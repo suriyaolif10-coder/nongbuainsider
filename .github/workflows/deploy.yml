@@ -26,6 +26,10 @@ jobs:
       - name: ดึงหัวข้อข่าวจากมติชน
         run: node scripts/fetch-matichon.mjs
         continue-on-error: true
+      - name: ดึงข่าวจากลิงก์ (content/news-links.txt)
+        run: node scripts/fetch-links.mjs
+        continue-on-error: true
+        timeout-minutes: 5
       - name: ดึงภาพตัวอย่างเว็บ/เพจหน่วยงาน
         run: node scripts/fetch-previews.mjs
         continue-on-error: true

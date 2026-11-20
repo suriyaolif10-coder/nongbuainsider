@@ -11,11 +11,14 @@ export default function DistrictSliders({ tips }) {
   const rows = DISTRICTS.map((d) => {
     const own = tips
       .filter((t) => t.district === d.name)
-      .map((t) => ({ key: 'i' + t.id, to: `/news/${t.id}`, title: t.title, image: t.image_url, source: t.source, at: t.created_at }))
+      .map((t) => (t.href
+        ? { key: t.href, href: t.href, title: t.title, image: t.image_url, source: t.source, at: t.created_at }
+        : { key: 'i' + t.id, to: `/news/${t.id}`, title: t.title, image: t.image_url, source: t.source, at: t.created_at }))
     const ext = (matichon?.items || [])
       .filter((m) => m.district === d.name)
       .map((m) => ({ key: m.link, href: m.link, title: m.title, image: m.image, source: m.source, at: m.published_at }))
-    const items = [...own, ...ext].sort((a, b) => new Date(b.at || 0) - new Date(a.at || 0)).slice(0, 10)
+    const seen = new Set()
+    const items = [...own, ...ext].filter((n) => !seen.has(n.key) && seen.add(n.key)).sort((a, b) => new Date(b.at || 0) - new Date(a.at || 0)).slice(0, 10)
     return { d, items }
   }).filter((r) => r.items.length)
 
@@ -98,7 +101,7 @@ function Row({ d, items, delay = 0 }) {
             <>
               <div className="relative">
                 <SafeImg src={n.image} alt="" className="aspect-[16/10] w-full rounded-xl" />
-                {n.href && <span className="absolute right-2 top-2 rounded bg-black/70 px-1.5 py-0.5 text-[10px] text-neutral-200">มติชน ↗</span>}
+                {n.href && <span className="absolute right-2 top-2 max-w-[70%] truncate rounded bg-black/70 px-1.5 py-0.5 text-[10px] text-neutral-200">{n.source} ↗</span>}
               </div>
               <h4 className="mt-2 line-clamp-2 text-[15px] leading-snug text-neutral-100 group-hover:text-brand">{n.title}</h4>
               <p className="mt-1 truncate text-xs text-neutral-500">{n.source} • {timeAgo(n.at)}</p>

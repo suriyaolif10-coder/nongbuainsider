@@ -61,3 +61,9 @@ Deploy: มี workflow `.github/workflows/deploy.yml` สำหรับ GitHub
 > หมายเหตุ: โหมดเดโมเก็บรหัสผ่านและข้อมูลฝั่ง browser เหมาะสำหรับทดลองเท่านั้น ใช้งานจริงให้ตั้งค่า Supabase
 
 Tech: React 18 • Vite • Tailwind CSS • React Router (HashRouter) • Supabase (optional)
+
+## ลงข่าวจากลิงก์ (ทุกคนเห็นเหมือนกัน)
+แก้ไฟล์ [`content/news-links.txt`](content/news-links.txt) บน GitHub (ใช้มือถือได้: เปิดไฟล์ → ไอคอนดินสอ → Commit changes)
+- บรรทัดละ 1 ลิงก์ ข่าวจากเว็บข่าว หรือโพสต์เพจ Facebook สาธารณะ
+- ระบุอำเภอได้: `https://ลิงก์ข่าว | นากลาง` (ไม่ระบุ ระบบเดาจากหัวข้อ)
+- GitHub Actions จะดึงหัวข้อ ภาพ คำโปรย มาแสดงภายใน 1–2 นาที และอัปเดตทุกชั่วโมง กดข่าวแล้วเปิดหน้าต้นทาง

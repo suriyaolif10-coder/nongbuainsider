@@ -5,15 +5,18 @@ import { Hero, NewsSlider, AdSlot, LatestNews, FbFeed, AgencyList, Footer } from
 import { useCollection } from '../db.js'
 import MatichonNews from '../components/Matichon.jsx'
 import DistrictSliders from '../components/DistrictSliders.jsx'
+import { useLinkNews } from '../components/links.js'
 
 export default function Home() {
   const { tab = 'top' } = useParams()
   const [search, setSearch] = useState('')
   const tips = useCollection('insider_tips')
 
+  const linkNews = useLinkNews()
+  // ข่าวจากหลังบ้าน + ข่าวจากลิงก์ (content/news-links.txt)
   const sorted = useMemo(
-    () => [...tips].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)),
-    [tips],
+    () => [...tips, ...linkNews].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)),
+    [tips, linkNews],
   )
 
   const isDistrict = TABS.some((t) => t.key === tab) && !['top', 'community', 'nongbua'].includes(tab)

@@ -47,6 +47,13 @@ export function Hero() {
   )
 }
 
+// ข่าวในเว็บ -> หน้าอ่านข่าว / ข่าวจากลิงก์ -> เปิดหน้าต้นทาง
+export function NewsLink({ n, className, children }) {
+  if (n.href) return <a href={n.href} target="_blank" rel="noreferrer" className={className}>{children}</a>
+  return <Link to={`/news/${n.id}`} className={className}>{children}</Link>
+}
+const tagOf = (n) => (n.district ? districtShort(n.district) : 'หนองบัวลำภู')
+
 export function NewsSlider({ items }) {
   const [idx, setIdx] = useState(0)
   const touch = useRef(null)
@@ -76,19 +83,19 @@ export function NewsSlider({ items }) {
       >
         <div className="flex transition-transform duration-500 ease-out" style={{ transform: `translateX(-${idx * 100}%)` }}>
           {items.map((n) => (
-            <Link key={n.id} to={`/news/${n.id}`} className="relative block aspect-[3/2] w-full shrink-0 sm:aspect-[16/9]">
+            <NewsLink key={n.id} n={n} className="relative block aspect-[3/2] w-full shrink-0 sm:aspect-[16/9]">
               <SafeImg src={n.image_url} alt={n.title} className="absolute inset-0 h-full w-full" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 px-4 pb-7 sm:px-6 sm:pb-9">
                 <span className="inline-block rounded-full bg-brand px-3.5 py-1 text-sm font-semibold text-white shadow-lg">
-                  {districtShort(n.district)}
+                  {tagOf(n)}
                 </span>
                 <h2 className="mt-2 line-clamp-3 font-display text-[22px] font-bold leading-snug text-white drop-shadow-[0_2px_6px_rgba(0,0,0,.8)] sm:text-3xl">
                   {n.title}
                 </h2>
-                <p className="mt-1.5 text-sm text-neutral-300">{n.source} • {timeAgo(n.created_at)}</p>
+                <p className="mt-1.5 text-sm text-neutral-300">{n.source} • {timeAgo(n.created_at)}{n.href && ' ↗'}</p>
               </div>
-            </Link>
+            </NewsLink>
           ))}
         </div>
         {/* แถบ indicator */}
@@ -148,15 +155,15 @@ export function AdSlot({ position = 'top', className = '' }) {
 
 export function NewsRow({ n }) {
   return (
-    <Link to={`/news/${n.id}`} className="group flex gap-3.5 rounded-xl py-1.5 transition sm:p-2 sm:hover:bg-ink-900">
+    <NewsLink n={n} className="group flex gap-3.5 rounded-xl py-1.5 transition sm:p-2 sm:hover:bg-ink-900">
       <SafeImg src={n.image_url} alt={n.title} className="aspect-[4/3] w-[30%] max-w-[150px] shrink-0 rounded-xl" />
       <div className="flex min-w-0 flex-1 flex-col justify-center gap-1">
         <h3 className="line-clamp-2 text-base leading-snug text-neutral-100 group-hover:text-brand sm:text-lg">{n.title}</h3>
         <p className="truncate text-xs text-neutral-500">
-          <span className="font-semibold text-brand">{districtShort(n.district)}</span> • {n.source} • {timeAgo(n.created_at)}
+          <span className="font-semibold text-brand">{tagOf(n)}</span> • {n.source} • {timeAgo(n.created_at)}{n.href && ' ↗'}
         </p>
       </div>
-    </Link>
+    </NewsLink>
   )
 }
 
