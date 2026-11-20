@@ -89,6 +89,29 @@ section{padding:8px 0 4px}
 .item .t{font-size:17px;line-height:1.55;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .item .m{margin-top:6px;font-size:14px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap}
 .item .m .c{color:var(--accent);font-weight:700}
+.item .txt{flex:1;min-width:0}
+.item a.t{display:-webkit-box}
+.item .m{align-items:center}
+.sh{margin-left:auto;display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 12px;border-radius:15px;border:1px solid var(--line);color:var(--fg);font-size:13px;font-weight:700;background:var(--bg)}
+.sh svg{width:15px;height:15px}
+.sh:active{background:var(--bg2)}
+.hero-sh{position:absolute;top:12px;right:12px;z-index:3;display:inline-flex;align-items:center;gap:5px;height:34px;padding:0 14px;border-radius:17px;background:rgba(0,0,0,.55);color:#fff;font-size:14px;font-weight:700;backdrop-filter:blur(4px)}
+.hero-sh svg{width:16px;height:16px}
+.sheet-bg{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.5);display:none}
+.sheet-bg.open{display:block}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:61;max-width:720px;margin:0 auto;background:var(--bg);border-radius:18px 18px 0 0;padding:14px 16px calc(18px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .22s ease;box-shadow:0 -8px 30px rgba(0,0,0,.3)}
+.sheet.open{transform:none}
+.sheet h4{margin:4px 0 4px;font-size:18px}
+.sheet p.hint{margin:0 0 8px;color:var(--muted);font-size:13px}
+.sheet textarea{width:100%;min-height:128px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);color:var(--fg);font:inherit;font-size:15px;line-height:1.55;padding:10px 12px;resize:vertical}
+.sheet .btns{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+.sheet .btns button{height:46px;border-radius:12px;font-weight:700;font-size:15px;border:1px solid var(--line);background:var(--bg2);color:var(--fg)}
+.sheet .btns .main{grid-column:1/-1;background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.sheet .btns .fb{background:#1877f2;border-color:#1877f2;color:#fff}
+.sheet .btns .line{background:#06c755;border-color:#06c755;color:#fff}
+.sheet .close{width:100%;margin-top:8px;height:42px;border-radius:12px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:90px;z-index:70;transform:translateX(-50%);background:#222;color:#fff;padding:10px 16px;border-radius:20px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;text-align:center}
+.toast.on{opacity:1}
 .ph{display:grid;place-items:center;background:linear-gradient(135deg,#2a1206,#a8441a 55%,#f26b2a);color:rgba(255,255,255,.92);font-weight:800;font-size:34px}
 .divider{height:8px;background:var(--bg2);margin:6px 0}
 .empty{padding:40px 16px;text-align:center;color:var(--muted)}
@@ -152,6 +175,21 @@ body.noscroll{overflow:hidden}
 </footer>
 </div>
 
+<div class="sheet-bg" id="sheetBg"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <h4 id="sheetTitle">แชร์ข่าวนี้</h4>
+  <p class="hint">คำบรรยายด้านล่างจะแนบไปกับการแชร์ แก้ไขได้ตามต้องการ</p>
+  <textarea id="shareText" aria-label="คำบรรยายสำหรับแชร์"></textarea>
+  <div class="btns">
+    <button class="main" id="shNative">แชร์ไปแอปอื่น…</button>
+    <button class="fb" id="shFb">Facebook</button>
+    <button class="line" id="shLine">LINE</button>
+    <button id="shCopy">คัดลอกข้อความ</button>
+    <button id="shLink">คัดลอกลิงก์</button>
+  </div>
+  <button class="close" id="shClose">ปิด</button>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="reader" id="reader" role="dialog" aria-modal="true" aria-label="อ่านข่าว">
   <div class="bar"><button class="icon-btn" id="readerClose" aria-label="ปิด"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button><b>หนองบัว INSIDER</b><span style="flex:1"></span><button class="icon-btn" id="readerShare" aria-label="แชร์"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></button></div>
   <article id="readerBody"></article>
@@ -186,6 +224,45 @@ body.noscroll{overflow:hidden}
     if (it.own) return ' href="#' + esc(it.uid) + '" data-read="' + it._i + '"';
     return ' href="' + esc(it.link) + '" target="_blank" rel="noopener noreferrer"';
   }
+  var SHARE_TAGS = "#หนองบัวINSIDER #หนองบัวลำภู #ข่าวหนองบัวลำภู", SITE_URL = "https://suriyaolif10-coder.github.io/nongbuainsider/", sharing = null;
+  function shareUrl(it) { return it.own && it.uid ? new URL("n/" + it.uid + ".html", location.href).href : it.link; }
+  function caption(it) {
+    var who = src(it);
+    return "📰 " + it.title + "\n\n" + (who ? "ที่มา: " + who + "\n" : "") + "👉 อ่านต่อ: " + shareUrl(it) + "\n\n" + SHARE_TAGS;
+  }
+  function toast(msg) { var t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove("on"); }, 2200); }
+  function copy(text, msg) {
+    var done = function () { toast(msg); };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+    function fallback() { var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); done(); } catch (e) { toast("คัดลอกไม่สำเร็จ กดค้างที่ข้อความเพื่อคัดลอกเอง"); } ta.remove(); }
+  }
+  function openShare(it) {
+    sharing = it;
+    $("shareText").value = caption(it);
+    $("shNative").style.display = navigator.share ? "" : "none";
+    $("sheetBg").classList.add("open"); $("sheet").classList.add("open");
+    setTimeout(function () { $("shNative").style.display !== "none" ? $("shNative").focus() : $("shFb").focus(); }, 50);
+  }
+  function closeShare() { $("sheetBg").classList.remove("open"); $("sheet").classList.remove("open"); sharing = null; }
+  $("sheetBg").onclick = closeShare; $("shClose").onclick = closeShare;
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && sharing) closeShare(); });
+  $("shNative").onclick = function () {
+    if (!sharing) return;
+    var it = sharing, text = $("shareText").value;
+    navigator.share({ title: it.title, text: text }).then(closeShare).catch(function () {});
+  };
+  $("shFb").onclick = function () {
+    if (!sharing) return;
+    copy($("shareText").value, "คัดลอกคำบรรยายแล้ว วางในช่องโพสต์ของ Facebook ได้เลย");
+    window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl(sharing)), "_blank", "noopener");
+  };
+  $("shLine").onclick = function () {
+    if (!sharing) return;
+    window.open("https://line.me/R/share?text=" + encodeURIComponent($("shareText").value), "_blank", "noopener");
+  };
+  $("shCopy").onclick = function () { copy($("shareText").value, "คัดลอกข้อความแล้ว"); };
+  $("shLink").onclick = function () { if (sharing) copy(shareUrl(sharing), "คัดลอกลิงก์แล้ว"); };
+
   function openReader(it, push) {
     var pics = (it.images && it.images.length ? it.images : (it.imageUrl ? [it.imageUrl] : [])).map(function (u) { return '<img src="' + esc(u) + '" alt="" onerror="this.remove()">'; }).join("");
     var meta = [it.place, src(it), ago(it.published)].filter(Boolean).map(esc).join(" • ");
@@ -194,11 +271,7 @@ body.noscroll{overflow:hidden}
     $("readerBody").innerHTML = '<div class="pics">' + cover + "</div><h1>" + esc(it.title) + '</h1><div class="m">' + meta + '</div><div class="body">' + esc(it.content || it.summary) + '</div><div class="pics" style="margin-top:16px">' + rest + "</div>" + ext + (window.LPAds ? window.LPAds.slot("reader", 0) : "");
     if (window.LPAds) window.LPAds.activate();
     $("reader").classList.add("open"); $("reader").scrollTop = 0; document.body.classList.add("noscroll");
-    $("readerShare").onclick = function () {
-      var url = new URL("n/" + it.uid + ".html", location.href).href;
-      if (navigator.share) navigator.share({ title: it.title, url: url }).catch(function () {});
-      else if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { alert("คัดลอกลิงก์แล้ว"); });
-    };
+    $("readerShare").onclick = function () { openShare(it); };
     if (push) history.pushState({ read: it.uid }, "", "#" + it.uid);
   }
   function closeReader() { $("reader").classList.remove("open"); document.body.classList.remove("noscroll"); }
@@ -209,7 +282,8 @@ body.noscroll{overflow:hidden}
     if (showCat && it.category) meta.push('<span class="c">' + esc(it.category) + "</span>");
     if (src(it)) meta.push("<span>" + esc(src(it)) + "</span>");
     if (ago(it.published)) meta.push("<span>• " + ago(it.published) + "</span>");
-    return '<a class="item"' + link(it) + '><div class="thumb">' + img(it) + '</div><div><p class="t">' + esc(it.title) + '</p><div class="m">' + meta.join("") + "</div></div></a>";
+    return '<div class="item"><a class="thumb"' + link(it) + ' tabindex="-1" aria-hidden="true">' + img(it) + '</a><div class="txt"><a class="t"' + link(it) + ">" + esc(it.title) + '</a><div class="m">' + meta.join("") +
+      '<button class="sh" data-share="' + it._i + '" aria-label="แชร์ข่าว: ' + esc(it.title) + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg> แชร์</button></div></div></div>';
   }
 
   function heroItems() {
@@ -227,10 +301,10 @@ body.noscroll{overflow:hidden}
   function renderHero(list) {
     if (!list.length) return "";
     var slides = list.map(function (it) {
-      return '<a class="slide"' + link(it) + ">" + img(it) + '<div class="cap"><span class="badge">' + esc(it.category) + "</span><h2>" + esc(it.title) + '</h2><div class="src">' + esc(src(it)) + (ago(it.published) ? " • " + ago(it.published) : "") + "</div></div></a>";
+      return '<a class="slide" data-i="' + it._i + '"' + link(it) + ">" + img(it) + '<div class="cap"><span class="badge">' + esc(it.category) + "</span><h2>" + esc(it.title) + '</h2><div class="src">' + esc(src(it)) + (ago(it.published) ? " • " + ago(it.published) : "") + "</div></div></a>";
     }).join("");
     var dots = list.map(function () { return "<i></i>"; }).join("");
-    return '<div class="hero" id="hero"><div class="track" id="track">' + slides + '</div><div class="dots" id="dots">' + dots + "</div></div>";
+    return '<div class="hero" id="hero"><div class="track" id="track">' + slides + '</div><button class="hero-sh" id="heroShare" aria-label="แชร์ข่าวนี้"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg> แชร์</button><div class="dots" id="dots">' + dots + "</div></div>";
   }
 
   function startSlider() {
@@ -313,6 +387,15 @@ body.noscroll{overflow:hidden}
   }
 
   document.addEventListener("click", function (e) {
+    var sh = e.target.closest("[data-share]");
+    if (sh) { e.preventDefault(); e.stopPropagation(); var si = items[+sh.getAttribute("data-share")]; if (si) openShare(si); return; }
+    if (e.target.closest("#heroShare")) {
+      e.preventDefault();
+      var tr = $("track"), sl = tr ? tr.children[Math.round(tr.scrollLeft / tr.clientWidth)] : null;
+      var hi = sl ? items[+sl.getAttribute("data-i")] : null;
+      if (hi) openShare(hi);
+      return;
+    }
     var r = e.target.closest("[data-read]");
     if (r) { e.preventDefault(); var it = items[+r.getAttribute("data-read")]; if (it) openReader(it, true); return; }
     var b = e.target.closest("[data-cat]");

@@ -55,6 +55,8 @@ def own():
     shared = fn.community_items("[หนองบัว]", "ข่าวชุมชน", "หนองบัว INSIDER", repo=lp, uid_prefix="lp")
     shared += [i for i in fn.community_items(repo=lp, uid_prefix="lp")
                if any(w in i["title"] + i.get("content", "") for w in NB_WORDS)]
+    for i in shared:
+        i["publisher"] = "หนองบัว INSIDER"
     seen, out = set(), []
     for i in mine + shared:
         if i["uid"] not in seen:
