@@ -278,7 +278,9 @@ def main(feeds=None, out="news.json", own=None):
     except Exception:
         pass
     items, seen = [], set()
-    for feed in feeds:
+    for n, feed in enumerate(feeds):
+        if n:
+            time.sleep(1.5)  # Google News answers 429 when asked too fast
         try:
             got = parse_feed(feed)
             print(f"{feed['category']} / {feed['name']}: {len(got)} items")

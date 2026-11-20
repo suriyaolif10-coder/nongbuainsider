@@ -35,9 +35,6 @@ FEEDS = [
     feed("nb-farm", "เกษตร", "เกษตร หนองบัวลำภู"),
     # LINE TODAY has no RSS: find its Nong Bua stories through Google News
     feed("nb-line", "ข่าวหนองบัว", "หนองบัวลำภู site:today.line.me", limit=15),
-    # Google News local section for the province
-    {"id": "nb-geo", "name": "Google News", "category": "ข่าวหนองบัว",
-     "url": [f"https://news.google.com/rss/headlines/section/geo/{requests.utils.quote('หนองบัวลำภู')}?{G}"], "limit": 25},
     feed("nb-all", "ข่าวหนองบัว", "หนองบัวลำภู", limit=30, days=7),
 ]
 
