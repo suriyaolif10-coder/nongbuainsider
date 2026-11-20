@@ -72,6 +72,12 @@ const SEED = {
     { id: 'a7', name: 'สำนักงานทรัพยากรธรรมชาติและสิ่งแวดล้อมจังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.mnre.go.th/th/index', category: 'หน่วยงานจังหวัด' },
     { id: 'a8', name: 'ตรวจคนเข้าเมืองจังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.immigration.go.th', category: 'หน่วยงานจังหวัด' },
     { id: 'a13', name: 'สำนักงานพัฒนาชุมชนจังหวัดหนองบัวลำภู', url: 'https://nongbua.cdd.go.th', category: 'หน่วยงานจังหวัด' },
+    { id: 'd1', name: 'ที่ว่าการอำเภอเมืองหนองบัวลำภู (เพจ Facebook)', url: 'https://www.facebook.com/100083192417451', category: 'ที่ว่าการอำเภอ' },
+    { id: 'd2', name: 'ที่ว่าการอำเภอนากลาง (เพจ Facebook)', url: 'https://www.facebook.com/100080299418860', category: 'ที่ว่าการอำเภอ' },
+    { id: 'd3', name: 'ที่ทำการปกครองอำเภอโนนสัง', url: 'https://www.nonsangdopa.go.th', category: 'ที่ว่าการอำเภอ' },
+    { id: 'd4', name: 'อำเภอศรีบุญเรือง (เพจ Facebook)', url: 'https://www.facebook.com/Districtsriboonruang/', category: 'ที่ว่าการอำเภอ' },
+    { id: 'd5', name: 'ที่ว่าการอำเภอสุวรรณคูหา (เพจ Facebook)', url: 'https://www.facebook.com/100066892242577', category: 'ที่ว่าการอำเภอ' },
+    { id: 'd6', name: 'ที่ว่าการอำเภอนาวัง (เพจ Facebook)', url: 'https://www.facebook.com/Nawangdistrict/', category: 'ที่ว่าการอำเภอ' },
     { id: 'a9', name: 'องค์การบริหารส่วนจังหวัดหนองบัวลำภู (อบจ.)', url: 'https://nppao.go.th/public/', category: 'ท้องถิ่น' },
     { id: 'a10', name: 'โรงพยาบาลหนองบัวลำภู', url: 'https://nbhospital.moph.go.th/public/', category: 'สาธารณสุข' },
     { id: 'a11', name: 'สำนักงานสาธารณสุขจังหวัดหนองบัวลำภู (เพจ Facebook)', url: 'https://www.facebook.com/nblp.pho/', category: 'สาธารณสุข' },
@@ -104,7 +110,7 @@ const listeners = new Set()
 const emit = () => listeners.forEach((fn) => fn())
 
 // อัปเดตข้อมูลเริ่มต้นในเครื่องที่เคยเปิดเว็บแล้ว (ทำครั้งเดียวต่อเวอร์ชัน)
-const SEED_VERSION = 3 // v2: หน่วยงานในจังหวัด 11 แห่ง, v3: + พัฒนาชุมชนจังหวัด
+const SEED_VERSION = 4 // v2: หน่วยงานในจังหวัด 11 แห่ง, v3: + พัฒนาชุมชนจังหวัด, v4: + ที่ว่าการอำเภอ 6 อำเภอ
 function migrateLocal() {
   try {
     const v = Number(localStorage.getItem(PREFIX + 'seed_version') || 1)

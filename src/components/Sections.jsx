@@ -208,7 +208,7 @@ export function FbFeed() {
   )
 }
 
-const AGENCY_ORDER = ['หน่วยงานจังหวัด', 'ท้องถิ่น', 'สาธารณสุข', 'การศึกษา', 'ความปลอดภัย', 'ท่องเที่ยว']
+const AGENCY_ORDER = ['หน่วยงานจังหวัด', 'ที่ว่าการอำเภอ', 'ท้องถิ่น', 'สาธารณสุข', 'การศึกษา', 'ความปลอดภัย', 'ท่องเที่ยว']
 const COMPACT_LIMIT = 6
 
 export function AgencyList({ compact = false }) {
