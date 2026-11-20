@@ -11,6 +11,8 @@
  *         "adsense" - Google AdSense: client (ca-pub-...) + adslot
  *   enabled: false  - keep an ad in the file but hide it
  * placeholder: true shows "พื้นที่โฆษณา" boxes where a slot has no ad.
+ * Several image ads in one slot rotate automatically (one every 5 seconds,
+ * dots + swipe); AdSense units are never hidden in a rotation.
  */
 (function () {
   "use strict";
@@ -27,7 +29,14 @@
     ".ad-txt{padding:14px 16px}.ad-txt b{display:block;font-size:17px;margin-bottom:4px}.ad-txt span{color:var(--muted);font-size:14px}" +
     ".ad-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:2px dashed var(--line);background:transparent;color:var(--muted);min-height:90px;padding:12px}" +
     ".ad-ph b{font-size:16px;color:var(--fg)}.ad-ph small{margin-top:4px;color:var(--accent);font-weight:700}" +
-    ".ad-top.ad-ph{min-height:120px}.ad-adsense{background:transparent;border:0;min-height:90px}";
+    ".ad-top.ad-ph{min-height:120px}.ad-adsense{background:transparent;border:0;min-height:90px}" +
+    ".ad-rot{position:relative;margin:10px 16px;border-radius:10px;overflow:hidden;touch-action:pan-y}" +
+    ".ad-rot .ad-track{display:flex;transition:transform .5s ease}" +
+    ".ad-rot .ad-track>.ad{flex:0 0 100%;margin:0;border-radius:0;display:flex;flex-direction:column;justify-content:center}" +
+    ".ad-dots{position:absolute;left:0;right:0;bottom:6px;display:flex;justify-content:center;gap:5px;z-index:2}" +
+    ".ad-dots button{width:7px;height:7px;padding:0;border:0;border-radius:4px;background:rgba(255,255,255,.5);cursor:pointer;transition:width .3s}" +
+    ".ad-dots button.on{width:18px;background:#ff6a00}" +
+    "@media (prefers-reduced-motion:reduce){.ad-rot .ad-track{transition:none}}";
   document.head.appendChild(css);
 
   function one(a, name) {
@@ -45,6 +54,43 @@
       : '<div class="ad ad-' + esc(name) + '">' + label + inner + "</div>";
   }
 
+  // ---------- เลื่อนโฆษณาอัตโนมัติ (ตัวจับเวลาเดียวทั้งหน้า ใช้ได้แม้หน้าเรนเดอร์ใหม่) ----------
+  function show(box, i) {
+    var n = +box.getAttribute("data-n");
+    i = ((i % n) + n) % n;
+    box.setAttribute("data-i", i);
+    box.querySelector(".ad-track").style.transform = "translateX(-" + i * 100 + "%)";
+    var b = box.querySelectorAll(".ad-dots button");
+    for (var k = 0; k < b.length; k++) b[k].className = k === i ? "on" : "";
+  }
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  setInterval(function () {
+    if (document.hidden || reduce) return;
+    var boxes = document.querySelectorAll(".ad-rot");
+    for (var k = 0; k < boxes.length; k++) {
+      var box = boxes[k];
+      if (box.matches(":hover") || box._touch) continue;
+      show(box, +box.getAttribute("data-i") + 1);
+    }
+  }, 5000);
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest && e.target.closest(".ad-dots button");
+    if (!t) return;
+    e.preventDefault();
+    show(t.closest(".ad-rot"), +t.getAttribute("data-go"));
+  });
+  document.addEventListener("touchstart", function (e) {
+    var box = e.target.closest && e.target.closest(".ad-rot");
+    if (box) { box._touch = true; box._x = e.touches[0].clientX; }
+  }, { passive: true });
+  document.addEventListener("touchend", function (e) {
+    var box = e.target.closest && e.target.closest(".ad-rot");
+    if (!box) return;
+    var dx = e.changedTouches[0].clientX - (box._x || 0);
+    if (Math.abs(dx) > 40) show(box, +box.getAttribute("data-i") + (dx < 0 ? 1 : -1));
+    setTimeout(function () { box._touch = false; }, 4000);
+  }, { passive: true });
+
   window.LPAds = {
     load: function (url) {
       return fetch(url + "?t=" + Math.floor(Date.now() / 600000))
@@ -55,6 +101,18 @@
     // n = how many times this slot was used on the page, to rotate several ads
     slot: function (name, n) {
       var list = (cfg.ads || []).filter(function (a) { return a.slot === name && a.enabled !== false; });
+      // โฆษณาภาพ/ข้อความหลายชิ้น: เลื่อนวนตามจำนวน เริ่มคนละชิ้นในแต่ละช่อง
+      var own = list.filter(function (a) { return a.type !== "adsense"; });
+      if (own.length > 1) {
+        var start = (n || 0) % own.length, slides = "", dots = "";
+        own.forEach(function (a, i) {
+          slides += one(a, name);
+          dots += '<button type="button" aria-label="โฆษณาที่ ' + (i + 1) + '"' + (i === start ? ' class="on"' : "") + ' data-go="' + i + '"></button>';
+        });
+        return '<div class="ad-rot ad-' + esc(name) + '" data-i="' + start + '" data-n="' + own.length + '" aria-roledescription="carousel" aria-label="โฆษณา">' +
+          '<div class="ad-track" style="transform:translateX(-' + start * 100 + '%)">' + slides + '</div><div class="ad-dots">' + dots + "</div></div>";
+      }
+      if (own.length) return one(own[0], name);
       if (list.length) return one(list[(n || 0) % list.length], name);
       if (!cfg.placeholder) return "";
       var link = cfg.contact ? ' href="' + esc(cfg.contact) + '" target="_blank" rel="noopener"' : "";
