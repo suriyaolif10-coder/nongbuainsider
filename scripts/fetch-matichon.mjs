@@ -78,7 +78,7 @@ const all = results.flatMap((r) => (r.status === 'fulfilled' ? r.value : []))
   .filter((i) => { const k = i.link.split('?')[0]; if (seen.has(k) || seen.has(i.title)) return false; seen.add(k); seen.add(i.title); return true })
   .sort((a, b) => new Date(b.published_at || 0) - new Date(a.published_at || 0))
 // ข่าวเกี่ยวกับหนองบัวลำภูขึ้นก่อน (สูงสุด 30) ตามด้วยข่าวล่าสุดทั่วไปของมติชน (20)
-const items = [...all.filter((i) => i.local).slice(0, 30), ...all.filter((i) => !i.local).slice(0, 20)]
+let items = [...all.filter((i) => i.local).slice(0, 30), ...all.filter((i) => !i.local).slice(0, 20)]
 
 // ข่าวที่ยังไม่มีภาพ: เปิดหน้าบทความ (เฉพาะลิงก์ matichon.co.th โดยตรง) แล้วอ่าน og:image
 const needImg = items.filter((i) => !i.image && /^https:\/\/(www\.)?matichon\.co\.th\//.test(i.link)).slice(0, 40)
@@ -91,6 +91,12 @@ const ogImage = async (url) => {
 }
 for (let i = 0; i < needImg.length; i += 6) {
   await Promise.allSettled(needImg.slice(i, i + 6).map(async (it) => { it.image = (await ogImage(it.link)) || '' }))
+}
+// ข่าวผ่าน Google News ไม่มีภาพ: ตัดออกถ้ามีข่าวหนองบัวลำภูที่มีภาพพอแล้ว (>= 12)
+if (items.filter((i) => i.local && i.image).length >= 12) {
+  const before = items.length
+  items = items.filter((i) => i.image || !/news\.google\.com/.test(i.link))
+  console.log(`ตัดข่าว Google News ที่ไม่มีภาพ ${before - items.length} ข่าว`)
 }
 console.log(`ภาพ: ดึงจากหน้าบทความ ${needImg.filter((i) => i.image).length}/${needImg.length} | ข่าวที่มีภาพทั้งหมด ${items.filter((i) => i.image).length}/${items.length} | ข่าวหนองบัวลำภูที่มีภาพ ${items.filter((i) => i.local && i.image).length}/${items.filter((i) => i.local).length}`)
 console.log('ตัวอย่าง:', JSON.stringify(items.slice(0, 2).map((i) => ({ t: i.title.slice(0, 40), img: i.image.slice(0, 80), link: i.link.slice(0, 60) }))))
