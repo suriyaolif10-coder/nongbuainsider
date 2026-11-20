@@ -5,7 +5,7 @@ import { Hero, NewsSlider, AdSlot, LatestNews, FbFeed, FbPagesRow, AgencyList, F
 import { useCollection } from '../db.js'
 import DistrictSliders from '../components/DistrictSliders.jsx'
 import { useLinkNews } from '../components/links.js'
-import { mixBySource } from '../components/mix.js'
+import { mixBySource, onePerSource } from '../components/mix.js'
 import { useMatichonNews } from '../components/matichon.js'
 import TopStories from '../components/TopStories.jsx'
 
@@ -37,9 +37,12 @@ export default function Home() {
   const featured = useMemo(() => {
     if (tab !== 'top' || q) return [...filtered].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)).slice(0, 5)
     const pinned = sorted.filter((n) => n.featured)
-    const local = mixBySource(sorted.filter((n) => !n.featured), { seed, perSource: 3, limit: 7 })
+    // ข่าวเด่นที่คัดจากแต่ละเพจ: สุ่มเพจละ 1 ข่าว
+    const picks = onePerSource(sorted.filter((n) => n.pick && !n.featured), seed)
+    const used = new Set([...pinned, ...picks].map((n) => n.id))
+    const local = mixBySource(sorted.filter((n) => !used.has(n.id)), { seed, perSource: 3, limit: 7 })
     const fill = [...extra.filter((m) => m.image_url)].sort(byDate)
-    return [...pinned, ...local, ...fill].slice(0, 7)
+    return [...pinned, ...picks, ...local, ...fill].slice(0, 7)
   }, [tab, q, filtered, sorted, extra, seed])
   // ข่าวใหม่ล่าสุด (TOP): ข่าวในเว็บ/ลิงก์ + มติชน เรียงตามเวลา ไม่ซ้ำกับข่าวเด่น
   const latest = useMemo(() => {

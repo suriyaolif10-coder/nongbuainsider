@@ -33,10 +33,36 @@ for (const l of lines) {
   if (!entries.some((e) => e.url === url)) entries.push({ url, district })
 }
 
+// ข่าวเด่นที่คัดจากเพจ: GitHub Issues ที่ขึ้นต้นด้วย [ข่าวเด่น] (สร้างจากหลังบ้าน) — ปิด issue = เอาออก
+if (process.env.GITHUB_TOKEN && process.env.GITHUB_REPOSITORY) {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/issues?state=open&per_page=100`, {
+      headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, Accept: 'application/vnd.github+json' },
+    })
+    const issues = res.ok ? await res.json() : []
+    let n = 0
+    for (const is of issues) {
+      if (is.pull_request || !/^\s*\[ข่าวเด่น\]/.test(is.title || '')) continue
+      // repo เป็น Public: รับเฉพาะ issue ของเจ้าของ/ผู้ร่วมดูแล repo กันคนนอกโพสต์ข่าวขึ้นเว็บ
+      if (!['OWNER', 'MEMBER', 'COLLABORATOR'].includes(is.author_association)) { console.warn(`ข้าม issue #${is.number} (ไม่ใช่เจ้าของ repo)`); continue }
+      const text = `${is.title}\n${is.body || ''}`
+      const url = (text.match(/https?:\/\/[^\s<>)"']+/) || [])[0]
+      if (!url) continue
+      const dm = text.match(/อำเภอ\s*[:：]\s*([^\n]+)/)
+      const d = dm ? dm[1].trim() : ''
+      const district = DISTRICTS.find((x) => d && (x === d || x.endsWith(d.replace(/^อ\.|^อำเภอ/, '')))) || ''
+      const ex = entries.find((e) => e.url === url)
+      if (ex) { ex.pick = true; ex.district ||= district } else entries.push({ url, district, pick: true, issue: is.number })
+      n++
+    }
+    console.log(`ข่าวเด่นจาก GitHub Issues: ${n} ข่าว`)
+  } catch (e) { console.warn('อ่าน GitHub Issues ไม่ได้:', e.message) }
+}
+
 let old = {}
 try { for (const i of JSON.parse(await readFile(OUT, 'utf8')).items || []) old[i.link] = i } catch { /* ไม่มีไฟล์เดิม */ }
 
-async function fetchOne({ url, district }) {
+async function fetchOne({ url, district, pick }) {
   const isFb = /facebook\.com|fb\.watch/i.test(url)
   const ctrl = AbortSignal.timeout(15000)
   const res = await fetch(url, {
@@ -74,6 +100,7 @@ async function fetchOne({ url, district }) {
     source: fbPage || siteName(url, meta(html, ['og:site_name'])),
     district: district || guessDistrict(`${title} ${desc}`),
     published_at: !isNaN(d) ? d.toISOString() : old[url]?.published_at || new Date().toISOString(),
+    pick: !!pick,
   }
 }
 
@@ -85,7 +112,7 @@ for (let i = 0; i < entries.length; i += 6) {
   res.forEach((r, j) => {
     const e = batch[j]
     if (r.status === 'fulfilled') { items.push(r.value); console.log(`✓ ${r.value.district || '-'} | ${r.value.title.slice(0, 60)}`) }
-    else if (old[e.url]) { items.push({ ...old[e.url], district: e.district || old[e.url].district }); console.warn(`↺ ใช้ข้อมูลเดิม (${r.reason?.message}): ${e.url}`) }
+    else if (old[e.url]) { items.push({ ...old[e.url], district: e.district || old[e.url].district, pick: !!e.pick }); console.warn(`↺ ใช้ข้อมูลเดิม (${r.reason?.message}): ${e.url}`) }
     else console.warn(`✗ ${e.url}: ${r.reason?.message || r.reason}`)
   })
 }

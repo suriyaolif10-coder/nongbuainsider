@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { db, useCollection, DISTRICTS, timeAgo, districtShort } from '../db.js'
+import { db, useCollection, DISTRICTS, timeAgo, districtShort, GITHUB_URL } from '../db.js'
 import { SafeImg } from '../components/ui.jsx'
 
 // ดึงข้อมูลตัวอย่างจากลิงก์ (หัวข้อ/ภาพ/คำโปรย) ผ่านบริการ Microlink (รองรับเรียกจากเบราว์เซอร์)
@@ -25,6 +25,7 @@ const EMPTY = { link: '', title: '', content: '', image_url: '', source: '', dis
 
 export default function FeaturedFetcher() {
   const tips = useCollection('insider_tips')
+  const pages = useCollection('fb_posts')
   const [form, setForm] = useState(EMPTY)
   const [state, setState] = useState({ busy: false, error: '', fetched: false, saved: '' })
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }))
@@ -53,10 +54,34 @@ export default function FeaturedFetcher() {
     setState({ busy: false, error: '', fetched: false, saved: form.featured ? 'บันทึกแล้ว ข่าวขึ้นสไลด์หน้าแรก' : 'บันทึกแล้ว' })
   }
 
+  // เผยแพร่ผ่าน GitHub Issue (เปิดหน้า GitHub ที่กรอกข้อมูลไว้ให้ กด Submit) -> GitHub Actions ดึงข่าวขึ้นเว็บให้ทุกคน
+  const publish = () => {
+    if (!form.link) return setState((s) => ({ ...s, error: 'ต้องมีลิงก์ข่าว/โพสต์' }))
+    const title = `[ข่าวเด่น] ${(form.title || form.link).slice(0, 120)}`
+    const body = `${form.link}\nอำเภอ: ${form.district || 'ทั้งจังหวัด'}\nแหล่ง: ${form.source || ''}\n\n(สร้างจากหลังบ้านหนองบัว INSIDER — ปิด issue นี้เพื่อเอาข่าวออกจากหน้าเว็บ)`
+    window.open(`${GITHUB_URL}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`, '_blank', 'noopener')
+    setState((s) => ({ ...s, error: '', saved: 'เปิดหน้า GitHub แล้ว กด Submit new issue เพื่อเผยแพร่ ข่าวจะขึ้นเว็บใน 1–2 นาที' }))
+  }
+
   return (
     <section className="mb-6 rounded-2xl border border-brand/30 bg-brand/5 p-4 sm:p-5">
       <h2 className="font-display text-lg font-bold text-white">⭐ ดึงข่าวเด่นขึ้นสไลด์</h2>
-      <p className="mt-1 text-xs text-neutral-400">วางลิงก์ข่าว (เว็บข่าว หรือโพสต์เพจ Facebook สาธารณะ) ระบบจะดึงหัวข้อ ภาพ และคำโปรยมาให้ ตรวจแล้วกดบันทึก</p>
+      <p className="mt-1 text-xs text-neutral-400">คัดโพสต์เด่นจากแต่ละเพจ (หรือข่าวจากเว็บข่าว) หน้าแรกจะสุ่มขึ้นเพจละ 1 ข่าว</p>
+
+      {/* เปิดเพจเพื่อเลือกโพสต์เด่น แล้วคัดลอกลิงก์โพสต์มาวาง */}
+      {pages.length > 0 && (
+        <div className="mt-3">
+          <p className="mb-1.5 text-xs text-neutral-400">1) เปิดเพจ เลือกโพสต์เด่น แล้วกด แชร์ → คัดลอกลิงก์</p>
+          <div className="no-scrollbar flex gap-1.5 overflow-x-auto pb-1">
+            {pages.map((p) => (
+              <a key={p.id} href={p.embed_url} target="_blank" rel="noreferrer" className="shrink-0 rounded-full border border-white/10 bg-ink-800 px-3 py-1 text-xs text-neutral-300 hover:border-brand hover:text-white">
+                {p.page_name} ↗
+              </a>
+            ))}
+          </div>
+          <p className="mt-2 text-xs text-neutral-400">2) วางลิงก์โพสต์ด้านล่าง แล้วกด ดึงข้อมูล</p>
+        </div>
+      )}
 
       <form onSubmit={fetchLink} className="mt-3 flex flex-col gap-2 sm:flex-row">
         <input value={form.link} onChange={(e) => set('link', e.target.value)} type="url" inputMode="url" placeholder="https://ลิงก์ข่าว หรือ โพสต์ Facebook" className="input" />
@@ -95,7 +120,8 @@ export default function FeaturedFetcher() {
               ปักหมุดขึ้นสไลด์ข่าวเด่นหน้าแรก
             </label>
             <div className="flex gap-2 pt-1">
-              <button type="button" onClick={save} className="btn-brand">บันทึก</button>
+              <button type="button" onClick={publish} className="btn-brand">🌐 เผยแพร่ให้ทุกคนเห็น</button>
+              <button type="button" onClick={save} className="btn-ghost">บันทึกเฉพาะเครื่องนี้</button>
               <button type="button" onClick={() => { setForm(EMPTY); setState({ busy: false, error: '', fetched: false, saved: '' }) }} className="btn-ghost">ยกเลิก</button>
             </div>
           </div>
@@ -104,7 +130,7 @@ export default function FeaturedFetcher() {
 
       {/* ข่าวที่อยู่บนสไลด์ตอนนี้ */}
       <div className="mt-5">
-        <p className="mb-2 text-xs font-semibold text-neutral-400">ข่าวบนสไลด์ตอนนี้ ({featured.length})</p>
+        <p className="mb-2 text-xs font-semibold text-neutral-400">ข่าวปักหมุดในเครื่องนี้ ({featured.length}) · <a href={`${GITHUB_URL}/issues?q=is%3Aopen+%5B%E0%B8%82%E0%B9%88%E0%B8%B2%E0%B8%A7%E0%B9%80%E0%B8%94%E0%B9%88%E0%B8%99%5D`} target="_blank" rel="noreferrer" className="text-brand hover:underline">ข่าวเด่นที่เผยแพร่แล้ว (GitHub) ↗</a></p>
         {featured.length === 0 && <p className="text-xs text-neutral-600">ยังไม่มีข่าวปักหมุด</p>}
         <div className="no-scrollbar flex gap-2 overflow-x-auto">
           {featured.map((t) => (

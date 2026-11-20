@@ -25,3 +25,10 @@ export function mixBySource(pool, { seed, perSource = 3, limit = 8 }) {
   }
   return out
 }
+
+// ข่าวเด่นที่คัดจากเพจ: สุ่ม 1 ข่าวต่อเพจ แล้วสุ่มลำดับเพจ
+export function onePerSource(pool, seed) {
+  const groups = {}
+  for (const n of pool) (groups[n.source || 'อื่นๆ'] ||= []).push(n)
+  return shuffle(Object.keys(groups), seed, (s) => 'pick:' + s).map((src) => shuffle(groups[src], seed, (n) => 'pid:' + n.id)[0])
+}

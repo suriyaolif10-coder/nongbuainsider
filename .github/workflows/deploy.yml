@@ -3,10 +3,13 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  issues:
+    types: [opened, edited, closed, reopened] # ข่าวเด่นที่คัดจากเพจ ([ข่าวเด่น] ...)
   schedule:
     - cron: '17 * * * *' # ทุกชั่วโมง: ดึงข่าวจากลิงก์/ภาพตัวอย่างใหม่แล้ว deploy
 permissions:
   contents: read
+  issues: read
   pages: write
   id-token: write
 concurrency:
@@ -30,6 +33,8 @@ jobs:
       - name: ดึงข่าวจากลิงก์ (content/news-links.txt)
         run: node scripts/fetch-links.mjs
         continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 5
       - name: ดึงภาพตัวอย่างเว็บ/เพจหน่วยงาน
         run: node scripts/fetch-previews.mjs

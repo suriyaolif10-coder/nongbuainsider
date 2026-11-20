@@ -19,6 +19,7 @@ export function useLinkNews() {
         district: n.district,
         created_at: n.published_at,
         href: n.link,
+        pick: !!n.pick,
       }))))
       .catch(() => (cache = []))
     pending.then(setItems)
