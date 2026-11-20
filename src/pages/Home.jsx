@@ -15,7 +15,7 @@ export default function Home() {
   const linkNews = useLinkNews()
   // ข่าวจากหลังบ้าน + ข่าวจากลิงก์ (content/news-links.txt)
   const sorted = useMemo(
-    () => [...tips, ...linkNews].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)),
+    () => [...tips.map((t) => (t.link ? { ...t, href: t.link } : t)), ...linkNews].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)),
     [tips, linkNews],
   )
 

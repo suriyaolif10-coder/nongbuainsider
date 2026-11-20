@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, Navigate, NavLink, useNavigate, useParams } from 'react-router-dom'
 import { Brand, Icon } from '../components/ui.jsx'
 import CrudTable from './CrudTable.jsx'
+import FeaturedFetcher from './FeaturedFetcher.jsx'
 import { auth, db, useAuth, useCollection, remoteError, IS_REMOTE, DISTRICTS, AD_POSITIONS, AD_PRICES, GITHUB_URL } from '../db.js'
 
 const SECTIONS = [
@@ -15,8 +16,9 @@ const SECTIONS = [
 const FIELDS = {
   insider_tips: [
     { key: 'title', label: 'หัวข้อข่าว', required: true },
-    { key: 'district', label: 'อำเภอ', type: 'select', options: DISTRICTS.map((d) => d.name), required: true },
+    { key: 'district', label: 'อำเภอ (เว้นว่าง = ทั้งจังหวัด)', type: 'select', options: DISTRICTS.map((d) => d.name) },
     { key: 'image_url', label: 'ลิงก์รูปภาพ', placeholder: 'https://...' },
+    { key: 'link', label: 'ลิงก์ข่าวต้นทาง (ถ้ามี กดข่าวแล้วเปิดหน้านี้)', type: 'url', list: false },
     { key: 'content', label: 'เนื้อหา', type: 'textarea', list: false },
     { key: 'source', label: 'แหล่งข่าว', default: 'หนองบัว INSIDER' },
     { key: 'featured', label: 'ปักหมุดข่าวเด่น (สไลด์)', type: 'boolean', default: false },
@@ -106,6 +108,8 @@ export default function Dashboard() {
             {current.key === 'settings' ? (
               <Settings />
             ) : (
+              <>
+              {current.key === 'tips' && <FeaturedFetcher />}
               <CrudTable
                 key={current.col}
                 collection={current.col}
@@ -113,6 +117,7 @@ export default function Dashboard() {
                 fields={FIELDS[current.col]}
                 renderCell={current.col === 'ad_banners' ? adCell : undefined}
               />
+              </>
             )}
           </div>
         </main>
