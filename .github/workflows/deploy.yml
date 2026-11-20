@@ -26,6 +26,10 @@ jobs:
       - name: ดึงหัวข้อข่าวจากมติชน
         run: node scripts/fetch-matichon.mjs
         continue-on-error: true
+      - name: ดึงภาพตัวอย่างเว็บ/เพจหน่วยงาน
+        run: node scripts/fetch-previews.mjs
+        continue-on-error: true
+        timeout-minutes: 5
       - run: npm run build
         env:
           # ตั้งใน Settings → Secrets and variables → Actions → Variables

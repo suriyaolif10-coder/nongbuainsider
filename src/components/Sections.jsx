@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SafeImg, Icon, Brand, MountainOutline } from './ui.jsx'
+import { usePreviews, previewOf, hostOf } from './previews.js'
 import { db, useCollection, timeAgo, districtShort, GITHUB_URL } from '../db.js'
 
 export function Hero() {
@@ -227,29 +228,52 @@ export function AgencyList({ compact = false }) {
     let left = COMPACT_LIMIT
     entries = entries.map(([c, l]) => { const take = l.slice(0, Math.max(0, left)); left -= take.length; return [c, take] }).filter(([, l]) => l.length)
   }
+  const previews = usePreviews()
   return (
     <section className="min-w-0 rounded-xl bg-ink-900 p-4">
       <h2 className="mb-3 font-display text-lg font-bold text-white">
         หน่วยงานราชการ <span className="text-sm font-normal text-neutral-500">จ.หนองบัวลำภู</span>
       </h2>
       {entries.map(([cat, list]) => (
-        <div key={cat} className="mb-3 last:mb-0">
-          <p className="mb-1 text-xs font-semibold text-brand">{cat}</p>
-          <ul className={compact ? 'space-y-1' : 'grid grid-cols-1 gap-1 sm:grid-cols-2'}>
-            {list.map((s) => (
-              <li key={s.id} className="min-w-0">
-                <a
-                  href={s.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  title={s.name}
-                  className={`block rounded-lg px-2 py-1.5 text-sm text-neutral-300 hover:bg-white/5 hover:text-white ${compact ? 'truncate' : 'break-words'}`}
-                >
-                  {s.name} <span className="text-neutral-600">↗</span>
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div key={cat} className={compact ? 'mb-3 last:mb-0' : 'mb-5 last:mb-0'}>
+          <p className="mb-1.5 text-xs font-semibold text-brand">{cat}</p>
+          {compact ? (
+            <ul className="space-y-1">
+              {list.map((s) => (
+                <li key={s.id} className="min-w-0">
+                  <a href={s.url} target="_blank" rel="noreferrer" title={s.name} className="flex items-center gap-2.5 rounded-lg px-1.5 py-1.5 text-sm text-neutral-300 hover:bg-white/5 hover:text-white">
+                    <SiteIcon site={s} p={previewOf(previews, s.url)} className="h-8 w-8" />
+                    <span className="truncate">{s.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {list.map((s) => {
+                const p = previewOf(previews, s.url)
+                return (
+                  <li key={s.id} className="min-w-0">
+                    <a href={s.url} target="_blank" rel="noreferrer" title={s.name} className="group block overflow-hidden rounded-xl bg-ink-800 ring-1 ring-white/5 transition hover:ring-brand/50">
+                      <div className="relative aspect-[1.91/1] bg-ink-700">
+                        {p?.image ? (
+                          <SafeImg src={p.image} alt="" className="absolute inset-0 h-full w-full" />
+                        ) : (
+                          <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-ink-700 to-ink-900">
+                            <SiteIcon site={s} p={p} className="h-12 w-12" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="p-2.5">
+                        <p className="line-clamp-2 text-[13px] leading-snug text-neutral-100 group-hover:text-brand">{s.name}</p>
+                        <p className="mt-1 truncate text-[11px] text-neutral-500">{hostOf(s.url)} ↗</p>
+                      </div>
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
         </div>
       ))}
       {compact && sites.length > COMPACT_LIMIT && (
@@ -260,6 +284,16 @@ export function AgencyList({ compact = false }) {
       {sites.length === 0 && <p className="text-sm text-neutral-500">ยังไม่มีข้อมูล</p>}
     </section>
   )
+}
+
+// ไอคอนเว็บ: ภาพตัวอย่าง > ไอคอนเว็บ > โลโก้ Facebook > ตัวอักษรแรก
+function SiteIcon({ site, p, className = 'h-8 w-8' }) {
+  const [broken, setBroken] = useState(false)
+  const isFb = /facebook\.com/i.test(site.url)
+  const src = !broken && (p?.icon || (isFb ? p?.image : ''))
+  if (src) return <img src={src} alt="" loading="lazy" onError={() => setBroken(true)} className={`${className} shrink-0 rounded-lg bg-white object-cover`} />
+  if (isFb) return <span className={`${className} grid shrink-0 place-items-center rounded-lg bg-[#1877f2] font-bold text-white`}>f</span>
+  return <span className={`${className} grid shrink-0 place-items-center rounded-lg bg-ink-700 font-display font-bold text-brand`}>{(site.name || '?').replace(/^(สำนักงาน|ที่ว่าการ|อบต\.|เทศบาล(ตำบล|เมือง)?)/, '').trim().charAt(0)}</span>
 }
 
 export function Footer() {
