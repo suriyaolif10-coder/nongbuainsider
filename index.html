@@ -430,5 +430,32 @@ body.noscroll{overflow:hidden}
     });
 })();
 </script>
+<script>
+/* Real visitor statistics with GoatCounter (free, no cookies).
+   Put your GoatCounter code below, e.g. "leafpost" for leafpost.goatcounter.com.
+   Empty = statistics off. */
+(function () {
+  var GC_CODE = "";
+  if (!GC_CODE) return;
+  var s = document.createElement("script");
+  s.async = true;
+  s.setAttribute("data-goatcounter", "https://" + GC_CODE + ".goatcounter.com/count");
+  s.src = "https://gc.zgo.at/count.js";
+  document.head.appendChild(s);
+  function ev(path, title) {
+    try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: path.slice(0, 180), title: title || "", event: true }); } catch (e) {}
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a.t, a.thumb, a.slide");
+    if (a) {
+      var box = a.closest(".item"), h = box ? box.querySelector(".t") : a.querySelector("h2");
+      ev("อ่าน: " + ((h && h.textContent) || a.href), a.href);
+      return;
+    }
+    var b = e.target.closest && e.target.closest("#shNative, #shFb, #shLine, #shCopy, #shLink, .write");
+    if (b) ev(b.classList.contains("write") ? "กดปุ่มเพิ่มข่าว" : "แชร์: " + b.textContent.trim());
+  }, true);
+})();
+</script>
 </body>
 </html>
