@@ -63,11 +63,14 @@ try { old = JSON.parse(await readFile(OUT, 'utf8')).items || {} } catch { /* non
 const items = {}
 let ok = 0, fail = 0
 const queue = [...urls]
-await Promise.all(Array.from({ length: 6 }, async () => {
-  while (queue.length) {
+// กันเว็บที่ค้างไม่ตอบ: ตัดต่อเว็บที่ 20 วินาที และทั้งหมดไม่เกิน 90 วินาที
+const hardTimeout = (ms) => new Promise((_, rej) => setTimeout(() => rej(new Error(`timeout ${ms / 1000}s`)), ms))
+const deadline = Date.now() + 90000
+const workers = Promise.all(Array.from({ length: 8 }, async () => {
+  while (queue.length && Date.now() < deadline) {
     const url = queue.shift()
     try {
-      const p = await preview(url)
+      const p = await Promise.race([preview(url), hardTimeout(20000)])
       items[norm(url)] = p
       ok++
       console.log(`${p.image ? '🖼 ' : '· '} ${url}${p.image ? '' : ' (ไม่มี og:image)'}`)
@@ -78,8 +81,11 @@ await Promise.all(Array.from({ length: 6 }, async () => {
     }
   }
 }))
+await Promise.race([workers, new Promise((r) => setTimeout(r, 95000))])
+for (const url of queue) { if (old[norm(url)]) items[norm(url)] = old[norm(url)]; console.warn(`⏭  ข้าม (หมดเวลา): ${url}`) }
 
 await mkdir(new URL('.', OUT), { recursive: true })
 await writeFile(OUT, JSON.stringify({ updated_at: new Date().toISOString(), items }, null, 1))
 const withImg = Object.values(items).filter((i) => i.image).length
 console.log(`สรุป: ${urls.length} ลิงก์ | ดึงได้ ${ok} | ล้มเหลว ${fail} | มีภาพตัวอย่าง ${withImg}`)
+process.exit(0) // ไม่รอ socket ที่ค้าง
