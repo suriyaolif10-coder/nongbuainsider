@@ -4,6 +4,7 @@ import Header, { TABS } from '../components/Header.jsx'
 import { Hero, NewsSlider, AdSlot, LatestNews, FbFeed, AgencyList, Footer } from '../components/Sections.jsx'
 import { useCollection } from '../db.js'
 import MatichonNews from '../components/Matichon.jsx'
+import DistrictSliders from '../components/DistrictSliders.jsx'
 
 export default function Home() {
   const { tab = 'top' } = useParams()
@@ -33,8 +34,8 @@ export default function Home() {
       <Header activeTab={tab} search={search} onSearch={setSearch} />
       {tab === 'top' && !q && <Hero />}
 
-      <main className={`mx-auto grid max-w-6xl gap-6 px-4 lg:grid-cols-[minmax(0,1fr)_320px] ${sliderFirst ? 'pt-0 sm:pt-5' : 'pt-5'}`}>
-        <div className="space-y-6">
+      <main className={`mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 lg:grid-cols-[minmax(0,1fr)_320px] ${sliderFirst ? 'pt-0 sm:pt-5' : 'pt-5'}`}>
+        <div className="min-w-0 space-y-6">
           {tab === 'community' ? (
             <FbFeed />
           ) : tab === 'agency' ? (
@@ -44,6 +45,7 @@ export default function Home() {
               {!q && <NewsSlider items={featured} />}
               <AdSlot position="top" />
               <LatestNews items={latest} title={title} />
+              {tab === 'top' && !q && <DistrictSliders tips={sorted} />}
               {!q && <MatichonNews district={isDistrict ? tab : undefined} localOnly={tab === 'nongbua'} limit={tab === 'top' ? 8 : 20} />}
             </>
           )}

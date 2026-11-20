@@ -4,7 +4,7 @@ import { timeAgo, districtShort } from '../db.js'
 
 // ข่าวจากมติชน: ไฟล์ data/matichon.json สร้างโดย scripts/fetch-matichon.mjs (GitHub Actions ทุกชั่วโมง)
 let cached = null
-function useMatichon() {
+export function useMatichon() {
   const [data, setData] = useState(cached)
   useEffect(() => {
     if (cached) return
