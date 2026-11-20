@@ -10,13 +10,14 @@ export default function Login() {
   const [pw, setPw] = useState('')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
+  const [show, setShow] = useState(false)
 
   if (ready && loggedIn) return <Navigate to="/admin" replace />
 
   const submit = async (e) => {
     e.preventDefault()
     setBusy(true)
-    const err = await auth.login(pw, email.trim())
+    const err = await auth.login(pw.trim(), email.trim())
     setBusy(false)
     if (err) setError(err)
     else navigate('/admin', { replace: true })
@@ -46,21 +47,33 @@ export default function Login() {
           </>
         )}
         <label htmlFor="pw" className="mb-1 block text-sm text-neutral-300">รหัสผ่าน</label>
-        <input
-          id="pw"
-          type="password"
-          autoFocus={!IS_REMOTE}
-          autoComplete="current-password"
-          value={pw}
-          onChange={(e) => { setPw(e.target.value); setError('') }}
-          className="input"
-          placeholder="••••••••"
-        />
+        <div className="relative">
+          <input
+            id="pw"
+            type={show ? 'text' : 'password'}
+            autoFocus={!IS_REMOTE}
+            autoComplete="off"
+            autoCapitalize="none"
+            autoCorrect="off"
+            spellCheck={false}
+            value={pw}
+            onChange={(e) => { setPw(e.target.value); setError('') }}
+            className="input pr-16"
+            placeholder="••••••••"
+          />
+          <button
+            type="button"
+            onClick={() => setShow((v) => !v)}
+            className="absolute inset-y-0 right-0 px-3 text-xs text-neutral-400 hover:text-white"
+            aria-label={show ? 'ซ่อนรหัสผ่าน' : 'แสดงรหัสผ่าน'}
+          >{show ? 'ซ่อน' : 'แสดง'}</button>
+        </div>
         {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
         <button type="submit" disabled={busy} className="btn-brand mt-5 w-full py-2.5 disabled:opacity-60">
           {busy ? 'กำลังเข้าสู่ระบบ...' : 'เข้าสู่ระบบ'}
         </button>
         <Link to="/" className="mt-4 block text-center text-xs text-neutral-500 hover:text-brand">← กลับหน้าเว็บไซต์</Link>
+        <p className="mt-3 text-center text-[10px] text-neutral-700">เวอร์ชัน {__BUILD__}</p>
       </form>
     </div>
   )
