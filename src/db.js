@@ -82,6 +82,33 @@ const SEED = {
     { id: 'a10', name: 'โรงพยาบาลหนองบัวลำภู', url: 'https://nbhospital.moph.go.th/public/', category: 'สาธารณสุข' },
     { id: 'a11', name: 'สำนักงานสาธารณสุขจังหวัดหนองบัวลำภู (เพจ Facebook)', url: 'https://www.facebook.com/nblp.pho/', category: 'สาธารณสุข' },
     { id: 'a12', name: 'สำนักงานเขตพื้นที่การศึกษาประถมศึกษาหนองบัวลำภู เขต 1', url: 'https://nb1.go.th', category: 'การศึกษา' },
+    { id: 'p1', name: 'ตำรวจภูธรจังหวัดหนองบัวลำภู', url: 'https://nongbualamphu.police.go.th', category: 'ตำรวจ' },
+    { id: 'p2', name: 'สถานีตำรวจภูธรนากลาง', url: 'https://naklang.nongbualamphu.police.go.th', category: 'ตำรวจ' },
+    { id: 'p3', name: 'สถานีตำรวจภูธรศรีบุญเรือง', url: 'https://sriboonrueng.nongbualamphu.police.go.th', category: 'ตำรวจ' },
+    { id: 'p4', name: 'สถานีตำรวจภูธรนาวัง', url: 'https://nawang.nongbualamphu.police.go.th', category: 'ตำรวจ' },
+    { id: 'r1', name: 'สมาคมกู้ภัยนเรศวรหนองบัวลำภู (เพจ Facebook)', url: 'https://www.facebook.com/NaresuanRescueAssociation/', category: 'กู้ภัย / กู้ชีพ' },
+    { id: 'l0', name: 'สำนักงานส่งเสริมการปกครองท้องถิ่นจังหวัดหนองบัวลำภู (สถจ.)', url: 'https://nblplocal.go.th', category: 'ท้องถิ่น' },
+    { id: 'l1', name: 'เทศบาลเมืองหนองบัวลำภู', url: 'https://tm-nbp.go.th', category: 'อปท. อ.เมืองหนองบัวลำภู' },
+    { id: 'l2', name: 'อบต.หนองบัว', url: 'https://nbsao.go.th', category: 'อปท. อ.เมืองหนองบัวลำภู' },
+    { id: 'l3', name: 'อบต.หนองภัยศูนย์', url: 'https://nps.go.th', category: 'อปท. อ.เมืองหนองบัวลำภู' },
+    { id: 'l4', name: 'อบต.หนองหว้า', url: 'https://nongwa-nongbualamphu.go.th', category: 'อปท. อ.เมืองหนองบัวลำภู' },
+    { id: 'l5', name: 'เทศบาลตำบลนากลาง', url: 'https://naklanglocal.go.th/public/', category: 'อปท. อ.นากลาง' },
+    { id: 'l6', name: 'เทศบาลตำบลนาหนองทุ่ม', url: 'https://nanongthoom.go.th', category: 'อปท. อ.นากลาง' },
+    { id: 'l7', name: 'อบต.กุดแห่', url: 'https://www.kudhae.go.th', category: 'อปท. อ.นากลาง' },
+    { id: 'l8', name: 'อบต.ด่านช้าง', url: 'https://danchangnb.go.th', category: 'อปท. อ.นากลาง' },
+    { id: 'l9', name: 'อบต.โนนเมือง (อ.นากลาง)', url: 'http://www.nmtb.go.th', category: 'อปท. อ.นากลาง' },
+    { id: 'l10', name: 'เทศบาลตำบลโนนสัง', url: 'https://nonsunglocal.go.th', category: 'อปท. อ.โนนสัง' },
+    { id: 'l11', name: 'อบต.โนนเมือง (อ.โนนสัง)', url: 'https://www.nonmuang-nb.go.th', category: 'อปท. อ.โนนสัง' },
+    { id: 'l12', name: 'อบต.ปางกู่', url: 'https://pangku.go.th', category: 'อปท. อ.โนนสัง' },
+    { id: 'l13', name: 'เทศบาลตำบลจอมทอง', url: 'https://www.chom-thong.go.th', category: 'อปท. อ.ศรีบุญเรือง' },
+    { id: 'l14', name: 'เทศบาลตำบลโนนสะอาด', url: 'https://nonsa-ardlocal.go.th', category: 'อปท. อ.ศรีบุญเรือง' },
+    { id: 'l15', name: 'อบต.ศรีบุญเรือง', url: 'https://sribunruang.go.th', category: 'อปท. อ.ศรีบุญเรือง' },
+    { id: 'l16', name: 'อบต.หนองบัวใต้', url: 'https://nongboatai.go.th', category: 'อปท. อ.ศรีบุญเรือง' },
+    { id: 'l17', name: 'อบต.เมืองใหม่', url: 'https://muengmai.go.th', category: 'อปท. อ.ศรีบุญเรือง' },
+    { id: 'l18', name: 'เทศบาลตำบลสุวรรณคูหา', url: 'https://suwannakhuha.go.th', category: 'อปท. อ.สุวรรณคูหา' },
+    { id: 'l19', name: 'เทศบาลตำบลนาดี', url: 'https://www.nadi-suwan.go.th', category: 'อปท. อ.สุวรรณคูหา' },
+    { id: 'l20', name: 'เทศบาลตำบลนาเหล่า', url: 'https://tessabannalao.go.th/public/', category: 'อปท. อ.นาวัง' },
+    { id: 'l21', name: 'อบต.นาแก', url: 'https://nakaesao.go.th', category: 'อปท. อ.นาวัง' },
   ],
   fb_posts: [
     { id: 'f1', page_name: 'หนองบัว INSIDER', embed_url: 'https://www.facebook.com/facebook' },
@@ -110,7 +137,7 @@ const listeners = new Set()
 const emit = () => listeners.forEach((fn) => fn())
 
 // อัปเดตข้อมูลเริ่มต้นในเครื่องที่เคยเปิดเว็บแล้ว (ทำครั้งเดียวต่อเวอร์ชัน)
-const SEED_VERSION = 4 // v2: หน่วยงานในจังหวัด 11 แห่ง, v3: + พัฒนาชุมชนจังหวัด, v4: + ที่ว่าการอำเภอ 6 อำเภอ
+const SEED_VERSION = 5 // v2: หน่วยงานในจังหวัด 11 แห่ง, v3: + พัฒนาชุมชนจังหวัด, v4: + ที่ว่าการอำเภอ, v5: + ตำรวจ กู้ภัย อปท.
 function migrateLocal() {
   try {
     const v = Number(localStorage.getItem(PREFIX + 'seed_version') || 1)

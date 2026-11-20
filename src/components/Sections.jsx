@@ -208,13 +208,19 @@ export function FbFeed() {
   )
 }
 
-const AGENCY_ORDER = ['หน่วยงานจังหวัด', 'ที่ว่าการอำเภอ', 'ท้องถิ่น', 'สาธารณสุข', 'การศึกษา', 'ความปลอดภัย', 'ท่องเที่ยว']
+const AGENCY_ORDER = ['หน่วยงานจังหวัด', 'ที่ว่าการอำเภอ', 'ตำรวจ', 'กู้ภัย / กู้ชีพ', 'สาธารณสุข', 'การศึกษา', 'ท้องถิ่น', 'ท่องเที่ยว']
+const DISTRICT_ORDER = ['เมืองหนองบัวลำภู', 'นากลาง', 'โนนสัง', 'ศรีบุญเรือง', 'สุวรรณคูหา', 'นาวัง']
 const COMPACT_LIMIT = 6
 
 export function AgencyList({ compact = false }) {
   const sites = useCollection('agency_sites')
   const groups = sites.reduce((acc, s) => ((acc[s.category || 'อื่นๆ'] ||= []).push(s), acc), {})
-  const rank = (c) => (AGENCY_ORDER.includes(c) ? AGENCY_ORDER.indexOf(c) : c === 'อื่นๆ' ? 999 : 500)
+  const rank = (c) => {
+    if (AGENCY_ORDER.includes(c)) return AGENCY_ORDER.indexOf(c)
+    // หมวด 'อปท. อ.xxx' ต่อท้ายหมวดท้องถิ่น เรียงตามอำเภอ
+    if (c.startsWith('อปท.')) return AGENCY_ORDER.indexOf('ท้องถิ่น') + 0.1 + DISTRICT_ORDER.findIndex((d) => c.endsWith(d)) / 100
+    return c === 'อื่นๆ' ? 999 : 500
+  }
   let entries = Object.entries(groups).sort(([a], [b]) => rank(a) - rank(b) || a.localeCompare(b, 'th'))
   // แถบข้าง: แสดงแค่ 6 รายการแรก + ลิงก์ดูทั้งหมด
   if (compact) {
