@@ -5,7 +5,13 @@ import { createClient } from '@supabase/supabase-js'
 
 const PREFIX = 'nongbua_'
 const AUTH_KEY = PREFIX + 'admin_auth'
-export const ADMIN_PASSWORD = 'nongbua2026'
+// เก็บเฉพาะค่า SHA-256 ของรหัสผ่าน (ไม่เก็บรหัสจริงในโค้ด)
+// เปลี่ยนรหัส: รัน  printf '%s' 'รหัสใหม่' | sha256sum  แล้วนำค่ามาใส่แทน
+const ADMIN_PASSWORD_SHA256 = '2f5d4f358d3d2474fcfc6040bbb954ae0f7974e95c7661f96c09dc652106ed16'
+async function sha256(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text))
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('')
+}
 export const GITHUB_URL = 'https://github.com/suriyaolif10-coder/nongbuainsider'
 
 export const DISTRICTS = [
@@ -211,7 +217,7 @@ export function useCollection(col) {
 }
 
 // ---------------------------------------------------------------------------
-// Auth: โหมด local ใช้รหัสผ่าน nongbua2026 / โหมด Supabase ใช้อีเมล + รหัสผ่านของ Supabase Auth
+// Auth: โหมด local ใช้รหัสผ่านแอดมิน (ตรวจด้วย SHA-256) / โหมด Supabase ใช้อีเมล + รหัสผ่านของ Supabase Auth
 // ---------------------------------------------------------------------------
 let session = null
 let authReady = !IS_REMOTE
@@ -234,7 +240,7 @@ export const auth = {
       emit()
       return ''
     }
-    if (password !== ADMIN_PASSWORD) return 'รหัสผ่านไม่ถูกต้อง'
+    if ((await sha256(password || '')) !== ADMIN_PASSWORD_SHA256) return 'รหัสผ่านไม่ถูกต้อง'
     localStorage.setItem(AUTH_KEY, 'true')
     return ''
   },
