@@ -1,0 +1,27 @@
+name: เพิ่มข่าว หนองบัว INSIDER
+description: ข่าวนี้จะขึ้นในแท็บ "ข่าวชุมชน" บนเว็บ หนองบัว INSIDER ภายในไม่กี่นาที (ปิด issue เพื่อลบข่าว)
+title: "[หนองบัว] "
+body:
+  - type: markdown
+    attributes:
+      value: "พิมพ์หัวข้อข่าวในช่อง Title ด้านบน ต่อจากคำว่า [หนองบัว]"
+  - type: textarea
+    id: image
+    attributes:
+      label: รูปภาพ
+      description: ข่าวนี้จะขึ้นในแท็บ "ข่าวชุมชน" บนเว็บ หนองบัว INSIDER ภายในไม่กี่นาที (ปิด issue เพื่อลบข่าว)
+  - type: textarea
+    id: detail
+    attributes:
+      label: รายละเอียดข่าว
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: ลิงก์ข่าวต้นฉบับ (ถ้ามี)
+  - type: input
+    id: place
+    attributes:
+      label: พื้นที่ / ชุมชน (ถ้ามี)
+      placeholder: เช่น ต.โนนสัง อ.โนนสัง จ.หนองบัวลำภู

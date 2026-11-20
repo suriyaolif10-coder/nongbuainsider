@@ -1,18 +1,351 @@
 <!doctype html>
 <html lang="th">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0a0a0a" />
-    <meta name="description" content="หนองบัว INSIDER รู้ลึก รู้จริง เรื่องหนองบัวลำภู - ข่าวท้องถิ่น จ.หนองบัวลำภู" />
-    <link rel="icon" type="image/svg+xml" href="./logo.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <title>หนองบัว INSIDER</title>
-  </head>
-  <body class="bg-ink-950">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<title>หนองบัว INSIDER</title>
+<meta name="description" content="หนองบัว INSIDER รู้ลึก รู้จริง เรื่องหนองบัวลำภู ข่าวท้องถิ่นทุกอำเภอ อัปเดตตลอดวัน">
+<meta property="og:url" content="https://suriyaolif10-coder.github.io/nongbuainsider/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="หนองบัว INSIDER | รู้ลึก รู้จริง เรื่องหนองบัวลำภู">
+<meta property="og:description" content="ข่าวล่าสุด: สพม.เลย หนองบัวลำภู สอบครูผู้ช่วย">
+<meta property="og:image" content="https://www.banmuang.co.th/uploads/news/img/l/498041_th.png">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0e0f; --bg2:#19191b; --card:#1b1b1d; --fg:#f2f2f2; --muted:#a0a0a6; --line:#2a2a2e;
+  --accent:#f26b2a; --accent-fg:#ffffff; --chip:#232327; --overlay:rgba(0,0,0,.6);
+}
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:"Noto Sans Thai",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+.wrap{max-width:720px;margin:0 auto}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:var(--bg)}
+.top{display:flex;align-items:center;gap:10px;padding:10px 16px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
+.brand img{width:38px;height:38px;border-radius:9px;flex:none}
+.brand b{font-size:20px;font-weight:800;letter-spacing:.2px;white-space:nowrap}
+.brand b{overflow:hidden;text-overflow:ellipsis}
+
+.brand b span{color:var(--accent)}
+.icon-btn{width:40px;height:40px;display:grid;place-items:center;border-radius:50%}
+.icon-btn:active{background:var(--chip)}
+.icon-btn svg{width:24px;height:24px}
+.write{height:34px;padding:0 14px;border-radius:17px;background:var(--accent);color:var(--accent-fg);font-weight:700;font-size:14px;display:flex;align-items:center;white-space:nowrap}
+.search{display:none;padding:0 16px 10px}
+.search.open{display:block}
+.search input{width:100%;height:42px;border-radius:21px;border:1px solid var(--line);background:var(--bg2);color:var(--fg);padding:0 16px;font:inherit;font-size:16px}
+
+/* tabs */
+.tabsbar{display:flex;align-items:stretch;border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;padding:0 8px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:12px 10px 10px;font-size:17px;color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap}
+.tab.on{color:var(--fg);font-weight:700;border-bottom-color:var(--accent)}
+.more{flex:none;width:48px;display:grid;place-items:center;border-left:1px solid var(--line);margin:8px 0}
+.more svg{width:22px;height:22px;transition:transform .2s}
+.more.open svg{transform:rotate(180deg)}
+.allcats{display:none;flex-wrap:wrap;gap:10px;padding:16px;border-bottom:1px solid var(--line);background:var(--bg)}
+.allcats.open{display:flex}
+.allcats button{padding:9px 18px;border-radius:22px;border:1px solid var(--line);font-size:16px}
+.allcats button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+
+/* hero slider */
+.hero{position:relative;margin-bottom:8px}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:start;position:relative;aspect-ratio:16/11;background:var(--bg2);display:block;overflow:hidden}
+.slide img,.slide .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 45%,rgba(0,0,0,0) 70%)}
+.slide .cap{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 26px;z-index:1;color:#fff}
+.badge{display:inline-block;background:var(--accent);color:#fff;font-size:13px;font-weight:700;padding:3px 10px;border-radius:12px;margin-bottom:8px}
+.slide h2{margin:0;font-size:21px;line-height:1.45;font-weight:800;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.slide .src{margin-top:6px;font-size:13px;opacity:.85}
+.dots{position:absolute;left:16px;right:16px;bottom:10px;display:flex;gap:4px;z-index:2}
+.dots i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.35);overflow:hidden;position:relative}
+.dots i.on::after{content:"";position:absolute;inset:0;background:#fff;transform-origin:left;animation:fill var(--dur,5s) linear forwards}
+.dots i.done{background:rgba(255,255,255,.85)}
+.paused .dots i.on::after{animation-play-state:paused}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* lists */
+section{padding:8px 0 4px}
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 6px}
+.sec-h h3{margin:0;font-size:21px;font-weight:800}
+.sec-h button{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:2px}
+.item{display:flex;gap:14px;padding:12px 16px;align-items:flex-start}
+.item:active{background:var(--bg2)}
+.thumb{flex:none;width:104px;height:104px;border-radius:10px;overflow:hidden;background:var(--bg2);position:relative}
+.thumb img,.thumb .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.item .t{font-size:17px;line-height:1.55;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.item .m{margin-top:6px;font-size:14px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap}
+.item .m .c{color:var(--accent);font-weight:700}
+.ph{display:grid;place-items:center;background:linear-gradient(135deg,#2a1206,#a8441a 55%,#f26b2a);color:rgba(255,255,255,.92);font-weight:800;font-size:34px}
+.divider{height:8px;background:var(--bg2);margin:6px 0}
+.empty{padding:40px 16px;text-align:center;color:var(--muted)}
+.loadmore{display:block;margin:6px auto 18px;padding:10px 22px;border-radius:22px;border:1px solid var(--line);font-size:15px}
+footer{padding:22px 16px 40px;text-align:center;color:var(--muted);font-size:13px;line-height:1.8}
+footer a{color:var(--accent);font-weight:700}
+.skel{background:linear-gradient(90deg,var(--bg2),var(--chip),var(--bg2));background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+@media (min-width:720px){.slide{aspect-ratio:16/8}}
+.banner{display:block;width:100%;height:auto;aspect-ratio:1943/912;object-fit:cover;background:#111}
+.brand b{letter-spacing:.2px}
+.brand img{width:auto!important;height:28px!important;border-radius:0!important}
+@media (max-width:440px){.brand b{font-size:17px}.brand img{width:32px;height:32px}.write{padding:0 11px;font-size:13px}.top{gap:6px;padding:10px 12px}}
+.own{display:inline-block;background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:1px 8px;border-radius:10px}
+.reader{position:fixed;inset:0;z-index:50;background:var(--bg);overflow-y:auto;display:none}
+.reader.open{display:block}
+.reader .bar{position:sticky;top:0;display:flex;align-items:center;gap:8px;padding:8px 8px;background:var(--bg);border-bottom:1px solid var(--line);z-index:1}
+.reader .bar b{font-size:16px}
+.reader article{max-width:720px;margin:0 auto;padding:0 0 40px}
+.reader .pics img{display:block;width:100%;height:auto;margin:0 0 6px}
+.reader h1{font-size:24px;line-height:1.45;margin:14px 16px 6px}
+.reader .m{color:var(--muted);font-size:14px;margin:0 16px 14px}
+.reader .body{font-size:18px;line-height:1.8;margin:0 16px;white-space:pre-line;overflow-wrap:anywhere}
+.reader .ext{display:inline-block;margin:18px 16px 0;color:var(--accent);font-weight:700}
+body.noscroll{overflow:hidden}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="top">
+    <a class="brand" href="./" aria-label="หนองบัว INSIDER หน้าแรก">
+      <img src="logo-mark.png" alt="">
+      <b>หนองบัว <span>INSIDER</span></b>
+    </a>
+    <button class="icon-btn" id="searchBtn" aria-label="ค้นหา">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    </button>
+    <a class="write" href="https://github.com/suriyaolif10-coder/nongbuainsider/issues/new?template=news.yml" target="_blank" rel="noopener">+ เพิ่มข่าว</a>
+  </div>
+  <div class="search" id="search"><input id="q" type="search" placeholder="ค้นหาข่าว…" autocomplete="off"></div>
+  <div class="tabsbar">
+    <nav class="tabs" id="tabs" aria-label="หมวดหมู่"></nav>
+    <button class="more" id="moreBtn" aria-label="หมวดหมู่ทั้งหมด" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+  </div>
+  <div class="allcats" id="allcats"></div>
+</header>
+
+<main id="main">
+  <div class="slide skel" style="aspect-ratio:16/11"></div>
+</main>
+
+<footer id="foot">
+  หนองบัว INSIDER • รู้ลึก รู้จริง เรื่องหนองบัวลำภู<br>
+  LOCAL NEWS • NONG BUA LAMPHU • ISAN REGION<br>
+  รวมหัวข้อข่าวจากสำนักข่าวต่างๆ แตะข่าวเพื่ออ่านฉบับเต็มที่ต้นทาง<br>
+  <span id="updated"></span><br>
+  <a href="https://suriyaolif10-coder.github.io/leaf-post/">ข่าวทั่วประเทศที่ ลีฟโพสต์ LEAF POST ›</a>
+</footer>
+</div>
+
+<div class="reader" id="reader" role="dialog" aria-modal="true" aria-label="อ่านข่าว">
+  <div class="bar"><button class="icon-btn" id="readerClose" aria-label="ปิด"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button><b>หนองบัว INSIDER</b><span style="flex:1"></span><button class="icon-btn" id="readerShare" aria-label="แชร์"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></button></div>
+  <article id="readerBody"></article>
+</div>
+<script src="ads.js"></script>
+<script>
+(function () {
+  "use strict";
+  var CATS = ["TOP", "ข่าวชุมชน", "ข่าวหนองบัว", "อ.เมือง", "นากลาง", "โนนสัง", "ศรีบุญเรือง", "สุวรรณคูหา", "นาวัง", "ท่องเที่ยว", "เกษตร"];
+  var items = [], cats = [], current = "TOP", query = "", timer = null, shown = 20;
+  var $ = function (id) { return document.getElementById(id); };
+
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  function esc(s) { return String(s || "").replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function ago(iso) {
+    var t = Date.parse(iso); if (isNaN(t)) return "";
+    var m = Math.max(1, Math.floor((Date.now() - t) / 60000));
+    if (m < 60) return m + " นาทีที่แล้ว";
+    var h = Math.floor(m / 60); if (h < 24) return h + " ชม.ที่แล้ว";
+    return Math.floor(h / 24) + " วันที่แล้ว";
+  }
+  function src(it) { return it.publisher || it.source || ""; }
+  function img(it) {
+    var ph = '<div class="ph">' + esc((it.title || "ข")[0]) + "</div>";
+    if (!it.imageUrl) return ph;
+    return ph + '<img src="' + esc(it.imageUrl) + '" alt="" loading="lazy" onerror="this.remove()">';
+  }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function byTime(a, b) { return (Date.parse(b.published) || 0) - (Date.parse(a.published) || 0); }
+  function inCat(c) { return c === "TOP" ? items : items.filter(function (i) { return i.category === c; }); }
+  function link(it) {
+    if (it.own) return ' href="#' + esc(it.uid) + '" data-read="' + it._i + '"';
+    return ' href="' + esc(it.link) + '" target="_blank" rel="noopener noreferrer"';
+  }
+  function openReader(it, push) {
+    var pics = (it.images && it.images.length ? it.images : (it.imageUrl ? [it.imageUrl] : [])).map(function (u) { return '<img src="' + esc(u) + '" alt="" onerror="this.remove()">'; }).join("");
+    var meta = [it.place, src(it), ago(it.published)].filter(Boolean).map(esc).join(" • ");
+    var ext = it.link && it.link.indexOf("/issues/") < 0 ? '<a class="ext" href="' + esc(it.link) + '" target="_blank" rel="noopener noreferrer">อ่านข่าวต้นฉบับ ›</a>' : "";
+    var cut = pics.indexOf("<img", 1); var cover = cut > 0 ? pics.slice(0, cut) : pics, rest = cut > 0 ? pics.slice(cut) : "";
+    $("readerBody").innerHTML = '<div class="pics">' + cover + "</div><h1>" + esc(it.title) + '</h1><div class="m">' + meta + '</div><div class="body">' + esc(it.content || it.summary) + '</div><div class="pics" style="margin-top:16px">' + rest + "</div>" + ext + (window.LPAds ? window.LPAds.slot("reader", 0) : "");
+    if (window.LPAds) window.LPAds.activate();
+    $("reader").classList.add("open"); $("reader").scrollTop = 0; document.body.classList.add("noscroll");
+    $("readerShare").onclick = function () {
+      var url = new URL("n/" + it.uid + ".html", location.href).href;
+      if (navigator.share) navigator.share({ title: it.title, url: url }).catch(function () {});
+      else if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { alert("คัดลอกลิงก์แล้ว"); });
+    };
+    if (push) history.pushState({ read: it.uid }, "", "#" + it.uid);
+  }
+  function closeReader() { $("reader").classList.remove("open"); document.body.classList.remove("noscroll"); }
+
+  function row(it, showCat) {
+    var meta = [];
+    if (it.own) meta.push('<span class="own">ข่าวของเรา</span>');
+    if (showCat && it.category) meta.push('<span class="c">' + esc(it.category) + "</span>");
+    if (src(it)) meta.push("<span>" + esc(src(it)) + "</span>");
+    if (ago(it.published)) meta.push("<span>• " + ago(it.published) + "</span>");
+    return '<a class="item"' + link(it) + '><div class="thumb">' + img(it) + '</div><div><p class="t">' + esc(it.title) + '</p><div class="m">' + meta.join("") + "</div></div></a>";
+  }
+
+  function heroItems() {
+    var withImg = function (i) { return !!i.imageUrl; };
+    if (current !== "TOP") return inCat(current).filter(withImg).sort(byTime).slice(0, 6);
+    // TOP: one random story per category, categories in random order
+    var picks = [];
+    shuffle(cats.filter(function (c) { return c !== "TOP"; })).forEach(function (c) {
+      var pool = inCat(c).filter(withImg).sort(byTime).slice(0, 5);
+      if (pool.length) picks.push(pool[Math.floor(Math.random() * pool.length)]);
+    });
+    return picks.slice(0, 10);
+  }
+
+  function renderHero(list) {
+    if (!list.length) return "";
+    var slides = list.map(function (it) {
+      return '<a class="slide"' + link(it) + ">" + img(it) + '<div class="cap"><span class="badge">' + esc(it.category) + "</span><h2>" + esc(it.title) + '</h2><div class="src">' + esc(src(it)) + (ago(it.published) ? " • " + ago(it.published) : "") + "</div></div></a>";
+    }).join("");
+    var dots = list.map(function () { return "<i></i>"; }).join("");
+    return '<div class="hero" id="hero"><div class="track" id="track">' + slides + '</div><div class="dots" id="dots">' + dots + "</div></div>";
+  }
+
+  function startSlider() {
+    clearTimeout(timer);
+    var track = $("track"), hero = $("hero");
+    if (!track) return;
+    var dots = $("dots").children, n = dots.length, idx = 0, dur = 5000, paused = false;
+    var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    hero.style.setProperty("--dur", dur + "ms");
+    function mark(i) {
+      for (var k = 0; k < n; k++) { dots[k].className = k < i ? "done" : ""; }
+      void dots[i].offsetWidth; dots[i].className = "on";
+    }
+    function go(i) { idx = (i + n) % n; track.scrollLeft = idx * track.clientWidth; mark(idx); schedule(); }
+    function schedule() { clearTimeout(timer); if (!paused && !reduce && n > 1) timer = setTimeout(function () { go(idx + 1); }, dur); }
+    var st;
+    track.addEventListener("scroll", function () {
+      clearTimeout(st);
+      st = setTimeout(function () {
+        var i = Math.round(track.scrollLeft / track.clientWidth);
+        if (i !== idx) { idx = i; mark(idx); schedule(); }
+      }, 120);
+    }, { passive: true });
+    function pause(p) { paused = p; hero.classList.toggle("paused", p); if (p) clearTimeout(timer); else { mark(idx); schedule(); } }
+    track.addEventListener("touchstart", function () { pause(true); }, { passive: true });
+    track.addEventListener("touchend", function () { pause(false); }, { passive: true });
+    track.addEventListener("mouseenter", function () { pause(true); });
+    track.addEventListener("mouseleave", function () { pause(false); });
+    mark(0); schedule();
+  }
+
+  function render() {
+    var main = $("main"), html = "";
+    if (query) {
+      var q = query.toLowerCase();
+      var found = items.filter(function (i) { return (i.title + " " + src(i)).toLowerCase().indexOf(q) >= 0; }).sort(byTime);
+      html = '<div class="sec-h"><h3>ผลการค้นหา "' + esc(query) + '"</h3></div>' + (found.length ? found.slice(0, 50).map(function (i) { return row(i, true); }).join("") : '<div class="empty">ไม่พบข่าวที่ค้นหา</div>');
+      main.innerHTML = html; clearTimeout(timer); return;
+    }
+    var hero = heroItems(), heroLinks = {};
+    hero.forEach(function (h) { heroLinks[h.link] = 1; });
+    if (current === "TOP") html += '<img class="banner" src="banner.jpg" alt="หนองบัว INSIDER รู้ลึก รู้จริง เรื่องหนองบัวลำภู">';
+    html += renderHero(hero);
+    var A = window.LPAds, ad = function (name, n) { return A ? A.slot(name, n) : ""; };
+    html += ad("top", 0);
+    var latest = inCat(current).filter(function (i) { return !heroLinks[i.link]; }).sort(byTime);
+    html += '<section><div class="sec-h"><h3>' + (current === "TOP" ? "ข่าวใหม่ล่าสุด ⚡" : esc(current) + " ล่าสุด") + "</h3></div>";
+    html += latest.length ? latest.slice(0, current === "TOP" ? 8 : shown).map(function (i, k) { return row(i, current === "TOP") + ((k + 1) % 4 === 0 ? ad("feed", (k + 1) / 4 - 1) : ""); }).join("") : '<div class="empty">ยังไม่มีข่าวในหมวดนี้</div>';
+    if (current !== "TOP" && latest.length > shown) html += '<button class="loadmore" id="loadmore">ดูข่าวเพิ่มเติม</button>';
+    html += "</section>";
+    if (current === "TOP") {
+      var secN = 0;
+      cats.forEach(function (c) {
+        if (c === "TOP") return;
+        var list = inCat(c).filter(function (i) { return !heroLinks[i.link]; }).sort(byTime).slice(0, 3);
+        if (!list.length) return;
+        secN++;
+        if (secN % 3 === 0) html += ad("section", secN / 3 - 1);
+        html += '<div class="divider"></div><section><div class="sec-h"><h3>' + esc(c) + '</h3><button data-cat="' + esc(c) + '">ดูทั้งหมด ›</button></div>' + list.map(function (i) { return row(i, false); }).join("") + "</section>";
+      });
+    }
+    main.innerHTML = html;
+    if (A) A.activate();
+    var lm = $("loadmore"); if (lm) lm.onclick = function () { shown += 20; render(); };
+    startSlider();
+  }
+
+  function renderTabs() {
+    $("tabs").innerHTML = cats.map(function (c) { return '<button class="tab' + (c === current ? " on" : "") + '" data-cat="' + esc(c) + '">' + esc(c) + "</button>"; }).join("");
+    $("allcats").innerHTML = cats.map(function (c) { return '<button class="' + (c === current ? "on" : "") + '" data-cat="' + esc(c) + '">' + esc(c) + "</button>"; }).join("");
+    var on = $("tabs").querySelector(".on");
+    if (on && on.scrollIntoView) on.scrollIntoView({ block: "nearest", inline: "center" });
+  }
+
+  function setCat(c) {
+    current = c; shown = 20; query = ""; $("q").value = "";
+    store("nb_tab", c);
+    $("allcats").classList.remove("open"); $("moreBtn").classList.remove("open"); $("moreBtn").setAttribute("aria-expanded", "false");
+    renderTabs(); render(); window.scrollTo(0, 0);
+  }
+
+  document.addEventListener("click", function (e) {
+    var r = e.target.closest("[data-read]");
+    if (r) { e.preventDefault(); var it = items[+r.getAttribute("data-read")]; if (it) openReader(it, true); return; }
+    var b = e.target.closest("[data-cat]");
+    if (b) { e.preventDefault(); setCat(b.getAttribute("data-cat")); }
+  });
+  $("readerClose").onclick = function () { if (history.state && history.state.read !== undefined) history.back(); else { closeReader(); history.replaceState(null, "", location.pathname + location.search); } };
+  function byUid(h) { h = h.replace(/^#/, ""); for (var k = 0; k < items.length; k++) if (items[k].own && items[k].uid === h) return items[k]; return null; }
+  window.addEventListener("popstate", function () { var it = byUid(location.hash); if (it) openReader(it, false); else closeReader(); });
+  $("moreBtn").onclick = function () {
+    var open = $("allcats").classList.toggle("open");
+    this.classList.toggle("open", open); this.setAttribute("aria-expanded", String(open));
+  };
+  $("searchBtn").onclick = function () { var s = $("search"); s.classList.toggle("open"); if (s.classList.contains("open")) $("q").focus(); else { query = ""; $("q").value = ""; render(); } };
+  var qt; $("q").addEventListener("input", function () { clearTimeout(qt); var v = this.value.trim(); qt = setTimeout(function () { query = v; render(); }, 200); });
+
+  (window.LPAds ? window.LPAds.load("ads.json") : Promise.resolve()).then(function () { return fetch("news.json?t=" + Math.floor(Date.now() / 60000)); })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      items = (data.items || []).filter(function (i) { return i.title && i.link && i.nb !== false; });
+      items.forEach(function (i, n) { if (!i.category) i.category = "ข่าว"; i._i = n; });
+      cats = CATS.filter(function (c) { return c === "TOP" || items.some(function (i) { return i.category === c; }); });
+      var saved = store("nb_tab");
+      if (saved && cats.indexOf(saved) >= 0) current = saved;
+      var u = Date.parse(data.updated);
+      if (!isNaN(u)) $("updated").textContent = "อัปเดตล่าสุด " + new Date(u).toLocaleString("th-TH", { dateStyle: "medium", timeStyle: "short" });
+      renderTabs(); render();
+      var hit = byUid(location.hash); if (hit) openReader(hit, false);
+    })
+    .catch(function () {
+      cats = ["TOP"]; renderTabs();
+      $("main").innerHTML = '<div class="empty">โหลดข่าวไม่สำเร็จ ลองรีเฟรชอีกครั้ง</div>';
+    });
+})();
+</script>
+</body>
 </html>

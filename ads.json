@@ -1,0 +1,9 @@
+{
+ "placeholder": true,
+ "contact": "https://www.facebook.com/114122661290707",
+ "contactText": "ลงโฆษณากับหนองบัว INSIDER ติดต่อทางเพจ",
+ "ads": [
+  {"slot": "top", "type": "image", "enabled": false, "image": "https://example.com/banner.jpg", "link": "https://example.com", "title": "ตัวอย่าง: เปลี่ยน enabled เป็น true แล้วใส่รูปและลิงก์ของผู้ลงโฆษณา"},
+  {"slot": "feed", "type": "adsense", "enabled": false, "client": "ca-pub-0000000000000000", "adslot": "0000000000"}
+ ]
+}
