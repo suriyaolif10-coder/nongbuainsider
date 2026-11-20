@@ -197,7 +197,7 @@ function Settings() {
           type="url"
           value={form.hero_image_url}
           onChange={(e) => setTouched(true) || setForm({ ...form, hero_image_url: e.target.value })}
-          placeholder="เว้นว่าง = ใช้ภาพภูเขาเริ่มต้น (แนะนำรูปแนวนอน ไม่มีตัวหนังสือ)"
+          placeholder="เว้นว่าง = ใช้แบนเนอร์โลโก้หนองบัว INSIDER (ถ้าใส่ ควรเป็นรูปไม่มีตัวหนังสือ)"
           className="input"
         />
       </div>

@@ -4,7 +4,24 @@ import { SafeImg, Icon, Brand, MountainOutline } from './ui.jsx'
 import { db, useCollection, timeAgo, districtShort, GITHUB_URL } from '../db.js'
 
 export function Hero() {
-  const heroImg = useCollection('app_config')[0]?.hero_image_url || './img/hero-mountain.svg'
+  const custom = useCollection('app_config')[0]?.hero_image_url
+  // ค่าเริ่มต้น: แบนเนอร์ที่มีโลโก้และข้อความในภาพแล้ว แสดงภาพเต็ม ๆ
+  if (!custom) {
+    return (
+      <section className="border-b border-brand/40 bg-black">
+        <h1 className="sr-only">หนองบัว INSIDER รู้ลึก รู้จริง เรื่องหนองบัวลำภู</h1>
+        <img
+          src="./img/hero-banner.jpg"
+          alt="หนองบัว INSIDER รู้ลึก รู้จริง เรื่องหนองบัวลำภู — LOCAL NEWS • NONG BUA LAMPHU • ISAN REGION"
+          width="2000"
+          height="667"
+          className="mx-auto block aspect-[3/1] w-full max-w-[1600px] object-cover"
+        />
+      </section>
+    )
+  }
+  // ใส่รูปเองจากหลังบ้าน (รูปไม่มีตัวหนังสือ): วางข้อความทับ
+  const heroImg = custom
   return (
     <section className="relative overflow-hidden border-b border-brand/40 bg-black">
       <img src={heroImg} alt="ภูเขาหนองบัวลำภู" className="absolute inset-0 h-full w-full object-cover object-[70%_center]" />
