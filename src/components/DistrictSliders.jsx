@@ -1,24 +1,19 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { SafeImg, Icon } from './ui.jsx'
-import { useMatichon } from './Matichon.jsx'
 import { DISTRICTS, timeAgo } from '../db.js'
 
 // ข่าวแต่ละอำเภอ: แถวสไลด์ (ปัดซ้าย-ขวา) อำเภอละ 1 แถว
-// รวมข่าวจากหลังบ้าน (insider_tips) + ข่าวมติชนที่ระบุอำเภอ
+// รวมข่าวจากหลังบ้าน (insider_tips) + ข่าวจากลิงก์ที่ระบุอำเภอ
 export default function DistrictSliders({ tips }) {
-  const matichon = useMatichon()
   const rows = DISTRICTS.map((d) => {
     const own = tips
       .filter((t) => t.district === d.name)
       .map((t) => (t.href
         ? { key: t.href, href: t.href, title: t.title, image: t.image_url, source: t.source, at: t.created_at }
         : { key: 'i' + t.id, to: `/news/${t.id}`, title: t.title, image: t.image_url, source: t.source, at: t.created_at }))
-    const ext = (matichon?.items || [])
-      .filter((m) => m.district === d.name)
-      .map((m) => ({ key: m.link, href: m.link, title: m.title, image: m.image, source: m.source, at: m.published_at }))
     const seen = new Set()
-    const items = [...own, ...ext].filter((n) => !seen.has(n.key) && seen.add(n.key)).sort((a, b) => new Date(b.at || 0) - new Date(a.at || 0)).slice(0, 10)
+    const items = [...own].filter((n) => !seen.has(n.key) && seen.add(n.key)).sort((a, b) => new Date(b.at || 0) - new Date(a.at || 0)).slice(0, 10)
     return { d, items }
   }).filter((r) => r.items.length)
 

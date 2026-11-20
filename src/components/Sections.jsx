@@ -196,10 +196,10 @@ export function LatestNews({ items, title = 'ข่าวใหม่ล่า�
   )
 }
 
-export function fbEmbedSrc(url) {
+export function fbEmbedSrc(url, width = 500, height = 600) {
   if (!url) return ''
   if (url.includes('/plugins/')) return url
-  return `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(url)}&tabs=timeline&width=500&height=600&small_header=true&hide_cover=false`
+  return `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(url)}&tabs=timeline&width=${width}&height=${height}&small_header=true&hide_cover=false&adapt_container_width=true&locale=th_TH`
 }
 
 export function FbFeed() {
@@ -221,6 +221,46 @@ export function FbFeed() {
       </div>
     </section>
   )
+}
+
+// ข่าวจากเพจ Facebook ในจังหวัด: ฟีดโพสต์ล่าสุดของแต่ละเพจ (Page Plugin ทางการของ Facebook)
+// เลื่อนซ้าย-ขวาได้ สุ่มลำดับเพจทุกครั้งที่เปิดเว็บ
+export function FbPagesRow({ seed = '' }) {
+  const pages = useCollection('fb_posts')
+  const order = [...pages].sort((a, b) => hashStr(seed + a.id) - hashStr(seed + b.id))
+  if (!order.length) return null
+  return (
+    <section>
+      <div className="mb-3 flex items-end justify-between gap-2">
+        <h2 className="font-display text-2xl font-bold text-white">ข่าวจากเพจ<span className="text-brand">ในหนองบัวลำภู</span></h2>
+        <Link to="/tab/community" className="shrink-0 text-sm font-medium text-brand hover:underline">ดูทุกเพจ ›</Link>
+      </div>
+      <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-4 px-4 pb-1 sm:mx-0 sm:scroll-px-0 sm:px-0">
+        {order.map((p) => (
+          <div key={p.id} className="w-[86%] shrink-0 snap-start overflow-hidden rounded-xl bg-ink-900 sm:w-[340px]">
+            <div className="flex items-center justify-between gap-2 px-3 py-2.5">
+              <span className="truncate text-sm font-semibold text-white">{p.page_name}</span>
+              <a href={p.embed_url} target="_blank" rel="noreferrer" className="shrink-0 text-xs text-brand hover:underline">เปิดเพจ ↗</a>
+            </div>
+            <iframe
+              title={`โพสต์ล่าสุดจาก ${p.page_name}`}
+              src={fbEmbedSrc(p.embed_url, 340, 560)}
+              className="h-[560px] w-full border-0 bg-white"
+              loading="lazy"
+              allow="encrypted-media"
+            />
+          </div>
+        ))}
+      </div>
+      <p className="mt-2 text-[11px] text-neutral-600">โพสต์ล่าสุดจากเพจ Facebook ของหน่วยงานและชุมชนในจังหวัด ปัดซ้าย-ขวาเพื่อดูเพจอื่น</p>
+    </section>
+  )
+}
+function hashStr(str) {
+  let h = 2166136261
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) }
+  h ^= h >>> 16; h = Math.imul(h, 0x85ebca6b); h ^= h >>> 13
+  return h >>> 0
 }
 
 const AGENCY_ORDER = ['หน่วยงานจังหวัด', 'ที่ว่าการอำเภอ', 'ตำรวจ', 'กู้ภัย / กู้ชีพ', 'สาธารณสุข', 'การศึกษา', 'ท้องถิ่น', 'ท่องเที่ยว']

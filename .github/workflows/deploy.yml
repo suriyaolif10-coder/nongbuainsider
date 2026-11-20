@@ -4,7 +4,7 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: '17 * * * *' # ทุกชั่วโมง: ดึงข่าวมติชนใหม่แล้ว deploy
+    - cron: '17 * * * *' # ทุกชั่วโมง: ดึงข่าวจากลิงก์/ภาพตัวอย่างใหม่แล้ว deploy
 permissions:
   contents: read
   pages: write
@@ -23,9 +23,6 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: npm }
       - run: npm ci
-      - name: ดึงหัวข้อข่าวจากมติชน
-        run: node scripts/fetch-matichon.mjs
-        continue-on-error: true
       - name: ดึงข่าวจากลิงก์ (content/news-links.txt)
         run: node scripts/fetch-links.mjs
         continue-on-error: true

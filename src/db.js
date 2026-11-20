@@ -31,7 +31,7 @@ const ago = (d) => new Date(Date.now() - d * DAY).toISOString()
 
 // ข้อมูลตัวอย่าง (แก้ไข/ลบได้จากหลังบ้าน)
 const SEED = {
-  // ข่าวตัวอย่างถูกเอาออก (v6) ใช้ข่าวจริงจากหลังบ้าน / ลิงก์ข่าว / มติชน แทน
+  // ข่าวตัวอย่างถูกเอาออก (v6) ใช้ข่าวจริงจากหลังบ้าน / ลิงก์โพสต์ข่าว แทน
   insider_tips: [],
   agency_sites: [
     { id: 'a1', name: 'ศาลากลางจังหวัดหนองบัวลำภู', url: 'http://www.nongbualamphu.go.th', category: 'หน่วยงานจังหวัด' },
@@ -80,8 +80,21 @@ const SEED = {
     { id: 'l20', name: 'เทศบาลตำบลนาเหล่า', url: 'https://tessabannalao.go.th/public/', category: 'อปท. อ.นาวัง' },
     { id: 'l21', name: 'อบต.นาแก', url: 'https://nakaesao.go.th', category: 'อปท. อ.นาวัง' },
   ],
+  // เพจ Facebook ในจังหวัดหนองบัวลำภู (แสดงฟีดโพสต์ล่าสุดผ่าน Page Plugin ของ Facebook)
   fb_posts: [
-    { id: 'f1', page_name: 'หนองบัว INSIDER', embed_url: 'https://www.facebook.com/facebook' },
+    { id: 'f1', page_name: 'หนองบัวลำภู อัพเดท', embed_url: 'https://www.facebook.com/100068686250910' },
+    { id: 'f2', page_name: 'ที่ว่าการอำเภอเมืองหนองบัวลำภู', embed_url: 'https://www.facebook.com/100083192417451' },
+    { id: 'f3', page_name: 'ที่ว่าการอำเภอนากลาง', embed_url: 'https://www.facebook.com/100080299418860' },
+    { id: 'f4', page_name: 'อำเภอศรีบุญเรือง', embed_url: 'https://www.facebook.com/Districtsriboonruang/' },
+    { id: 'f5', page_name: 'ที่ว่าการอำเภอสุวรรณคูหา', embed_url: 'https://www.facebook.com/100066892242577' },
+    { id: 'f6', page_name: 'ที่ว่าการอำเภอนาวัง', embed_url: 'https://www.facebook.com/Nawangdistrict/' },
+    { id: 'f7', page_name: 'ตำรวจภูธรจังหวัดหนองบัวลำภู', embed_url: 'https://www.facebook.com/nbp191/' },
+    { id: 'f8', page_name: 'สถานีตำรวจภูธรศรีบุญเรือง', embed_url: 'https://www.facebook.com/sriboonrueang.police/' },
+    { id: 'f9', page_name: 'สมาคมกู้ภัยนเรศวรหนองบัวลำภู', embed_url: 'https://www.facebook.com/NaresuanRescueAssociation/' },
+    { id: 'f10', page_name: 'สำนักงานสาธารณสุขจังหวัดหนองบัวลำภู', embed_url: 'https://www.facebook.com/nblp.pho/' },
+    { id: 'f11', page_name: 'อบจ.หนองบัวลำภู', embed_url: 'https://www.facebook.com/www.nppao.go.th/' },
+    { id: 'f12', page_name: 'ที่นี่ อำเภอสุวรรณคูหา', embed_url: 'https://www.facebook.com/SuwannakhuhaReview/' },
+    { id: 'f13', page_name: 'OTOP Online หนองบัวลำภู', embed_url: 'https://www.facebook.com/OTOPNB/' },
   ],
   ad_banners: [
     { id: 'b1', title: 'ร้านกาแฟภูพาน', image_url: '', link: '#', position: 'side', price: 300, active: false, views: 0, owner: 'ตัวอย่าง' },
@@ -107,7 +120,7 @@ const listeners = new Set()
 const emit = () => listeners.forEach((fn) => fn())
 
 // อัปเดตข้อมูลเริ่มต้นในเครื่องที่เคยเปิดเว็บแล้ว (ทำครั้งเดียวต่อเวอร์ชัน)
-const SEED_VERSION = 6 // v2: หน่วยงานในจังหวัด 11 แห่ง, v3: + พัฒนาชุมชนจังหวัด, v4: + ที่ว่าการอำเภอ, v5: + ตำรวจ กู้ภัย อปท., v6: ลบข่าวตัวอย่าง
+const SEED_VERSION = 7 // v2: หน่วยงานในจังหวัด 11 แห่ง, v3: + พัฒนาชุมชนจังหวัด, v4: + ที่ว่าการอำเภอ, v5: + ตำรวจ กู้ภัย อปท., v6: ลบข่าวตัวอย่าง, v7: เพจ Facebook ในจังหวัด
 function migrateLocal() {
   try {
     const v = Number(localStorage.getItem(PREFIX + 'seed_version') || 1)
@@ -127,6 +140,16 @@ function migrateLocal() {
       if (tipsRaw) {
         const sample = (t) => /^t[1-6]$/.test(t.id) && /^\.\/img\/(temple|lake|field|cave|market|road)\.svg$/.test(t.image_url || '')
         localStorage.setItem(PREFIX + 'insider_tips', JSON.stringify(JSON.parse(tipsRaw).filter((t) => !sample(t))))
+      }
+    }
+    if (v < 7) {
+      // เปลี่ยนเพจตัวอย่าง facebook.com/facebook เป็นเพจในจังหวัด (เก็บเพจที่ผู้ใช้เพิ่มเอง)
+      const fbRaw = localStorage.getItem(PREFIX + 'fb_posts')
+      if (fbRaw) {
+        const mine = JSON.parse(fbRaw).filter((r) => !/facebook\.com\/facebook\/?$/.test(r.embed_url || ''))
+        const have = new Set(mine.map((r) => (r.embed_url || '').replace(/\/+$/, '')))
+        const add = SEED.fb_posts.filter((r) => !have.has(r.embed_url.replace(/\/+$/, '')) && !mine.some((m) => m.id === r.id))
+        localStorage.setItem(PREFIX + 'fb_posts', JSON.stringify([...mine, ...add]))
       }
     }
     localStorage.setItem(PREFIX + 'seed_version', String(SEED_VERSION))
