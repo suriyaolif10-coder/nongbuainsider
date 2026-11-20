@@ -72,10 +72,11 @@ const results = await Promise.allSettled(FEEDS.map(async (feed) => {
 results.forEach((r, i) => r.status === 'rejected' && console.warn(`✗ ${FEEDS[i].url}: ${r.reason?.message || r.reason}`))
 
 const seen = new Set()
-const items = results.flatMap((r) => (r.status === 'fulfilled' ? r.value : []))
+const all = results.flatMap((r) => (r.status === 'fulfilled' ? r.value : []))
   .filter((i) => { const k = i.link.split('?')[0]; if (seen.has(k) || seen.has(i.title)) return false; seen.add(k); seen.add(i.title); return true })
-  .sort((a, b) => (b.local - a.local) || (new Date(b.published_at || 0) - new Date(a.published_at || 0)))
-  .slice(0, 40)
+  .sort((a, b) => new Date(b.published_at || 0) - new Date(a.published_at || 0))
+// ข่าวเกี่ยวกับหนองบัวลำภูขึ้นก่อน (สูงสุด 30) ตามด้วยข่าวล่าสุดทั่วไปของมติชน (20)
+const items = [...all.filter((i) => i.local).slice(0, 30), ...all.filter((i) => !i.local).slice(0, 20)]
 
 if (!items.length) {
   // ดึงไม่ได้เลย: เก็บไฟล์เดิมไว้ ไม่ทำให้ deploy ล้ม
