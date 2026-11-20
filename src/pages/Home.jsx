@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom'
 import Header, { TABS } from '../components/Header.jsx'
 import { Hero, NewsSlider, AdSlot, LatestNews, FbFeed, FbPagesRow, AgencyList, Footer } from '../components/Sections.jsx'
 import DistrictSliders from '../components/DistrictSliders.jsx'
-import { Ticker, MainHeadline, FeaturedNews, MonthBar, EmptyMonth } from '../components/Live.jsx'
+import { Ticker, FeaturedNews, MonthBar, EmptyMonth } from '../components/Live.jsx'
+import { NativeAd, HashtagChips, HeadlineCarousel, BottomNav } from '../components/LineStyle.jsx'
 import { mixBySource, onePerSource } from '../components/mix.js'
 import { useAllNews } from '../lib/useNews.js'
 import { filterCurrentMonth, rankPopular, useExtViews } from '../lib/news.js'
@@ -12,6 +13,7 @@ import { useAppState } from '../state.jsx'
 export default function Home() {
   const { tab = 'top' } = useParams()
   const [search, setSearch] = useState('')
+  const [searchOpen, setSearchOpen] = useState(false)
   const { showAll } = useAppState()
   const ext = useExtViews()
   const all = useAllNews()
@@ -50,39 +52,52 @@ export default function Home() {
     return filtered.filter((n) => !shown.has(n.id)).slice(0, 10)
   }, [tab, q, filtered, featured])
 
+  // แท็บที่มีข่าวใหม่ใน 24 ชม. -> จุดส้ม
+  const newTabs = useMemo(() => {
+    const since = Date.now() - 864e5
+    const fresh = all.filter((n) => new Date(n.created_at).getTime() > since)
+    const t = new Set(fresh.map((n) => n.district).filter(Boolean))
+    if (fresh.length) t.add('nongbua')
+    if (t.has('ข่าวชุมชน')) t.add('community')
+    return [...t]
+  }, [all])
+
   const title = q ? `ผลการค้นหา "${search}"` : isDistrict ? `ข่าว อ.${tab}` : tab === 'community' ? 'ข่าวชุมชน' : 'ข่าวใหม่ล่าสุด'
   const empty = pool.length === 0
 
+  const openSearch = () => { setSearchOpen(true); window.scrollTo({ top: 0, behavior: 'smooth' }) }
+
   return (
-    <div className="min-h-screen bg-ink-950">
-      <Header activeTab={tab} search={search} onSearch={setSearch} />
+    <div className="min-h-screen bg-ink-950 pb-20 lg:pb-0">
+      <Header activeTab={tab} search={search} onSearch={setSearch} newTabs={newTabs} searchOpen={searchOpen} onSearchOpen={setSearchOpen} />
       {tab === 'top' && !q && <Ticker items={top5} />}
-      {tab === 'top' && !q && <Hero />}
 
-      <main className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 pt-5 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <main className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 pt-4 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="min-w-0 space-y-6">
-          {tab !== 'agency' && <MonthBar count={q || tab !== 'top' ? filtered.length : pool.length} />}
-
           {tab === 'agency' ? (
             <AgencyList />
           ) : tab === 'community' ? (
             <>
+              <MonthBar count={filtered.length} />
               <FbFeed />
               {filtered.length > 0 && <LatestNews items={filtered} title={title} />}
             </>
           ) : tab === 'top' && !q ? (
             <>
-              {empty ? <EmptyMonth /> : <MainHeadline items={top5} ext={ext} />}
-              <AdSlot position="top" />
+              <NativeAd position="top" />
+              <HashtagChips news={pool} />
+              {empty ? <EmptyMonth /> : <HeadlineCarousel items={top5} ext={ext} />}
+              <MonthBar count={pool.length} />
+              {latest.length > 0 && <LatestNews items={latest} title={title} />}
               <FeaturedNews items={featured} onShuffle={() => setSeed(String(Math.random()))} />
               <FbPagesRow seed={seed} />
-              {latest.length > 0 && <LatestNews items={latest} title={title} />}
               <DistrictSliders tips={pool} />
             </>
           ) : (
             <>
+              <MonthBar count={filtered.length} />
               {!q && filtered.length > 0 && <NewsSlider items={rankPopular(filtered, ext).slice(0, 5)} />}
-              <AdSlot position="top" />
+              <NativeAd position="top" />
               {filtered.length === 0 && !q && !showAll ? <EmptyMonth /> : <LatestNews items={filtered} title={title} />}
             </>
           )}
@@ -94,7 +109,9 @@ export default function Home() {
         </aside>
       </main>
 
+      {tab === 'top' && !q && <div className="mt-10"><Hero /></div>}
       <Footer />
+      <BottomNav onSearch={openSearch} />
     </div>
   )
 }
