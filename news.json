@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T05:25:40.614975+00:00",
+ "updated": "2026-11-21T05:33:22.183913+00:00",
  "items": [
   {
    "feedId": "community-own",
@@ -144,15 +144,15 @@
    "category": "อ.เมือง",
    "source": "Google News",
    "publisher": "ช่อง 7",
-   "title": "วัยรุ่นตีกันกลางงานบุญ จ.หนองบัวลำภู",
-   "link": "https://www.ch7.com/en/news/198600/",
+   "title": "ทวงเงิน 500 บาท หนุ่มวัย 20 ปี ถูกเพื่อนรุมแทงตาย",
+   "link": "https://www.ch7.com/en/news/201160/",
    "summary": "ที่มา: ช่อง 7",
    "content": "",
    "imageUrl": "",
-   "published": "2026-10-30T07:00:00+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE45d0RXdkk2RkpnWnpEWXBrRUhiQ1FxSW9XenZVRjVoSjRmb3FvbkV3eXA1TTh3MFVJVkhPblZ3eTM4Rl9ua3dhdmxYNA?oc=5",
+   "published": "2026-11-08T08:48:47+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1PbHJmaGs1NzR6c1ZkaDBSLUZ2SEZ4c0NveVFUbFVKS1prcUVILW5sOG9BSENrc3VQMWdDaXp1TzZUdzdPT3VWUVJFQQ?oc=5",
    "hint": "",
-   "nb": true
+   "nb": false
   },
   {
    "feedId": "nb-mueang",
@@ -189,15 +189,15 @@
    "category": "อ.เมือง",
    "source": "Google News",
    "publisher": "ช่อง 7",
-   "title": "ทวงเงิน 500 บาท หนุ่มวัย 20 ปี ถูกเพื่อนรุมแทงตาย",
-   "link": "https://www.ch7.com/en/news/201160/",
+   "title": "วัยรุ่นตีกันกลางงานบุญ จ.หนองบัวลำภู",
+   "link": "https://www.ch7.com/en/news/198600/",
    "summary": "ที่มา: ช่อง 7",
    "content": "",
    "imageUrl": "",
-   "published": "2026-11-08T08:48:47+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1PbHJmaGs1NzR6c1ZkaDBSLUZ2SEZ4c0NveVFUbFVKS1prcUVILW5sOG9BSENrc3VQMWdDaXp1TzZUdzdPT3VWUVJFQQ?oc=5",
+   "published": "2026-10-30T07:00:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE45d0RXdkk2RkpnWnpEWXBrRUhiQ1FxSW9XenZVRjVoSjRmb3FvbkV3eXA1TTh3MFVJVkhPblZ3eTM4Rl9ua3dhdmxYNA?oc=5",
    "hint": "",
-   "nb": false
+   "nb": true
   },
   {
    "feedId": "nb-naklang",
@@ -518,21 +518,6 @@
    "feedId": "nb-travel",
    "category": "ท่องเที่ยว",
    "source": "Google News",
-   "publisher": "thestandard.co",
-   "title": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
-   "link": "https://thestandard.co/cabinet-retreat-udon-thani-summary/",
-   "summary": "ที่มา: thestandard.co",
-   "content": "",
-   "imageUrl": "https://thestandard.co/wp-content/uploads/2026/11/cabinet-retreat-udon-thani-cover-1.jpg",
-   "published": "2026-11-03T08:00:00+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBiVUxybWs4TThKaTdzVjlIXzZXaTRNanNHR09qTnRXUXAtMU5pbEhiVGtQcVFfdWx5Sm9rOFBKS2JqUmNaU3JHYnprN1BLN2ZnWXNfQTl3V0lxTUJ1WV82b1B2dlhyQ0h6ZHc?oc=5",
-   "hint": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก เล็งบึงกาฬเป็นเขตเศรษฐกิจชายแดน เร่งท่องเที่ยว-ปราบยาเสพติด อนุทิน ชาญวีรกูล สรุปผล ครม.สัญจร อุดรธานี เน้นพัฒนาอีสานตอนบน 4 มิติ ดันเป็นฐานผลิตอาหารโลก พร้อมศึกษาบึงกาฬเป็นเขตเศรษฐกิจชายแดน นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
-   "nb": false
-  },
-  {
-   "feedId": "nb-travel",
-   "category": "ท่องเที่ยว",
-   "source": "Google News",
    "publisher": "ผู้จัดการออนไลน์",
    "title": "คนไทยเที่ยว \"กระบี่\" แพงสุด เปิดสถิติค่าใช้จ่ายเฉลี่ยของชาวไทยเมื่อไปเที่ยวแต่ละจังหวัด",
    "link": "https://mgronline.com/travel/detail/9690000111253",
@@ -557,6 +542,21 @@
    "published": "2026-11-01T07:00:00+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBFSTM1bkVpbkUzeklHYzE0aEZyM1NtWVJyZmdRRDh6cy0taEZ1TkNHUUEweHc1eWxjMTdvSmVjY3hnbXZQV3BrbjdOSDBtdXVGeTQ4ZGc3RjFaZWVqelN4bTVoQjV2UQ?oc=5",
    "hint": "ERROR: The request could not be satisfied",
+   "nb": false
+  },
+  {
+   "feedId": "nb-travel",
+   "category": "ท่องเที่ยว",
+   "source": "Google News",
+   "publisher": "thestandard.co",
+   "title": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
+   "link": "https://thestandard.co/cabinet-retreat-udon-thani-summary/",
+   "summary": "ที่มา: thestandard.co",
+   "content": "",
+   "imageUrl": "https://thestandard.co/wp-content/uploads/2026/11/cabinet-retreat-udon-thani-cover-1.jpg",
+   "published": "2026-11-03T08:00:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBiVUxybWs4TThKaTdzVjlIXzZXaTRNanNHR09qTnRXUXAtMU5pbEhiVGtQcVFfdWx5Sm9rOFBKS2JqUmNaU3JHYnprN1BLN2ZnWXNfQTl3V0lxTUJ1WV82b1B2dlhyQ0h6ZHc?oc=5",
+   "hint": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก เล็งบึงกาฬเป็นเขตเศรษฐกิจชายแดน เร่งท่องเที่ยว-ปราบยาเสพติด อนุทิน ชาญวีรกูล สรุปผล ครม.สัญจร อุดรธานี เน้นพัฒนาอีสานตอนบน 4 มิติ ดันเป็นฐานผลิตอาหารโลก พร้อมศึกษาบึงกาฬเป็นเขตเศรษฐกิจชายแดน นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
    "nb": false
   },
   {
