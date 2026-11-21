@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T05:25:40.614975+00:00",
+ "updated": "2026-11-21T05:39:29.467304+00:00",
  "items": [
   {
    "feedId": "community-own",
@@ -144,15 +144,15 @@
    "category": "อ.เมือง",
    "source": "Google News",
    "publisher": "ช่อง 7",
-   "title": "วัยรุ่นตีกันกลางงานบุญ จ.หนองบัวลำภู",
-   "link": "https://www.ch7.com/en/news/198600/",
+   "title": "ทวงเงิน 500 บาท หนุ่มวัย 20 ปี ถูกเพื่อนรุมแทงตาย",
+   "link": "https://www.ch7.com/en/news/201160/",
    "summary": "ที่มา: ช่อง 7",
    "content": "",
    "imageUrl": "",
-   "published": "2026-10-30T07:00:00+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE45d0RXdkk2RkpnWnpEWXBrRUhiQ1FxSW9XenZVRjVoSjRmb3FvbkV3eXA1TTh3MFVJVkhPblZ3eTM4Rl9ua3dhdmxYNA?oc=5",
+   "published": "2026-11-08T08:48:47+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1PbHJmaGs1NzR6c1ZkaDBSLUZ2SEZ4c0NveVFUbFVKS1prcUVILW5sOG9BSENrc3VQMWdDaXp1TzZUdzdPT3VWUVJFQQ?oc=5",
    "hint": "",
-   "nb": true
+   "nb": false
   },
   {
    "feedId": "nb-mueang",
@@ -189,15 +189,15 @@
    "category": "อ.เมือง",
    "source": "Google News",
    "publisher": "ช่อง 7",
-   "title": "ทวงเงิน 500 บาท หนุ่มวัย 20 ปี ถูกเพื่อนรุมแทงตาย",
-   "link": "https://www.ch7.com/en/news/201160/",
+   "title": "วัยรุ่นตีกันกลางงานบุญ จ.หนองบัวลำภู",
+   "link": "https://www.ch7.com/en/news/198600/",
    "summary": "ที่มา: ช่อง 7",
    "content": "",
    "imageUrl": "",
-   "published": "2026-11-08T08:48:47+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1PbHJmaGs1NzR6c1ZkaDBSLUZ2SEZ4c0NveVFUbFVKS1prcUVILW5sOG9BSENrc3VQMWdDaXp1TzZUdzdPT3VWUVJFQQ?oc=5",
+   "published": "2026-10-30T07:00:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE45d0RXdkk2RkpnWnpEWXBrRUhiQ1FxSW9XenZVRjVoSjRmb3FvbkV3eXA1TTh3MFVJVkhPblZ3eTM4Rl9ua3dhdmxYNA?oc=5",
    "hint": "",
-   "nb": false
+   "nb": true
   },
   {
    "feedId": "nb-naklang",
@@ -224,7 +224,7 @@
    "summary": "ที่มา: เนชั่นทีวี สถานีข่าว 24 ชั่วโมง",
    "content": "",
    "imageUrl": "https://resource.nationtv.tv/uploads/images/md/2026/11/xkK43s6PH66dlZW1w35E.webp",
-   "published": "2026-11-08T09:50:00+00:00",
+   "published": "2026-11-08T08:00:00+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFAtb2paZm0yV2RGREFXTHlqSXJVRl8tenhwelRoR01RTGE1RGQyQ1BsOFEtTFJCUGtLVGd4TUZubDRhVTVad1ZXRWxxNVA2RWFjVDdGOHQ2bFE?oc=5",
    "hint": "เนชั่น กรุ๊ป ร่วมเป็นเจ้าภาพกฐินสามัคคี สร้างพระธาตุเจดีย์ปุณฺณชิศรีคำแสน เนชั่น กรุ๊ป ร่วมเป็นเจ้าภาพกฐินสามัคคี สร้างพระธาตุเจดีย์ปุณฺณชิศรีคำแสน ที่วัดหนองบัวคำแสน จ.หนองบัวลำภู เนชั่น กรุ๊ป ร่วมเป็นเจ้าภาพกฐินสามัคคี สร้างพระธาตุเจดีย์ปุณฺณชิศรีคำแสน",
    "nb": true
@@ -421,6 +421,21 @@
    "imageUrl": "",
    "published": "2026-11-01T07:00:00+00:00",
    "glink": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1JVkpzUzdpUUo1SUtGaEg4SWFTR1F4bVZtR2I0TmNGSzZMOXg0czF1eEpTREpfRXpYeURCVTczWlNFel9nNTExQlhzZE5LbW44RFpDQURweW5sVDBEZ0JNR2x2QmNMYVpCbkdOWk85cG9TbU1I?oc=5",
+   "hint": "",
+   "nb": false
+  },
+  {
+   "feedId": "nb-sribunruang",
+   "category": "ศรีบุญเรือง",
+   "source": "Google News",
+   "publisher": "ช่อง 7",
+   "title": "สะเก็ดข่าว : บริการประชาชน",
+   "link": "https://www.ch7.com/en/news/202764/",
+   "summary": "ที่มา: ช่อง 7",
+   "content": "",
+   "imageUrl": "",
+   "published": "2026-11-13T13:58:21+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE95S1NkbjZmSHd3TzByWDBZTnRqc1dvYXRJd21Bb0lnSTFRRUs5eHVKajJhN0d5UUNmSk1jb1BLSlhvLUtjZ2ZCdDg2bw?oc=5",
    "hint": "",
    "nb": false
   },
