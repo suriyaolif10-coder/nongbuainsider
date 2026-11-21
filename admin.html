@@ -210,7 +210,13 @@ ol{padding-left:20px;line-height:1.8;font-size:14px;color:var(--muted)}
     });
     var data = res.status === 204 ? null : await res.json().catch(function () { return null; });
     if (!res.ok) {
-      var e = new Error((data && data.message) || ("HTTP " + res.status));
+      var m = (data && data.message) || ("HTTP " + res.status);
+      if (res.status === 403 || res.status === 404) {
+        var need = path.indexOf("/contents/") === 0 ? "Contents" : path.indexOf("/issues") === 0 ? "Issues" : "";
+        if (/not accessible|Not Found|permission/i.test(m) && need)
+          m = "กุญแจ GitHub ยังไม่มีสิทธิ์ “" + need + ": Read and write” — ไปแก้ token ที่ github.com/settings/tokens ให้ติ๊กสิทธิ์นี้ และเลือก repo nongbuainsider";
+      }
+      var e = new Error(m);
       e.status = res.status; throw e;
     }
     return data;
