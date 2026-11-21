@@ -1,6 +1,25 @@
 {
- "updated": "2026-11-21T03:11:42.880575+00:00",
+ "updated": "2026-11-21T05:25:40.614975+00:00",
  "items": [
+  {
+   "feedId": "community-own",
+   "category": "ข่าวชุมชน",
+   "source": "ลีฟโพสต์",
+   "publisher": "หนองบัว INSIDER",
+   "own": true,
+   "uid": "c1",
+   "title": "🎶⛰️ วัยรุ่นหนองบัวฯ ห้ามพลาด!! ⛰️🎶  PPN MUSIC FESTIVAL ครั้งที่ 2 กลับมาแล้ว! คอนเสิร์ตบนภูเขาแห่งเดียวในประเทศไทย 🌄 ✨ ชมฟรี! ไม่ต้องซื้อบัตร ✨  📅 4–27 ธันวาคม 🗓️ ทุกวันศุกร์ เสาร์ และอาทิตย์ ตลอ",
+   "link": "https://www.facebook.com/share/1FJnzpP1Uw/",
+   "summary": "หนองบัวลำภู จ.หนองบัวลำภู • 🎶⛰️ วัยรุ่นหนองบัวฯ ห้ามพลาด!! ⛰️🎶 PPN MUSIC FESTIVAL ครั้งที่ 2 กลับมาแล้ว! คอนเสิร์ตบนภูเขาแห่งเดียวในประเทศไทย 🌄 ✨ ชมฟรี! ไม่ต้องซื้อบัตร ✨ 📅 4–27 ธันวาคม 🗓️ ทุกวันศุกร์ เสาร์ และอาทิตย์ ตลอดเดือนธ",
+   "content": "🎶⛰️ วัยรุ่นหนองบัวฯ ห้ามพลาด!! ⛰️🎶\n\nPPN MUSIC FESTIVAL ครั้งที่ 2 กลับมาแล้ว!\nคอนเสิร์ตบนภูเขาแห่งเดียวในประเทศไทย 🌄\n✨ ชมฟรี! ไม่ต้องซื้อบัตร ✨\n\n📅 4–27 ธันวาคม\n🗓️ ทุกวันศุกร์ เสาร์ และอาทิตย์ ตลอดเดือนธันวาคม\n📍 ภูพานน้อย จังหวัดหนองบัวลำภู\n\nเตรียมเก้าอี้สนาม ชวนแก๊งเพื่อน แล้วไปนั่งฟังเพลงชมวิวหลักล้านกัน 🎈💚\nแท็กเพื่อนที่ต้องไปด้วยกันเลย 👇\n\n📲 ติดตามข่าวสารหนองบัวลำภูได้ที่เพจ หนองบัวInsider\n\n#PPNMusicFestival #ภูพานน้อย #หนองบัวลำภู #คอนเสิร์ตฟรี #เที่ยวหนองบัวลำภู #หนองบัวInsider",
+   "place": "หนองบัวลำภู จ.หนองบัวลำภู",
+   "images": [
+    "https://www.facebook.com/share/v/1EJWyRkW8i/"
+   ],
+   "imageUrl": "https://www.facebook.com/share/v/1EJWyRkW8i/",
+   "published": "2026-11-21T05:24:58Z",
+   "nb": true
+  },
   {
    "feedId": "community-own",
    "category": "ข่าวชุมชน",
@@ -499,21 +518,6 @@
    "feedId": "nb-travel",
    "category": "ท่องเที่ยว",
    "source": "Google News",
-   "publisher": "thairath.co.th",
-   "title": "วันแรกคึกคัก “มหกรรมพืชสวนโลกอุดรธานี” ชวนเปิดประสบการณ์ใหม่นั่งรถไฟมาเที่ยวงาน",
-   "link": "https://www.thairath.co.th/news/local/northeast/2969733",
-   "summary": "ที่มา: thairath.co.th",
-   "content": "",
-   "imageUrl": "",
-   "published": "2026-11-01T07:00:00+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBFSTM1bkVpbkUzeklHYzE0aEZyM1NtWVJyZmdRRDh6cy0taEZ1TkNHUUEweHc1eWxjMTdvSmVjY3hnbXZQV3BrbjdOSDBtdXVGeTQ4ZGc3RjFaZWVqelN4bTVoQjV2UQ?oc=5",
-   "hint": "ERROR: The request could not be satisfied",
-   "nb": false
-  },
-  {
-   "feedId": "nb-travel",
-   "category": "ท่องเที่ยว",
-   "source": "Google News",
    "publisher": "thestandard.co",
    "title": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
    "link": "https://thestandard.co/cabinet-retreat-udon-thani-summary/",
@@ -523,6 +527,36 @@
    "published": "2026-11-03T08:00:00+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBiVUxybWs4TThKaTdzVjlIXzZXaTRNanNHR09qTnRXUXAtMU5pbEhiVGtQcVFfdWx5Sm9rOFBKS2JqUmNaU3JHYnprN1BLN2ZnWXNfQTl3V0lxTUJ1WV82b1B2dlhyQ0h6ZHc?oc=5",
    "hint": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก เล็งบึงกาฬเป็นเขตเศรษฐกิจชายแดน เร่งท่องเที่ยว-ปราบยาเสพติด อนุทิน ชาญวีรกูล สรุปผล ครม.สัญจร อุดรธานี เน้นพัฒนาอีสานตอนบน 4 มิติ ดันเป็นฐานผลิตอาหารโลก พร้อมศึกษาบึงกาฬเป็นเขตเศรษฐกิจชายแดน นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
+   "nb": false
+  },
+  {
+   "feedId": "nb-travel",
+   "category": "ท่องเที่ยว",
+   "source": "Google News",
+   "publisher": "ผู้จัดการออนไลน์",
+   "title": "คนไทยเที่ยว \"กระบี่\" แพงสุด เปิดสถิติค่าใช้จ่ายเฉลี่ยของชาวไทยเมื่อไปเที่ยวแต่ละจังหวัด",
+   "link": "https://mgronline.com/travel/detail/9690000111253",
+   "summary": "ที่มา: ผู้จัดการออนไลน์",
+   "content": "",
+   "imageUrl": "https://mpics2.mgronline.com/pics/Images/569000011290101.JPEG",
+   "published": "2026-11-21T04:55:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBpODh2bV81UG5Nc2lYekhkRUJCTjhpSzVYUGRXenBSY2FMc3A1Y2h0c2VmUXZETWdCa2twSVlSbkZ1SG5OaThSN3l3OWxhSTN1ZEdlT3hCMDd0UTc4YlE?oc=5",
+   "hint": "à¸à¸à¹à¸à¸¢à¹à¸à¸µà¹à¸¢à¸§ \"à¸à¸£à¸°à¸à¸µà¹\" à¹à¸à¸à¸ªà¸¸à¸ à¹à¸à¸´à¸à¸ªà¸à¸´à¸à¸´à¸à¹à¸²à¹à¸à¹à¸à¹à¸²à¸¢à¹à¸à¸¥à¸µà¹à¸¢à¸à¸­à¸à¸à¸²à¸§à¹à¸à¸¢à¹à¸¡à¸·à¹à¸­à¹à¸à¹à¸à¸µà¹à¸¢à¸§à¹à¸à¹à¸¥à¸°à¸à¸±à¸à¸«à¸§à¸±à¸ à¸à¹à¸­à¸¡à¸¹à¸¥à¸ªà¸à¸´à¸à¸´ 10 à¸­à¸±à¸à¸à¸±à¸à¹à¸£à¸à¸à¸µà¹à¸à¸±à¸à¸à¹à¸­à¸à¹à¸à¸µà¹à¸¢à¸§à¸à¸²à¸§à¹à¸à¸¢à¸¡à¸µà¸à¹à¸²à¹",
+   "nb": false
+  },
+  {
+   "feedId": "nb-travel",
+   "category": "ท่องเที่ยว",
+   "source": "Google News",
+   "publisher": "thairath.co.th",
+   "title": "วันแรกคึกคัก “มหกรรมพืชสวนโลกอุดรธานี” ชวนเปิดประสบการณ์ใหม่นั่งรถไฟมาเที่ยวงาน",
+   "link": "https://www.thairath.co.th/news/local/northeast/2969733",
+   "summary": "ที่มา: thairath.co.th",
+   "content": "",
+   "imageUrl": "",
+   "published": "2026-11-01T07:00:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBFSTM1bkVpbkUzeklHYzE0aEZyM1NtWVJyZmdRRDh6cy0taEZ1TkNHUUEweHc1eWxjMTdvSmVjY3hnbXZQV3BrbjdOSDBtdXVGeTQ4ZGc3RjFaZWVqelN4bTVoQjV2UQ?oc=5",
+   "hint": "ERROR: The request could not be satisfied",
    "nb": false
   },
   {
@@ -628,6 +662,21 @@
    "published": "2026-11-04T10:49:18+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9CREl1MkEzSnVWQlhHVVBqZEFYekFXT2NTOGxYWVI2dkNQVjNaMGZzaEtTRDBELWc4R3dNczBvNE1UVlNXTEFuSVhlTDVpOVE?oc=5",
    "hint": "Just a moment...",
+   "nb": false
+  },
+  {
+   "feedId": "nb-farm",
+   "category": "เกษตร",
+   "source": "Google News",
+   "publisher": "ข่าวสด",
+   "title": "อนุทิน ดันอีสานตอนบน ฐานผลิตอาหารโลก ชู3พืชศก. เล็งบึงกาฬเขตเศรษฐกิจพิเศษ",
+   "link": "https://www.khaosod.co.th/politics/news_10459170",
+   "summary": "ที่มา: ข่าวสด",
+   "content": "",
+   "imageUrl": "https://www.khaosod.co.th/wpapp/uploads/2026/11/3-anu.jpg",
+   "published": "2026-11-03T08:00:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1BQjhDbzFUcnFHaHUwQUFkWHB4Q0E1VXVuWFNGcDBWZE5iLUdvUlcwWWh5SkY1M1RSdTVuQXZmT2tRclo4M0NzTzQ3Z21iVWYxVW11OElpVUg2VkQ5?oc=5",
+   "hint": "อนุทิน ดันอีสานตอนบน ฐานผลิตอาหารโลก ชู3พืชศก. เล็งบึงกาฬเขตเศรษฐกิจพิเศษ อนุทิน สรุปผลครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก ชู 3 พืชเศรษฐกิจ ‘ข้าว-ยาง-พืชพลังงาน’ เพิ่มมูลค่าสินค้าเกษตร เล็งบึงกาฬเป็นเขตเศรษฐกิจพิเศษ อนุทิน ดันอีสานตอนบน ฐานผลิตอาหารโลก ชู3พืชศก. เล็งบึงกาฬเขตเศรษฐกิจพิเศษ",
    "nb": false
   },
   {
@@ -889,21 +938,6 @@
    "feedId": "nb-all",
    "category": "ข่าวหนองบัว",
    "source": "Google News",
-   "publisher": "ช่อง 7",
-   "title": "รวบผู้จัดเล่นพนันยิงเป้า กลางงานลอยกระทง ยึดรางวัลเครื่องดื่มน้ำผลไม้-ปืนยิงจุกน้ำปลา",
-   "link": "https://www.ch7.com/news/203629/",
-   "summary": "ที่มา: ช่อง 7",
-   "content": "",
-   "imageUrl": "",
-   "published": "2026-11-17T03:37:50+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE1pSlVjYWlNQ1djSC01cFFvY1pITXRPSXZkWEFGNlBYbTdONzdIRzIzaE9zbVhlT2pDQzNBVFl6bWE0M0Z2WTVv?oc=5",
-   "hint": "",
-   "nb": false
-  },
-  {
-   "feedId": "nb-all",
-   "category": "ข่าวหนองบัว",
-   "source": "Google News",
    "publisher": "สยามรัฐ",
    "title": "ตำรวจบุกจับกลางงานลอยกระทง! รวบหนุ่มเปิดเล่นพนันยิงเป้าเก็บเงิน 40 บาทต่อรอบ",
    "link": "https://siamrath.co.th/regional/336140",
@@ -944,6 +978,21 @@
    "glink": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBTc3FwTS1MSG5VWm55RmJaaE1CQWVnYXVoaEd6Z3dJTUVQNEItdWhLLTUtU0NLc2RyY2N3WXBjNXIyX294V0RxMVhsSDZsazhwZ2FnZDRZa0pwQQ?oc=5",
    "hint": "Attention Required! | Cloudflare",
    "nb": false
+  },
+  {
+   "feedId": "nb-all",
+   "category": "ข่าวหนองบัว",
+   "source": "Google News",
+   "publisher": "SpaceRef",
+   "title": "พยากรณ์อากาศรายชั่วโมงสำหรับ บ้านผาสวรรค์, หนองบัวลำภู",
+   "link": "https://www.spaceref.com/%E0%B8%AD%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A8/%E0%B9%84%E0%B8%97%E0%B8%A2/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%9C%E0%B8%B2%E0%B8%AA%E0%B8%A7%E0%B8%A3%E0%B8%A3%E0%B8%84%E0%B9%8C-nong-bua-lamphu",
+   "summary": "ที่มา: SpaceRef",
+   "content": "",
+   "imageUrl": "https://www.spaceref.com/images/meteo-nong-bua-lamphu.jpg",
+   "published": "2026-11-14T10:23:47+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMixgJBVV95cUxOa3UxdnZuX3RtSjBLcHR4dnhKOWliSUtBOThWWnhPSzJ6b0h4LVpMVllpeWJ3YzVyTTJYdzcyenRjeENSUFJ1Njh1NktsRGVRcFl1RVlPaFhSUFA1T1hZWFgySEJRWUMwQ3Z1Unc3blotcklFcHdMRjdFZENWU3JPS2duQzZqYXREMkpUNy15UmZianR1WTRpa0hkdXRyRlVzTG9ydUNKelpZcGczWlB6LXU1NW9uT1lnS2t6dGxaTmNTOTY1OXdpam9CVEVWT0VYQVU0QmY5emk0YlphWEdIWkttYlI5bHBXNnlvVkhFQU5UM3VYWG9ZeUhxX2d1TTJDVUQyNWI2VFprdE5JUlRrY1h3a2FleG1vWXBVSXJhSm5LcVYybjIwV3g5RTZ5UmRIMlpLWktHZG9fanZIUDdaOFFFZHZoQQ?oc=5",
+   "hint": "พยากรณ์อากาศรายชั่วโมงสำหรับ บ้านผาสวรรค์, หนองบัวลำภู | SpaceRef ตรวจสอบพยากรณ์อากาศรายชั่วโมงสำหรับ บ้านผาสวรรค์, หนองบัวลำภู ดูอุณหภูมิ ฝน ลม ความชื้น ดัชนีรังสียูวี คุณภาพอากาศ และพยากรณ์อากาศ 15 วัน พยากรณ์อากาศรายชั่วโมงสำหรับ บ้านผาสวรรค์, หนองบัวลำภู | SpaceRef",
+   "nb": true
   },
   {
    "feedId": "nb-all",
