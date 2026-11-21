@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T05:33:22.183913+00:00",
+ "updated": "2026-11-21T05:39:29.467304+00:00",
  "items": [
   {
    "feedId": "community-own",
@@ -224,7 +224,7 @@
    "summary": "ที่มา: เนชั่นทีวี สถานีข่าว 24 ชั่วโมง",
    "content": "",
    "imageUrl": "https://resource.nationtv.tv/uploads/images/md/2026/11/xkK43s6PH66dlZW1w35E.webp",
-   "published": "2026-11-08T09:50:00+00:00",
+   "published": "2026-11-08T08:00:00+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFAtb2paZm0yV2RGREFXTHlqSXJVRl8tenhwelRoR01RTGE1RGQyQ1BsOFEtTFJCUGtLVGd4TUZubDRhVTVad1ZXRWxxNVA2RWFjVDdGOHQ2bFE?oc=5",
    "hint": "เนชั่น กรุ๊ป ร่วมเป็นเจ้าภาพกฐินสามัคคี สร้างพระธาตุเจดีย์ปุณฺณชิศรีคำแสน เนชั่น กรุ๊ป ร่วมเป็นเจ้าภาพกฐินสามัคคี สร้างพระธาตุเจดีย์ปุณฺณชิศรีคำแสน ที่วัดหนองบัวคำแสน จ.หนองบัวลำภู เนชั่น กรุ๊ป ร่วมเป็นเจ้าภาพกฐินสามัคคี สร้างพระธาตุเจดีย์ปุณฺณชิศรีคำแสน",
    "nb": true
@@ -425,6 +425,21 @@
    "nb": false
   },
   {
+   "feedId": "nb-sribunruang",
+   "category": "ศรีบุญเรือง",
+   "source": "Google News",
+   "publisher": "ช่อง 7",
+   "title": "สะเก็ดข่าว : บริการประชาชน",
+   "link": "https://www.ch7.com/en/news/202764/",
+   "summary": "ที่มา: ช่อง 7",
+   "content": "",
+   "imageUrl": "",
+   "published": "2026-11-13T13:58:21+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE95S1NkbjZmSHd3TzByWDBZTnRqc1dvYXRJd21Bb0lnSTFRRUs5eHVKajJhN0d5UUNmSk1jb1BLSlhvLUtjZ2ZCdDg2bw?oc=5",
+   "hint": "",
+   "nb": false
+  },
+  {
    "feedId": "nb-suwannakhuha",
    "category": "สุวรรณคูหา",
    "source": "Google News",
@@ -518,6 +533,21 @@
    "feedId": "nb-travel",
    "category": "ท่องเที่ยว",
    "source": "Google News",
+   "publisher": "thestandard.co",
+   "title": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
+   "link": "https://thestandard.co/cabinet-retreat-udon-thani-summary/",
+   "summary": "ที่มา: thestandard.co",
+   "content": "",
+   "imageUrl": "https://thestandard.co/wp-content/uploads/2026/11/cabinet-retreat-udon-thani-cover-1.jpg",
+   "published": "2026-11-03T08:00:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBiVUxybWs4TThKaTdzVjlIXzZXaTRNanNHR09qTnRXUXAtMU5pbEhiVGtQcVFfdWx5Sm9rOFBKS2JqUmNaU3JHYnprN1BLN2ZnWXNfQTl3V0lxTUJ1WV82b1B2dlhyQ0h6ZHc?oc=5",
+   "hint": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก เล็งบึงกาฬเป็นเขตเศรษฐกิจชายแดน เร่งท่องเที่ยว-ปราบยาเสพติด อนุทิน ชาญวีรกูล สรุปผล ครม.สัญจร อุดรธานี เน้นพัฒนาอีสานตอนบน 4 มิติ ดันเป็นฐานผลิตอาหารโลก พร้อมศึกษาบึงกาฬเป็นเขตเศรษฐกิจชายแดน นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
+   "nb": false
+  },
+  {
+   "feedId": "nb-travel",
+   "category": "ท่องเที่ยว",
+   "source": "Google News",
    "publisher": "ผู้จัดการออนไลน์",
    "title": "คนไทยเที่ยว \"กระบี่\" แพงสุด เปิดสถิติค่าใช้จ่ายเฉลี่ยของชาวไทยเมื่อไปเที่ยวแต่ละจังหวัด",
    "link": "https://mgronline.com/travel/detail/9690000111253",
@@ -542,21 +572,6 @@
    "published": "2026-11-01T07:00:00+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBFSTM1bkVpbkUzeklHYzE0aEZyM1NtWVJyZmdRRDh6cy0taEZ1TkNHUUEweHc1eWxjMTdvSmVjY3hnbXZQV3BrbjdOSDBtdXVGeTQ4ZGc3RjFaZWVqelN4bTVoQjV2UQ?oc=5",
    "hint": "ERROR: The request could not be satisfied",
-   "nb": false
-  },
-  {
-   "feedId": "nb-travel",
-   "category": "ท่องเที่ยว",
-   "source": "Google News",
-   "publisher": "thestandard.co",
-   "title": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
-   "link": "https://thestandard.co/cabinet-retreat-udon-thani-summary/",
-   "summary": "ที่มา: thestandard.co",
-   "content": "",
-   "imageUrl": "https://thestandard.co/wp-content/uploads/2026/11/cabinet-retreat-udon-thani-cover-1.jpg",
-   "published": "2026-11-03T08:00:00+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBiVUxybWs4TThKaTdzVjlIXzZXaTRNanNHR09qTnRXUXAtMU5pbEhiVGtQcVFfdWx5Sm9rOFBKS2JqUmNaU3JHYnprN1BLN2ZnWXNfQTl3V0lxTUJ1WV82b1B2dlhyQ0h6ZHc?oc=5",
-   "hint": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก เล็งบึงกาฬเป็นเขตเศรษฐกิจชายแดน เร่งท่องเที่ยว-ปราบยาเสพติด อนุทิน ชาญวีรกูล สรุปผล ครม.สัญจร อุดรธานี เน้นพัฒนาอีสานตอนบน 4 มิติ ดันเป็นฐานผลิตอาหารโลก พร้อมศึกษาบึงกาฬเป็นเขตเศรษฐกิจชายแดน นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
    "nb": false
   },
   {
