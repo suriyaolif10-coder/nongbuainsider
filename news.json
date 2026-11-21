@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T05:39:29.467304+00:00",
+ "updated": "2026-11-21T05:40:42.717179+00:00",
  "items": [
   {
    "feedId": "community-own",
@@ -224,7 +224,7 @@
    "summary": "ที่มา: เนชั่นทีวี สถานีข่าว 24 ชั่วโมง",
    "content": "",
    "imageUrl": "https://resource.nationtv.tv/uploads/images/md/2026/11/xkK43s6PH66dlZW1w35E.webp",
-   "published": "2026-11-08T08:00:00+00:00",
+   "published": "2026-11-08T09:50:00+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFAtb2paZm0yV2RGREFXTHlqSXJVRl8tenhwelRoR01RTGE1RGQyQ1BsOFEtTFJCUGtLVGd4TUZubDRhVTVad1ZXRWxxNVA2RWFjVDdGOHQ2bFE?oc=5",
    "hint": "เนชั่น กรุ๊ป ร่วมเป็นเจ้าภาพกฐินสามัคคี สร้างพระธาตุเจดีย์ปุณฺณชิศรีคำแสน เนชั่น กรุ๊ป ร่วมเป็นเจ้าภาพกฐินสามัคคี สร้างพระธาตุเจดีย์ปุณฺณชิศรีคำแสน ที่วัดหนองบัวคำแสน จ.หนองบัวลำภู เนชั่น กรุ๊ป ร่วมเป็นเจ้าภาพกฐินสามัคคี สร้างพระธาตุเจดีย์ปุณฺณชิศรีคำแสน",
    "nb": true
@@ -425,21 +425,6 @@
    "nb": false
   },
   {
-   "feedId": "nb-sribunruang",
-   "category": "ศรีบุญเรือง",
-   "source": "Google News",
-   "publisher": "ช่อง 7",
-   "title": "สะเก็ดข่าว : บริการประชาชน",
-   "link": "https://www.ch7.com/en/news/202764/",
-   "summary": "ที่มา: ช่อง 7",
-   "content": "",
-   "imageUrl": "",
-   "published": "2026-11-13T13:58:21+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE95S1NkbjZmSHd3TzByWDBZTnRqc1dvYXRJd21Bb0lnSTFRRUs5eHVKajJhN0d5UUNmSk1jb1BLSlhvLUtjZ2ZCdDg2bw?oc=5",
-   "hint": "",
-   "nb": false
-  },
-  {
    "feedId": "nb-suwannakhuha",
    "category": "สุวรรณคูหา",
    "source": "Google News",
@@ -533,21 +518,6 @@
    "feedId": "nb-travel",
    "category": "ท่องเที่ยว",
    "source": "Google News",
-   "publisher": "thestandard.co",
-   "title": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
-   "link": "https://thestandard.co/cabinet-retreat-udon-thani-summary/",
-   "summary": "ที่มา: thestandard.co",
-   "content": "",
-   "imageUrl": "https://thestandard.co/wp-content/uploads/2026/11/cabinet-retreat-udon-thani-cover-1.jpg",
-   "published": "2026-11-03T08:00:00+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBiVUxybWs4TThKaTdzVjlIXzZXaTRNanNHR09qTnRXUXAtMU5pbEhiVGtQcVFfdWx5Sm9rOFBKS2JqUmNaU3JHYnprN1BLN2ZnWXNfQTl3V0lxTUJ1WV82b1B2dlhyQ0h6ZHc?oc=5",
-   "hint": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก เล็งบึงกาฬเป็นเขตเศรษฐกิจชายแดน เร่งท่องเที่ยว-ปราบยาเสพติด อนุทิน ชาญวีรกูล สรุปผล ครม.สัญจร อุดรธานี เน้นพัฒนาอีสานตอนบน 4 มิติ ดันเป็นฐานผลิตอาหารโลก พร้อมศึกษาบึงกาฬเป็นเขตเศรษฐกิจชายแดน นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
-   "nb": false
-  },
-  {
-   "feedId": "nb-travel",
-   "category": "ท่องเที่ยว",
-   "source": "Google News",
    "publisher": "ผู้จัดการออนไลน์",
    "title": "คนไทยเที่ยว \"กระบี่\" แพงสุด เปิดสถิติค่าใช้จ่ายเฉลี่ยของชาวไทยเมื่อไปเที่ยวแต่ละจังหวัด",
    "link": "https://mgronline.com/travel/detail/9690000111253",
@@ -572,6 +542,21 @@
    "published": "2026-11-01T07:00:00+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBFSTM1bkVpbkUzeklHYzE0aEZyM1NtWVJyZmdRRDh6cy0taEZ1TkNHUUEweHc1eWxjMTdvSmVjY3hnbXZQV3BrbjdOSDBtdXVGeTQ4ZGc3RjFaZWVqelN4bTVoQjV2UQ?oc=5",
    "hint": "ERROR: The request could not be satisfied",
+   "nb": false
+  },
+  {
+   "feedId": "nb-travel",
+   "category": "ท่องเที่ยว",
+   "source": "Google News",
+   "publisher": "thestandard.co",
+   "title": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
+   "link": "https://thestandard.co/cabinet-retreat-udon-thani-summary/",
+   "summary": "ที่มา: thestandard.co",
+   "content": "",
+   "imageUrl": "https://thestandard.co/wp-content/uploads/2026/11/cabinet-retreat-udon-thani-cover-1.jpg",
+   "published": "2026-11-03T08:00:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBiVUxybWs4TThKaTdzVjlIXzZXaTRNanNHR09qTnRXUXAtMU5pbEhiVGtQcVFfdWx5Sm9rOFBKS2JqUmNaU3JHYnprN1BLN2ZnWXNfQTl3V0lxTUJ1WV82b1B2dlhyQ0h6ZHc?oc=5",
+   "hint": "นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก เล็งบึงกาฬเป็นเขตเศรษฐกิจชายแดน เร่งท่องเที่ยว-ปราบยาเสพติด อนุทิน ชาญวีรกูล สรุปผล ครม.สัญจร อุดรธานี เน้นพัฒนาอีสานตอนบน 4 มิติ ดันเป็นฐานผลิตอาหารโลก พร้อมศึกษาบึงกาฬเป็นเขตเศรษฐกิจชายแดน นายกฯ สรุป ครม.สัญจรอุดรฯ ดันอีสานตอนบนเป็นฐานผลิตอาหารโลก",
    "nb": false
   },
   {
@@ -953,6 +938,21 @@
    "feedId": "nb-all",
    "category": "ข่าวหนองบัว",
    "source": "Google News",
+   "publisher": "ช่อง 7",
+   "title": "รวบผู้จัดเล่นพนันยิงเป้า กลางงานลอยกระทง ยึดรางวัลเครื่องดื่มน้ำผลไม้-ปืนยิงจุกน้ำปลา",
+   "link": "https://www.ch7.com/news/203629/",
+   "summary": "ที่มา: ช่อง 7",
+   "content": "",
+   "imageUrl": "",
+   "published": "2026-11-17T03:37:50+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE1pSlVjYWlNQ1djSC01cFFvY1pITXRPSXZkWEFGNlBYbTdONzdIRzIzaE9zbVhlT2pDQzNBVFl6bWE0M0Z2WTVv?oc=5",
+   "hint": "",
+   "nb": false
+  },
+  {
+   "feedId": "nb-all",
+   "category": "ข่าวหนองบัว",
+   "source": "Google News",
    "publisher": "สยามรัฐ",
    "title": "ตำรวจบุกจับกลางงานลอยกระทง! รวบหนุ่มเปิดเล่นพนันยิงเป้าเก็บเงิน 40 บาทต่อรอบ",
    "link": "https://siamrath.co.th/regional/336140",
@@ -1008,6 +1008,21 @@
    "glink": "https://news.google.com/rss/articles/CBMixgJBVV95cUxOa3UxdnZuX3RtSjBLcHR4dnhKOWliSUtBOThWWnhPSzJ6b0h4LVpMVllpeWJ3YzVyTTJYdzcyenRjeENSUFJ1Njh1NktsRGVRcFl1RVlPaFhSUFA1T1hZWFgySEJRWUMwQ3Z1Unc3blotcklFcHdMRjdFZENWU3JPS2duQzZqYXREMkpUNy15UmZianR1WTRpa0hkdXRyRlVzTG9ydUNKelpZcGczWlB6LXU1NW9uT1lnS2t6dGxaTmNTOTY1OXdpam9CVEVWT0VYQVU0QmY5emk0YlphWEdIWkttYlI5bHBXNnlvVkhFQU5UM3VYWG9ZeUhxX2d1TTJDVUQyNWI2VFprdE5JUlRrY1h3a2FleG1vWXBVSXJhSm5LcVYybjIwV3g5RTZ5UmRIMlpLWktHZG9fanZIUDdaOFFFZHZoQQ?oc=5",
    "hint": "พยากรณ์อากาศรายชั่วโมงสำหรับ บ้านผาสวรรค์, หนองบัวลำภู | SpaceRef ตรวจสอบพยากรณ์อากาศรายชั่วโมงสำหรับ บ้านผาสวรรค์, หนองบัวลำภู ดูอุณหภูมิ ฝน ลม ความชื้น ดัชนีรังสียูวี คุณภาพอากาศ และพยากรณ์อากาศ 15 วัน พยากรณ์อากาศรายชั่วโมงสำหรับ บ้านผาสวรรค์, หนองบัวลำภู | SpaceRef",
    "nb": true
+  },
+  {
+   "feedId": "nb-all",
+   "category": "ข่าวหนองบัว",
+   "source": "Google News",
+   "publisher": "ขอนแก่นลิงก์ Khon Kaen Link",
+   "title": "🙏 ขอนแก่นเตรียมจัดตักบาตรพระสงฆ์ 10,000 รูป 26 ธ.ค. คาดประชาชนร่วม 5 หมื่นคน",
+   "link": "https://www.khonkaenlink.info/read/912568/",
+   "summary": "ที่มา: ขอนแก่นลิงก์ Khon Kaen Link",
+   "content": "",
+   "imageUrl": "https://kkdata.khonkaenlink.info/wp-content/uploads/2026/11/khonkaen-almsgiving-10000-illustrative-2026.webp",
+   "published": "2026-11-17T05:39:18+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1kVFpEb3BSTWl0d3ZVUF8wdnpIcm9ORk1QanZnMGFSYTBvY2VqU0lPZHdiWEpUa1QzN2hSUjQ3eGRrSjVsbnJFVkItTHZUMVhraFZSZA?oc=5",
+   "hint": "🙏 ขอนแก่นเตรียมจัดตักบาตรพระสงฆ์ 10,000 รูป 26 ธ.ค. คาดประชาชนร่วม 5 หมื่นคน » ขอนแก่นลิงก์ ขอนแก่นเตรียมตักบาตรพระสงฆ์ 10,000 รูป จาก 7 จังหวัดภาคอีสาน วันที่ 26 ธันวาคม 2569 เวลา 06.00 น. ถนนหน้าศูนย์ราชการจังหวัดขอนแก่น คาดประชาชนร่วม 3–5 หมื่น… 🙏 ขอนแก่นเตรียมจัดตักบาตรพระสงฆ์ 10,000 รูป 26 ธ.ค. คาดประชาชนร่วม 5 หมื่นคน » ขอนแก่นลิงก์",
+   "nb": false
   },
   {
    "feedId": "nb-all",
@@ -1096,6 +1111,51 @@
    "imageUrl": "",
    "published": "2026-11-17T10:30:03+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBlekFXTGt5VDNoNTVaQkZLcVE4NG5mVnR5bGRCQ2hCVDZsbEh6OGFjeHlRSVRIZ0MyNWZyUkdBOHRqRlJ6Q1dQdDZBeDFMT2VMUXZNYTh3WWJGQQ?oc=5",
+   "hint": "Attention Required! | Cloudflare",
+   "nb": false
+  },
+  {
+   "feedId": "nb-all",
+   "category": "ข่าวหนองบัว",
+   "source": "Google News",
+   "publisher": "สำนักสารนิเทศ",
+   "title": "สสจ.หนองคาย ประชุมคณะกรรมการบริหารสำนักงานสาธารณสุขจังหวัดหนองคาย ครั้งที่ 5/2570",
+   "link": "https://pr.moph.go.th/online/index/news/350807",
+   "summary": "ที่มา: สำนักสารนิเทศ",
+   "content": "",
+   "imageUrl": "",
+   "published": "2026-11-17T12:22:28+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE4xcW1wYTdXTWZGQ3VPN0FzamxwNVBYdGd6dEJ5dTRnUjlUVlQ4TEN5YjlrM2g0V2VvbS1wY3NVMWYxcldaM1FIYXU3WnBDdWxMelktVm5fUWtWdw?oc=5",
+   "hint": "Attention Required! | Cloudflare",
+   "nb": false
+  },
+  {
+   "feedId": "nb-all",
+   "category": "ข่าวหนองบัว",
+   "source": "Google News",
+   "publisher": "สำนักสารนิเทศ",
+   "title": "รพ.ขอนแก่น ร่วมพิธีถวายผ้าพระกฐินพระราชทาน ประจำปี 2569 โดยธนาคารทหารไทยธนชาต จำกัด (มหาชน) (ttb) “ทีทีบี 2 พลังมหากุศล” ณ วัดธาตุ พระอารามหลวง จ.ขอนแก่น",
+   "link": "https://pr.moph.go.th/online/index/news/350683",
+   "summary": "ที่มา: สำนักสารนิเทศ",
+   "content": "",
+   "imageUrl": "",
+   "published": "2026-11-15T03:02:39+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1Edm55a2VwUkRZTnNqOHVWZEdsZmM3eW1tOFlsLUNSaVViTXJHLUJqcmEzT21mS0dLbGlpcTQ0RFFmWEhBUFBTMC13YlR4N0E4cFo1RnAtd2VmZw?oc=5",
+   "hint": "Attention Required! | Cloudflare",
+   "nb": false
+  },
+  {
+   "feedId": "nb-all",
+   "category": "ข่าวหนองบัว",
+   "source": "Google News",
+   "publisher": "สำนัก สารนิเทศ",
+   "title": "โรงพยาบาลมหาราชนครราชสีมาจัดอบรมการใช้งานระบบการลาออนไลน์ (e-Leave)",
+   "link": "https://pr.moph.go.th/online/index/news/350953",
+   "summary": "ที่มา: สำนัก สารนิเทศ",
+   "content": "",
+   "imageUrl": "",
+   "published": "2026-11-20T08:15:56+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1FNkprNkJ5ZEVIRUc1ZHNhZDdhSlIySE1CVGxZaDlTbUpkUkFrWGF3SnM4LXVEVmFwT3IxZURTekJ5UmVWbDE1UDJCTVlDMHppeEdUaEY0NS1ZUQ?oc=5",
    "hint": "Attention Required! | Cloudflare",
    "nb": false
   }
