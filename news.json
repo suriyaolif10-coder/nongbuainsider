@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T16:43:10.882189+00:00",
+ "updated": "2026-11-22T22:10:20.328246+00:00",
  "items": [
   {
    "feedId": "community-own",
@@ -113,6 +113,21 @@
    "feedId": "nb-mueang",
    "category": "อ.เมือง",
    "source": "Google News",
+   "publisher": "เนชั่นทีวี สถานีข่าว 24 ชั่วโมง",
+   "title": "จับตาพรุ่งนี้! กรอ.อีสานตอนบน 1 จัดเต็ม 170 โครงการ อัดฉีด 7.8 หมื่นล้าน ชง \"อนุทิน\" เคาะ ครม.สัญจร กระจายงบ 5 จังหวัด",
+   "link": "https://www.nationtv.tv/news/politics/378985621",
+   "summary": "ที่มา: เนชั่นทีวี สถานีข่าว 24 ชั่วโมง",
+   "content": "",
+   "imageUrl": "https://resource.nationtv.tv/uploads/images/md/2026/11/TlsE43uJQk0Cal6mrPFc.webp",
+   "published": "2026-11-02T08:00:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBPTjdabnBDTEpUdGg5Q1lkUzR6LWt4UXJuVmY2Y3ZYZlVha1R0ekx2T0VwSm50c2RyZjZFVnI2Ri1QMjVsQmlWdUhPbnpBdDFndjA3Z09hSnAzaGc?oc=5",
+   "hint": "จับตาพรุ่งนี้! กรอ.อีสานตอนบน 1 จัดเต็ม 170 โครงการ อัดฉีด 7.8 หมื่นล้าน ชง \"อนุทิน\" เคาะ ครม.สัญจร กระจายงบ 5 จังหวัด จับตาพรุ่งนี้! กรอ.อีสานตอนบน 1 จัดเต็ม 170 โครงการ อัดฉีด 7.8 หมื่นล้าน ชง \"อนุทิน\" เคาะ ครม.สัญจร กระจายงบ 5 จังหวัด ลุยเกษตร-ครัวโลก การค้าชายแดน ท่องเที่ยว และปราบยาเสพติด จับตาพรุ่งนี้! กรอ.อีสานตอนบน 1 จัดเต็ม 170 โครงการ อัดฉีด 7.8 หมื่นล้าน ชง \"อนุทิน\" เคาะ ครม.สัญจร กระจา",
+   "nb": false
+  },
+  {
+   "feedId": "nb-mueang",
+   "category": "อ.เมือง",
+   "source": "Google News",
    "publisher": "banmuang.co.th",
    "title": "รวบ 4 วัยรุ่นรุมแทงคู่อริดับคาโต๊ะสนุกเกอร์ ปมทวงหนี้",
    "link": "https://www.banmuang.co.th/news/crime/497142",
@@ -129,15 +144,15 @@
    "category": "อ.เมือง",
    "source": "Google News",
    "publisher": "ช่อง 7",
-   "title": "วัยรุ่นตีกันกลางงานบุญ จ.หนองบัวลำภู",
-   "link": "https://www.ch7.com/en/news/198600/",
+   "title": "ทวงเงิน 500 บาท หนุ่มวัย 20 ปี ถูกเพื่อนรุมแทงตาย",
+   "link": "https://www.ch7.com/en/news/201160/",
    "summary": "ที่มา: ช่อง 7",
    "content": "",
    "imageUrl": "",
-   "published": "2026-10-30T07:00:00+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE45d0RXdkk2RkpnWnpEWXBrRUhiQ1FxSW9XenZVRjVoSjRmb3FvbkV3eXA1TTh3MFVJVkhPblZ3eTM4Rl9ua3dhdmxYNA?oc=5",
+   "published": "2026-11-08T08:48:47+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1PbHJmaGs1NzR6c1ZkaDBSLUZ2SEZ4c0NveVFUbFVKS1prcUVILW5sOG9BSENrc3VQMWdDaXp1TzZUdzdPT3VWUVJFQQ?oc=5",
    "hint": "",
-   "nb": true
+   "nb": false
   },
   {
    "feedId": "nb-mueang",
@@ -167,21 +182,6 @@
    "published": "2026-11-08T08:00:00+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5sTml1OUh3Nk5uZUc1Q1pvTTRORVd2WTRQNXZ1TnlHeHdXeWQzWFFnbURLT3RJYzlodTVYWXFHUXNXYkMzX2FleHNRU1N2YXJ4YXF2b2x1Tm9iekdBOGthLVNDYjkzdw?oc=5",
    "hint": "2 ผัวเมีย ตามไปทวงเงิน 500 กลับถูกวัยรุ่นรุมทำร้าย แทงสามีเสียชีวิต - ข่าวสด 2 ผัวเมีย ตามไปทวงเงิน 500 กลับถูกวัยรุ่นที่รออยู่ที่โต๊ะสนุ๊ก จำนวน 5 คนรุมทำร้าย แฟนสาวเห็นท่าไม่ดี กำลังโทรศัพท์ตามคนมาช่วย แต่ไม่ทัน สามีถูกแทงเสียชีวิต 2 ผัวเมีย ตามไปทวงเงิน 500 กลับถูกวัยรุ่นรุมทำร้าย แทงสามีเสียชีวิต - ข่าวสด",
-   "nb": false
-  },
-  {
-   "feedId": "nb-mueang",
-   "category": "อ.เมือง",
-   "source": "Google News",
-   "publisher": "ช่อง 7",
-   "title": "ทวงเงิน 500 บาท หนุ่มวัย 20 ปี ถูกเพื่อนรุมแทงตาย",
-   "link": "https://www.ch7.com/en/news/201160/",
-   "summary": "ที่มา: ช่อง 7",
-   "content": "",
-   "imageUrl": "",
-   "published": "2026-11-08T08:48:47+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1PbHJmaGs1NzR6c1ZkaDBSLUZ2SEZ4c0NveVFUbFVKS1prcUVILW5sOG9BSENrc3VQMWdDaXp1TzZUdzdPT3VWUVJFQQ?oc=5",
-   "hint": "",
    "nb": false
   },
   {
@@ -518,21 +518,6 @@
    "feedId": "nb-travel",
    "category": "ท่องเที่ยว",
    "source": "Google News",
-   "publisher": "ผู้จัดการออนไลน์",
-   "title": "คนไทยเที่ยว \"กระบี่\" แพงสุด เปิดสถิติค่าใช้จ่ายเฉลี่ยของชาวไทยเมื่อไปเที่ยวแต่ละจังหวัด",
-   "link": "https://mgronline.com/travel/detail/9690000111253",
-   "summary": "ที่มา: ผู้จัดการออนไลน์",
-   "content": "",
-   "imageUrl": "https://mpics2.mgronline.com/pics/Images/569000011290101.JPEG",
-   "published": "2026-11-21T04:55:00+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBpODh2bV81UG5Nc2lYekhkRUJCTjhpSzVYUGRXenBSY2FMc3A1Y2h0c2VmUXZETWdCa2twSVlSbkZ1SG5OaThSN3l3OWxhSTN1ZEdlT3hCMDd0UTc4YlE?oc=5",
-   "hint": "à¸à¸à¹à¸à¸¢à¹à¸à¸µà¹à¸¢à¸§ \"à¸à¸£à¸°à¸à¸µà¹\" à¹à¸à¸à¸ªà¸¸à¸ à¹à¸à¸´à¸à¸ªà¸à¸´à¸à¸´à¸à¹à¸²à¹à¸à¹à¸à¹à¸²à¸¢à¹à¸à¸¥à¸µà¹à¸¢à¸à¸­à¸à¸à¸²à¸§à¹à¸à¸¢à¹à¸¡à¸·à¹à¸­à¹à¸à¹à¸à¸µà¹à¸¢à¸§à¹à¸à¹à¸¥à¸°à¸à¸±à¸à¸«à¸§à¸±à¸ à¸à¹à¸­à¸¡à¸¹à¸¥à¸ªà¸à¸´à¸à¸´ 10 à¸­à¸±à¸à¸à¸±à¸à¹à¸£à¸à¸à¸µà¹à¸à¸±à¸à¸à¹à¸­à¸à¹à¸à¸µà¹à¸¢à¸§à¸à¸²à¸§à¹à¸à¸¢à¸¡à¸µà¸à¹à¸²à¹",
-   "nb": false
-  },
-  {
-   "feedId": "nb-travel",
-   "category": "ท่องเที่ยว",
-   "source": "Google News",
    "publisher": "เดลินิวส์",
    "title": "หอการค้าจังหวัดหนองบัวลำภู ร่วมสัมมนาหอการค้าทั่วประเทศ ครั้งที่ 44",
    "link": "https://www.dailynews.co.th/news/6360084/",
@@ -543,6 +528,21 @@
    "glink": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5TbEZjLXRuWHBxOGs4MmhvOEdqd3VETXMteDVUaHhHcElZak9sTnBGSG1jME1qQkVLRm5OWl8tWW5sMjlWZFRmNmc3bDZQVVl5S1Jr?oc=5",
    "hint": "Just a moment...",
    "nb": true
+  },
+  {
+   "feedId": "nb-travel",
+   "category": "ท่องเที่ยว",
+   "source": "Google News",
+   "publisher": "ผู้จัดการออนไลน์",
+   "title": "คนไทยเที่ยว \"กระบี่\" แพงสุด เปิดสถิติค่าใช้จ่ายเฉลี่ยของชาวไทยเมื่อไปเที่ยวแต่ละจังหวัด",
+   "link": "https://mgronline.com/travel/detail/9690000111253",
+   "summary": "ที่มา: ผู้จัดการออนไลน์",
+   "content": "",
+   "imageUrl": "https://mpics2.mgronline.com/pics/Images/569000011290101.JPEG",
+   "published": "2026-11-21T04:55:00+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBpODh2bV81UG5Nc2lYekhkRUJCTjhpSzVYUGRXenBSY2FMc3A1Y2h0c2VmUXZETWdCa2twSVlSbkZ1SG5OaThSN3l3OWxhSTN1ZEdlT3hCMDd0UTc4YlE?oc=5",
+   "hint": "à¸à¸à¹à¸à¸¢à¹à¸à¸µà¹à¸¢à¸§ \"à¸à¸£à¸°à¸à¸µà¹\" à¹à¸à¸à¸ªà¸¸à¸ à¹à¸à¸´à¸à¸ªà¸à¸´à¸à¸´à¸à¹à¸²à¹à¸à¹à¸à¹à¸²à¸¢à¹à¸à¸¥à¸µà¹à¸¢à¸à¸­à¸à¸à¸²à¸§à¹à¸à¸¢à¹à¸¡à¸·à¹à¸­à¹à¸à¹à¸à¸µà¹à¸¢à¸§à¹à¸à¹à¸¥à¸°à¸à¸±à¸à¸«à¸§à¸±à¸ à¸à¹à¸­à¸¡à¸¹à¸¥à¸ªà¸à¸´à¸à¸´ 10 à¸­à¸±à¸à¸à¸±à¸à¹à¸£à¸à¸à¸µà¹à¸à¸±à¸à¸à¹à¸­à¸à¹à¸à¸µà¹à¸¢à¸§à¸à¸²à¸§à¹à¸à¸¢à¸¡à¸µà¸à¹à¸²à¹",
+   "nb": false
   },
   {
    "feedId": "nb-travel",
@@ -618,21 +618,6 @@
    "glink": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1aNWhPaGJHSDl1VzBtTlUtb1EwNm45a1ZoZkNXUXZYdkJjY2ZOalI4RURpaG5PekZyVHRzTHM2VFBpcFRNemtuWnpfRjlLaVlFUUhnMmpSZw?oc=5",
    "hint": "​“ศุภจี”ตรวจเยี่ยม Moc Market หลังนำสินค้าเกษตร-ชุมชน ขายที่ท่าอากาศยานอุดรธานี “ศุภจี”นำทีมพาณิชย์ ตรวจเยี่ยม Moc Market ณ ท่าอากาศยานอุดรธานี ช่วงเดินทางไปประชุม ครม.สัญจร เพื่อติดตามผลการเพิ่มช่องทางการตลาดให้กับสินค้าเกษตร สินค้าชุมชน และผลิตภัณฑ์ท้องถิ่น เผยช่วยเพิ่มรายได้ให้กับชุมชน นักเดินทางมีโอกาสซื้อสินค้าที่หลากหลาย เตรียมจัดต่อในปี 70 ที่อุดรธานี หนองคาย หนองบัวลำภู และบึงกาฬ จังหวัดละ",
    "nb": true
-  },
-  {
-   "feedId": "nb-farm",
-   "category": "เกษตร",
-   "source": "Google News",
-   "publisher": "เนชั่นทีวี สถานีข่าว 24 ชั่วโมง",
-   "title": "จับตาพรุ่งนี้! กรอ.อีสานตอนบน 1 จัดเต็ม 170 โครงการ อัดฉีด 7.8 หมื่นล้าน ชง \"อนุทิน\" เคาะ ครม.สัญจร กระจายงบ 5 จังหวัด",
-   "link": "https://www.nationtv.tv/news/politics/378985621",
-   "summary": "ที่มา: เนชั่นทีวี สถานีข่าว 24 ชั่วโมง",
-   "content": "",
-   "imageUrl": "https://resource.nationtv.tv/uploads/images/md/2026/11/TlsE43uJQk0Cal6mrPFc.webp",
-   "published": "2026-11-02T04:16:00+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBPTjdabnBDTEpUdGg5Q1lkUzR6LWt4UXJuVmY2Y3ZYZlVha1R0ekx2T0VwSm50c2RyZjZFVnI2Ri1QMjVsQmlWdUhPbnpBdDFndjA3Z09hSnAzaGc?oc=5",
-   "hint": "จับตาพรุ่งนี้! กรอ.อีสานตอนบน 1 จัดเต็ม 170 โครงการ อัดฉีด 7.8 หมื่นล้าน ชง \"อนุทิน\" เคาะ ครม.สัญจร กระจายงบ 5 จังหวัด จับตาพรุ่งนี้! กรอ.อีสานตอนบน 1 จัดเต็ม 170 โครงการ อัดฉีด 7.8 หมื่นล้าน ชง \"อนุทิน\" เคาะ ครม.สัญจร กระจายงบ 5 จังหวัด ลุยเกษตร-ครัวโลก การค้าชายแดน ท่องเที่ยว และปราบยาเสพติด จับตาพรุ่งนี้! กรอ.อีสานตอนบน 1 จัดเต็ม 170 โครงการ อัดฉีด 7.8 หมื่นล้าน ชง \"อนุทิน\" เคาะ ครม.สัญจร กระจา",
-   "nb": false
   },
   {
    "feedId": "nb-farm",
@@ -737,21 +722,6 @@
    "published": "2026-11-18T03:06:03+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1BWWFEOVRpNWtHQjdTekhvdENsc0VFekNlOEtTREZfRkN4V0NHODlUelYyWDVJcWh6VkcyNURCTWpicmp1VnVZYWl4T28zbzNyU1llUTVR?oc=5",
    "hint": "ถนนลำลูกกา ขาเข้า ก่อนถึงวัดสายไหม มีเจ้าหน้าที่จอดรถทำงานเลนซ้าย | สวพ.FM91 | LINE TODAY 09.31 น. ถนนลำลูกกา ขาเข้า ก่อนถึงวัดสายไหม เล็กน้อย ช่องทางซ้าย มีรถของเจ้าหน้าที่จอดทำงาน การจราจรชะลอตัว #ถนนลูกกา #ข่าวจราจรสวพFM91... ถนนลำลูกกา ขาเข้า ก่อนถึงวัดสายไหม มีเจ้าหน้าที่จอดรถทำงานเลนซ้าย | สวพ.FM91 | LINE TODAY",
-   "nb": false
-  },
-  {
-   "feedId": "nb-line",
-   "category": "ข่าวหนองบัว",
-   "source": "Google News",
-   "publisher": "LINE TODAY",
-   "title": "คอมมานโด ตามรวบ \"เจ๊ปลา\" นายหน้าเถื่อน ตุ๋นส่งคนงานไปเกาหลีใต้สูญเงิน 1.5 แสน ยังให้การภาคเสธ พบประวัติโชกโชนเพิ่งโดนศาลสั่งจำคุกคดีเก่า อยู่ระหว่างประกันตัวสู้ชั้นอุทธรณ์ | สวพ.FM91",
-   "link": "https://today.line.me/th/v3/article/YapMLZB",
-   "summary": "ที่มา: LINE TODAY",
-   "content": "",
-   "imageUrl": "https://today-obs.line-scdn.net/0h4ihQeGZTa0ZVKHfbbkQUEW1-ZzdmTnFPdx0icHUqNiV5BC1EYBs4JScvZmooHyoSdUxwcnh_ZSRxGH5EOQ/w1200",
-   "published": "2026-11-15T20:24:05+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9kVEJMQ1YzZURQSlJUWTViQkFuenZKUl9WV25Fc0YtX09velFJVXd3V25mV3IxQXpHUW1oOFh0VjZYUXZfQ25HSkFORS1SYi1IQng4Q0d3?oc=5",
-   "hint": "คอมมานโด ตามรวบ \"เจ๊ปลา\" นายหน้าเถื่อน ตุ๋นส่งคนงานไปเกาหลีใต้สูญเงิน 1.5 แสน ยังให้การภาคเสธ พบประวัติโชกโชนเพิ่งโดนศาลสั่งจำคุกคดีเก่า อยู่ระหว่างประกันตัวสู้ชั้นอุทธรณ์ | สวพ.FM91 | LINE TODAY คอมมานโด ตามรวบ &amp;quot;เจ๊ปลา&amp;quot; นายหน้าเถื่อน ตุ๋นส่งคนงานไปเกาหลีใต้สูญเงิน 1.5 แสน ประวัติโชกโชนเพิ่งโดนศาลสั่งจำคุกคดีเก่า อยู่ร... คอมมานโด ตามรวบ \"เจ๊ปลา\" นายหน้าเถื่อน ตุ๋นส่งคนงานไปเกาหล",
    "nb": false
   },
   {
@@ -864,21 +834,6 @@
    "category": "ข่าวหนองบัว",
    "source": "Google News",
    "publisher": "LINE TODAY",
-   "title": "มาแล้ว \"โควตาจุฬาฯ-ชนบทปี 70\" ให้ทุนเรียนฟรี ป.ตรี จุฬาฯ จนจบ ข่าวดีปีนี้รับเพิ่มเป็น 76 จังหวัด",
-   "link": "https://today.line.me/th/v3/article/MLB92oz",
-   "summary": "ที่มา: LINE TODAY",
-   "content": "",
-   "imageUrl": "https://today-obs.line-scdn.net/0hmvuCao5uMllIOi7CcDFNDnBsPih7XChQalgtOD47bGEyFiYNc1RhOj1paHVsWHBYaAkqajg_a242CSdccA/w1200",
-   "published": "2026-11-16T12:11:11+00:00",
-   "glink": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE45NDZ0dm96OUdBeW1MaHI2S1hmWERUUmxTT2YxWHNOTXFFcDJRbmNCbnQ3cnBfZFJiaW1KTGFFSDQ2VnVfbXJ6d3ZRWVBEcVRRYzBJdWtn?oc=5",
-   "hint": "มาแล้ว \"โควตาจุฬาฯ-ชนบทปี 70\" ให้ทุนเรียนฟรี ป.ตรี จุฬาฯ จนจบ ข่าวดีปีนี้รับเพิ่มเป็น 76 จังหวัด | Dek-D.com | LINE TODAY มาแล้ว &amp;quot;โควตาจุฬาฯ-ชนบทปี 70&amp;quot; ให้ทุนเรียนฟรี ป.ตรี จุฬาฯ จนจบ ข่าวดีปีนี้รับเพิ่มจาก 52 เป็น 76 จังหวัด พี่ๆ เด็กดี TCAS ขอสรุป... มาแล้ว \"โควตาจุฬาฯ-ชนบทปี 70\" ให้ทุนเรียนฟรี ป.ตรี จุฬาฯ จนจบ ข่าวดีปีนี้รับเพิ่มเป็น 76 จังหวัด | Dek-D.com | LINE TODAY",
-   "nb": false
-  },
-  {
-   "feedId": "nb-line",
-   "category": "ข่าวหนองบัว",
-   "source": "Google News",
-   "publisher": "LINE TODAY",
    "title": "สภาพอากาศวันพรุ่งนี้ 18 พ.ย. แจ้งเตือน 48 จังหวัดฝนตกหนัก ลมกระโชกแรง | The Bangkok Insight",
    "link": "https://today.line.me/th/v3/article/x2oDQ5G",
    "summary": "ที่มา: LINE TODAY",
@@ -887,6 +842,21 @@
    "published": "2026-11-17T10:11:59+00:00",
    "glink": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HVnBOUDU4alVMaXVlZGU1ZzV0YlllcjJsX2U1cXFFSWs2Tms2M0dIUU5JbnZHYmRhdWlFMDJNelhja2V0STVDYVdQby1QZm9sVncwWXRB?oc=5",
    "hint": "สภาพอากาศวันพรุ่งนี้ 18 พ.ย. แจ้งเตือน 48 จังหวัดฝนตกหนัก ลมกระโชกแรง | The Bangkok Insight | LINE TODAY กรมอุตุนิยมวิทยา รายงานสภาพอากาศวันพรุ่งนี้ 18 พ.ย. แจ้งเตือน 48 จังหวัดฝนตกหนัก ลมกระโชกแรง ทะเลคลื่นสูงมากกว่า 2 เมตร เดินเรือด้วยความระมัดร... สภาพอากาศวันพรุ่งนี้ 18 พ.ย. แจ้งเตือน 48 จังหวัดฝนตกหนัก ลมกระโชกแรง | The Bangkok Insight | LINE TODAY",
+   "nb": false
+  },
+  {
+   "feedId": "nb-line",
+   "category": "ข่าวหนองบัว",
+   "source": "Google News",
+   "publisher": "LINE TODAY",
+   "title": "มาแล้ว \"โควตาจุฬาฯ-ชนบทปี 70\" ให้ทุนเรียนฟรี ป.ตรี จุฬาฯ จนจบ ข่าวดีปีนี้รับเพิ่มเป็น 76 จังหวัด",
+   "link": "https://today.line.me/th/v3/article/MLB92oz",
+   "summary": "ที่มา: LINE TODAY",
+   "content": "",
+   "imageUrl": "https://today-obs.line-scdn.net/0hmvuCao5uMllIOi7CcDFNDnBsPih7XChQalgtOD47bGEyFiYNc1RhOj1paHVsWHBYaAkqajg_a242CSdccA/w1200",
+   "published": "2026-11-16T12:11:11+00:00",
+   "glink": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE45NDZ0dm96OUdBeW1MaHI2S1hmWERUUmxTT2YxWHNOTXFFcDJRbmNCbnQ3cnBfZFJiaW1KTGFFSDQ2VnVfbXJ6d3ZRWVBEcVRRYzBJdWtn?oc=5",
+   "hint": "มาแล้ว \"โควตาจุฬาฯ-ชนบทปี 70\" ให้ทุนเรียนฟรี ป.ตรี จุฬาฯ จนจบ ข่าวดีปีนี้รับเพิ่มเป็น 76 จังหวัด | Dek-D.com | LINE TODAY มาแล้ว &amp;quot;โควตาจุฬาฯ-ชนบทปี 70&amp;quot; ให้ทุนเรียนฟรี ป.ตรี จุฬาฯ จนจบ ข่าวดีปีนี้รับเพิ่มจาก 52 เป็น 76 จังหวัด พี่ๆ เด็กดี TCAS ขอสรุป... มาแล้ว \"โควตาจุฬาฯ-ชนบทปี 70\" ให้ทุนเรียนฟรี ป.ตรี จุฬาฯ จนจบ ข่าวดีปีนี้รับเพิ่มเป็น 76 จังหวัด | Dek-D.com | LINE TODAY",
    "nb": false
   },
   {
